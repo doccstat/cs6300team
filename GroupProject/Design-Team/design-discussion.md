@@ -28,7 +28,7 @@
     * Enum would be a good choice! String and int are both viable and I don't think they have merits over each other.
 
 *   Functions are missing parameters
-* We should add "+,-,~,#,_" etc in our final design to show the attributes as public or private or something else. Since we want some attributes to be private in case we made mistakes while implementation.
+*	We should add "+,-,\~,#,\_" etc in our final design to show the attributes as public or private or something else. Since we want some attributes to be private in case we made mistakes while implementation.
 
 
 
@@ -67,7 +67,7 @@
 
 <img src="images/design_3.PNG" alt="design 3" width="900">
 
-**Pros: **
+**Pros:**
 
 
 
@@ -95,6 +95,7 @@
 *   Clear classes, having the needed attributes and methods
 *   Defines Player/Administrator as separate objects
 *   Shows actionable relationships between classes
+*	UML design is clear
 
 **Cons:**
 
@@ -103,6 +104,7 @@
 *   Seems to define Player/Administrator as separate classes without a inherited idea of a User class
 *   Unclear if a cryptogram can be solved by multiple players or only be for a single player.  This is because there is a `markAsComplete()` function but it seems to imply that there is only a single copy.
 *   Function parameters show type but unsure what the parameter names are
+*	Some fucntions have overlaps
 
 
 # Team Design
@@ -127,7 +129,7 @@ The team design and Design 3 share similar classes and relationships. The major 
 
 Design 4
 
-Design 4 similarly represented some of the requirements with the Administrator, Player, and Cryptogram classes. Same as Design 1 and 3, Design 4 included a class to for the player statistics requirement.
+Design 4 similarly represented some of the requirements with the Administrator, Player, and Cryptogram classes. Same as Design 1 and 3, Design 4 included a class to for the player statistics requirement. And Design 4 made a clear construction of the diagram.
 
 
 # Summary
@@ -137,10 +139,10 @@ Remote collaboration on any complex projects, including technical designs, is al
 Some of the lessons learned from this process includes:
 
 
-
 *   Sharing and learning the constraints of each member. Being in different time zones could pose a challenge, by considering this, we learn to not expect immediate responses from our messages or view each message requiring immediate action.
 *   Finding common ground fast. Reconciling the ideas of four individuals could be a monumental task as the team decides which one to include or remove. By focusing on the ones common to all, each new idea and its merits gets weighted against a system we already agreed on.
-*
-*
+*	During the discussion which design diagram should our diagram be based on, we clearly made some advantages and disadvantages, and using tools to help us make our ideas together. After we have settled down our ideas, we started to contribute based upon Design 2 and everybody shows their work. 
+*	We throughoutly discussed functions of each method and removed the possible overlaps ones.
+*	Although we have different backgrounds, every one learned something from the disscussion.
 
 <!-- Docs to Markdown version 1.0β15 -->
