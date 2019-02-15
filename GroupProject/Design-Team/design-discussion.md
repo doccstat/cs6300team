@@ -6,7 +6,7 @@
 ### **Design 1**
 
 
-![alt_text](..\Design-Individual\clam38\design.pdf "image_tooltip")
+![alt_text](../Design-Individual/clam38/design.pdf "image_tooltip")
 
 
 **Pros:**
