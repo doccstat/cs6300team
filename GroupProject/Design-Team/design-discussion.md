@@ -6,7 +6,7 @@
 ### **Design 1**
 
 
-<img src="images/design_1.png" alt="design 1" width="400">
+<img src="images/design_1.PNG" alt="design 1" width="400">
 
 
 **Pros:**
@@ -40,7 +40,7 @@
 
 
 
-<img src="images/design_2.png" alt="design 2" width="400">
+<img src="images/design_2.PNG" alt="design 2" width="400">
 
 **Pros:**
 
@@ -68,7 +68,7 @@
 
 
 
-<img src="images/design_3.png" alt="design 3" width="400">
+<img src="images/design_3.PNG" alt="design 3" width="400">
 
 **Pros: **
 
@@ -89,7 +89,7 @@
 **Design 4**
 
 
-<img src="images/design_4.png" alt="design 4" width="400">
+<img src="images/design_4.PNG" alt="design 4" width="400">
 
 **Pros:**
 
@@ -111,7 +111,7 @@
 # Team Design
 
 
-![alt_text](images\team_design.png)
+![alt_text](images\team_design.PNG)
 
 
 The template for our team design was lifted from Justin's (Design 2) diagram. From the discussion amongst the team members, Design 2 offered a simple and intuitive layout of the classes required and a large list of attributes and methods for us to add/remove to our team design. In addition, Design 3 also shared a similar idea on how to best represent the requirements making Design 2 an easy way to begin our final team design.
