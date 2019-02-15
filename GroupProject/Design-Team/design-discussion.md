@@ -6,7 +6,7 @@
 ### **Design 1**
 
 
-![alt_text](images\design_1.png)
+<img src="images/design_1.png" alt="design 1" width="400">
 
 
 **Pros:**
@@ -40,8 +40,7 @@
 
 
 
-![alt_text](images\design_2.png)
-
+<img src="images/design_2.png" alt="design 2" width="400">
 
 **Pros:**
 
@@ -69,8 +68,7 @@
 
 
 
-![alt_text](images\design_3.png)
-
+<img src="images/design_3.png" alt="design 3" width="400">
 
 **Pros: **
 
@@ -91,8 +89,7 @@
 **Design 4**
 
 
-![alt_text](images\design_4.png)
-
+<img src="images/design_4.png" alt="design 4" width="400">
 
 **Pros:**
 
