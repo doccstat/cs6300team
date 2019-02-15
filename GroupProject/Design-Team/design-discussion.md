@@ -6,7 +6,8 @@
 ### **Design 1**
 
 
-<img src="../Design-Individual/clam38/design.pdf" alt="alt_text" width="216" height="384">
+![alt_text](../Design-Individual/clam38/design.pdf "image_tooltip")
+
 
 **Pros:**
 
