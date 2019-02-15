@@ -114,7 +114,7 @@
 # Team Design
 
 
-![alt_text](images/Copy-of4.png "image_tooltip")
+![alt_text](images\team_design.png)
 
 
 The template for our team design was lifted from Justin's (Design 2) diagram. From the discussion amongst the team members, Design 2 offered a simple and intuitive layout of the classes required and a large list of attributes and methods for us to add/remove to our team design. In addition, Design 3 also shared a similar idea on how to best represent the requirements making Design 2 an easy way to begin our final team design.
