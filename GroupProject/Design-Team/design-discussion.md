@@ -19,19 +19,16 @@
 **Cons:**
 
 *   `view_player_stats()` is repeated in two classes (Player and Administrator). I think it would be better to move it to User.
-
-    Here I have some disagreement. I don't think we should merge them into player class. The function return different outputs for player and administrator. If they are merged into player class, every time administrators access the list of player stats need to call the function from player class. And it seems a little complicated to make the function return more elements for administrator.
+    * Here I have some disagreement. I don't think we should merge them into player class. The function return different outputs for player and administrator. If they are merged into player class, every time administrators access the list of player stats need to call the function from player class. And it seems a little complicated to make the function return more elements for administrator.
 
 *   The `display()` methods and the AdminView are GUI related. According to requirements: "you do not have to show any purely GUI specific classes, if they are only doing user display and input and not performing any significant business logic."
 *   Some class names are not nouns or noun phrases.
 *   Not as clear on the specifics of the interactions between the various Cryptogram classes
 *   Unsure if difficulty category/progress are strings/ints/enums/etc.
-
-    Enum would be a good choice! String and int are both viable and I don't think they have merits over each other.
+    * Enum would be a good choice! String and int are both viable and I don't think they have merits over each other.
 
 *   Functions are missing parameters
-
-    We should add "+,-,~,#,_" etc in our final design to show the attributes as public or private or something else. Since we want some attributes to be private in case we made mistakes while implementation.
+* We should add "+,-,~,#,_" etc in our final design to show the attributes as public or private or something else. Since we want some attributes to be private in case we made mistakes while implementation.
 
 
 
@@ -121,15 +118,15 @@ The template for our team design was lifted from Justin's (Design 2) diagram. Fr
 
 Design 1
 
-The primary difference in Design 1 is that it's too abstract and lacked a focus on only the object oriented classes necessary for the system. This is seen through the inclusion of the Player Statistics class and the two user type specific UI screens. The final team design handle the player statistics view requirement with a simple inclusion of the getListPlayerStats() method. The complexity of which user type sees which screen wasn't necessary in the class diagram. Aside from the difference in class structure, Design 1 included many of the same attributes and methods as the final team design such as strings for name, solution, completed, etc.
+The primary difference in Design 1 is that it's too abstract and lacked a focus on only the object oriented classes necessary for the system. This is seen through the inclusion of the Player Statistics class and the two user type specific UI screens. The final team design handle the player statistics view requirement with a simple inclusion of the `getListPlayerStats()` method. The complexity of which user type sees which screen wasn't necessary in the class diagram. Aside from the difference in class structure, Design 1 included many of the same attributes and methods as the final team design such as strings for name, solution, completed, etc.
 
 Design 2
 
-As Design 2 became the template of our team design, it shares more similarities than differences. The final team design included detailed parameters to the existing methods of Design 2's classes. For example, CreateUser() became CreatePlayer(firstName: String, lastName: String, username: String, category: int). The Cryptogram class in the team design included additional methods necessary to implement the items in Requirement 8.
+As Design 2 became the template of our team design, it shares more similarities than differences. The final team design included detailed parameters to the existing methods of Design 2's classes. For example, `CreateUser()` became CreatePlayer(firstName: String, lastName: String, username: String, category: int). The Cryptogram class in the team design included additional methods necessary to implement the items in Requirement 8.
 
 Design 3
 
-The team design and Design 3 share similar classes and relationships. The major difference lies in how the the Player Statistics requirements should be represented. Design 3 chose to represent this requirement in a PlayerStats class with relationships to the Player and User class. The team design simplified this requirement with the getListPlayerStats() method in both the Administrator and Player classes.
+The team design and Design 3 share similar classes and relationships. The major difference lies in how the the Player Statistics requirements should be represented. Design 3 chose to represent this requirement in a PlayerStats class with relationships to the Player and User class. The team design simplified this requirement with the `getListPlayerStats()` method in both the Administrator and Player classes.
 
 Design 4
 
