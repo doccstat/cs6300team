@@ -6,7 +6,7 @@
 ### **Design 1**
 
 
-![alt_text](..\Design-Individual\clam38\design.pdf "image_tooltip")
+![alt_text](images\design_1.png)
 
 
 **Pros:**
@@ -40,7 +40,7 @@
 
 
 
-![alt_text](images/Copy-of1.png "image_tooltip")
+![alt_text](images\design_2.png)
 
 
 **Pros:**
@@ -69,7 +69,7 @@
 
 
 
-![alt_text](images/Copy-of2.png "image_tooltip")
+![alt_text](images\design_3.png)
 
 
 **Pros: **
@@ -91,7 +91,7 @@
 **Design 4**
 
 
-![alt_text](images/Copy-of3.png "image_tooltip")
+![alt_text](images\design_4.png)
 
 
 **Pros:**
@@ -107,7 +107,7 @@
 
 
 *   Seems to define Player/Administrator as separate classes without a inherited idea of a User class
-*   Unclear if a cryptogram can be solved by multiple players or only be for a single player.  This is because there is a markAsComplete() function but it seems to imply that there is only a single copy.
+*   Unclear if a cryptogram can be solved by multiple players or only be for a single player.  This is because there is a `markAsComplete()` function but it seems to imply that there is only a single copy.
 *   Function parameters show type but unsure what the parameter names are
 
 
