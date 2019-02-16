@@ -138,10 +138,10 @@ Design 4 similarly represented some of the requirements with the Administrator, 
 
 ## Design Decisions:
 - **Administrator, Player, and Cryptogram classes**: All four designs included these requirements as separate classes. They form the core objects in the Cryptogame and have many attributes and actions in the requirements that don’t overlap each other.
-- **CryptogramAttempt class**:
+- **CryptogramAttempt class**: The CryptogramAttempt class and the relation checkSolution allow an easy acces to the Cryptogram status, and also the player results. 
 - **User class**: Both Administrator and Player shared a common action of viewing player statistics. It was agreed that while different screens are brought up depending on the User type, the action itself is essentially the same. 
 - **Relationships**:
-- **Attributes and methods**:
+- **Attributes and methods**: All the designs use similar attributes and methods for the common classes. We decided to use a hashMap to map the Cryptogram to their status, to allow a faster acces to CryptogramAttempt. This will hep us meet the requirement 11 (The performance of the game should be such that students do not experience any considerable lag between their actions and the response of the application).
 
 
 # Summary
