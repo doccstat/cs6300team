@@ -125,7 +125,8 @@ The primary difference in Design 1 is that it's too abstract and lacked a focus 
 
 ### Design 2
 
-As Design 2 became the template of our team design, it shares more similarities than differences. The final team design included detailed parameters to the existing methods of Design 2's classes. For example, `CreateUser()` became CreatePlayer(firstName: String, lastName: String, username: String, category: int). The Cryptogram class in the team design included additional methods necessary to implement the items in Requirement 8.
+As Design 2 became the template of our team design, it shares more similarities than differences. The final team design included detailed parameters to the existing methods of Design 2's classes. For example, `CreateUser()` became `CreatePlayer(firstName: String, lastName: String, username: String, category: int)`. The Cryptogram class in the team design included additional methods necessary to implement the items in Requirement 8. UI-specific methods: `Login()`, `Logout()`, `ReturnToMenu()`, etc and initialization are removed from the original design. Redundant attributes were removed between `Cryptogram`, `CryptogramAttempt`, and `Player` because it was seen that they already contained links to them.  This included attributes such as the `CryptogramName`, `Username`, and `Difficulty`. `EncryptPhrase()` was removed since it would be contained within `GenerateAttemptForUser()`. The `EditCryptogram()` method was removed since it would be duplicated by the `SaveCryptogram()` function.
+
 
 ### Design 3
 
