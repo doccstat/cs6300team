@@ -136,6 +136,13 @@ The team design and Design 3 share similar classes and relationships. The major 
 
 Design 4 similarly represented some of the requirements with the Administrator, Player, and Cryptogram classes. Same as Design 1 and 3, Design 4 included a class to for the player statistics requirement. And Design 4 made a clear construction of the diagram.
 
+## Design Decisions:
+- **User, Administrator and Player classes**: It’s easy to see why we utilize these three classes. All four designs included these requirements as separate classes. These three components form the core in the Cryptogame and have many attributes and actions in the requirements that don’t overlap each other.
+- **CryptogramAttempt class**:
+- **User class**: Both Administrator and Player shared a common action of viewing player statistics. It was agreed that while different screens are brought up depending on the User type, the action itself is essentially the same. 
+- **Relationships**:
+- **Attributes and methods**:
+
 
 # Summary
 
