@@ -28,7 +28,7 @@
     * Enum would be a good choice! String and int are both viable and I don't think they have merits over each other.
 
 *   Functions are missing parameters
-*	We should add "+,-,\~,#,\_" etc in our final design to show the attributes as public or private or something else. Since we want some attributes to be private in case we made mistakes while implementation.
+*	Didn't have "+,-,\~,#,\_" etc to show the attributes as public or private or something else. Since we want some attributes to be private in case we made mistakes while implementation.
 
 
 
