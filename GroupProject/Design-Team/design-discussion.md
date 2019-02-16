@@ -115,20 +115,23 @@
 
 The template for our team design was lifted from Justin's (Design 2) diagram. From the discussion amongst the team members, Design 2 offered a simple and intuitive layout of the classes required and a large list of attributes and methods for us to add/remove to our team design. In addition, Design 3 also shared a similar idea on how to best represent the requirements making Design 2 an easy way to begin our final team design. All the designs have Player, Cryptogram and Administrator classes, and use similar attributes for these classes. And they agree on the relationships between Administrator-Cryptogram and Administrator-Player
 
+## Differences
 
-Design 1
+Every design represented The view `PlayerStatistics` requirement differently. Design1 includes two different methods `view_player_stats()` in both `Administrator` and `Player` classes, but it wasn’t clear how to get these statistics. Design2 proposed a `ViewPlayerStatistics(isAdministrator:bool)` in the User class Design3 proposed the `PlayerStats` as a separate class, but this  wasn’t needed since all the methods added in this class can be called from `Player` class. Design4 also proposed `ListPlayerStats` as a separate class. We decided that a class is not need to accomplish the view player statistics requirement, because the relationtionships Player-CryptogramAttempt , User-Player and User-Administrator allow us to get the needed statistics. We added a method `viewPlayerStatistics()` to User. And using override to make functions based on that.
+
+### Design 1
 
 The primary difference in Design 1 is that it's too abstract and lacked a focus on only the object oriented classes necessary for the system. This is seen through the inclusion of the Player Statistics class and the two user type specific UI screens. The final team design handle the player statistics view requirement with a simple inclusion of the `getListPlayerStats()` method. The complexity of which user type sees which screen wasn't necessary in the class diagram. Aside from the difference in class structure, Design 1 included many of the same attributes and methods as the final team design such as strings for name, solution, completed, etc.
 
-Design 2
+### Design 2
 
 As Design 2 became the template of our team design, it shares more similarities than differences. The final team design included detailed parameters to the existing methods of Design 2's classes. For example, `CreateUser()` became CreatePlayer(firstName: String, lastName: String, username: String, category: int). The Cryptogram class in the team design included additional methods necessary to implement the items in Requirement 8.
 
-Design 3
+### Design 3
 
 The team design and Design 3 share similar classes and relationships. The major difference lies in how the the Player Statistics requirements should be represented. Design 3 chose to represent this requirement in a PlayerStats class with relationships to the Player and User class. The team design simplified this requirement with the `getListPlayerStats()` method in both the Administrator and Player classes.
 
-Design 4
+### Design 4
 
 Design 4 similarly represented some of the requirements with the Administrator, Player, and Cryptogram classes. Same as Design 1 and 3, Design 4 included a class to for the player statistics requirement. And Design 4 made a clear construction of the diagram.
 
