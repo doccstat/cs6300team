@@ -113,7 +113,8 @@
 <img src="images/team_design.PNG" alt="team design" width="900">
 
 
-The template for our team design was lifted from Justin's (Design 2) diagram. From the discussion amongst the team members, Design 2 offered a simple and intuitive layout of the classes required and a large list of attributes and methods for us to add/remove to our team design. In addition, Design 3 also shared a similar idea on how to best represent the requirements making Design 2 an easy way to begin our final team design.
+The template for our team design was lifted from Justin's (Design 2) diagram. From the discussion amongst the team members, Design 2 offered a simple and intuitive layout of the classes required and a large list of attributes and methods for us to add/remove to our team design. In addition, Design 3 also shared a similar idea on how to best represent the requirements making Design 2 an easy way to begin our final team design. All the designs have Player, Cryptogram and Administrator classes, and use similar attributes for these classes. And they agree on the relationships between Administrator-Cryptogram and Administrator-Player
+
 
 Design 1
 
@@ -144,5 +145,7 @@ Some of the lessons learned from this process includes:
 *	During the discussion which design diagram should our diagram be based on, we clearly made some advantages and disadvantages, and using tools to help us make our ideas together. After we have settled down our ideas, we started to contribute based upon Design 2 and everybody shows their work. 
 *	We throughoutly discussed functions of each method and removed the possible overlaps ones.
 *	Although we have different backgrounds, every one learned something from the disscussion.
+*	The UML design helps to boil down the app to the essential classes and separate out components that should be within the UI only.
+*	Even though each team member had the same requirements, we all had slightly different designs. Comparing and contrasting the pros and cons of each design helped to remove unnecessary extra functions and attributes. 
 
 <!-- Docs to Markdown version 1.0β15 -->
