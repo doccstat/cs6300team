@@ -139,14 +139,12 @@ Design 4 similarly represented some of the requirements with the Administrator, 
 
 # Summary
 
-Remote collaboration on any complex projects, including technical designs, is always a challenge. One of the advantages of this team is that most of the members shared similar ideas on how the requirements should be represented. This allowed us to quickly form a foundation and systematically review each new idea from individual members.
+Remote collaboration on any project, including technical designs, is always a challenge. There were several lessons that allowed us to work quickly and effectively as a team.
 
-Some of the lessons learned from this process includes:
-
-
-*   Sharing and learning the constraints of each member. Being in different time zones could pose a challenge, by considering this, we learn to not expect immediate responses from our messages or view each message requiring immediate action.
-*   Finding common ground fast. Reconciling the ideas of four individuals could be a monumental task as the team decides which one to include or remove. By focusing on the ones common to all, each new idea and its merits gets weighted against a system we already agreed on.
-*	During the discussion which design diagram should our diagram be based on, we clearly made some advantages and disadvantages, and using tools to help us make our ideas together. After we have settled down our ideas, we started to contribute based upon Design 2 and everybody shows their work. 
+* **Start with the common ideas.** Reconciling the ideas of four individuals could be a difficult task as there were four different designs to merge together. By focusing on the ones common to all, it made it easier to discuss adding or removing each new idea to the team design.
+* **Communication.** Being in different time zones could pose a challenge to remote teams. By considering this, we learn to not expect immediate responses from our messages or view each message as requiring immediate action. The tools we used such as Google Docs and Slack allowed us to communicate at different speeds and quickly merge our work together.
+* **Iterative design.** It was important not to be locked in on any particular part of our system. We went through several rounds of solutions to each requirement. This allowed us to reaccess each new idea and how it would fit in our team design. This approach allowed us to consolidate classes and methods.
+* **Levarging diverse backgrounds.** The varying level of experience became obvious as we began discussing the system design. Some had a deeper understanding on object oriented programming, databases and prior design experience. Working in a team brought out nuisances that allowed us to remove overly complicated classes and complex relationships.
 *	We throughoutly discussed functions of each method and removed the possible overlaps ones.
 *	Although we have different backgrounds, every one learned something from the disscussion.
 *	The UML design helps to boil down the app to the essential classes and separate out components that should be within the UI only.
