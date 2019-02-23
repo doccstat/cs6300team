@@ -1,6 +1,6 @@
 # Design Document
 
-**Author**: \<person or team name\>
+**Author**: Team 11
 
 ## 1 Design Considerations
 
