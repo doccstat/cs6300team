@@ -1,24 +1,34 @@
 # Design Document
 
-*This is the template for your design document. The parts in italics are concise explanations of what should go in the corresponding sections and should not appear in the final document.*
-
 **Author**: \<person or team name\>
 
 ## 1 Design Considerations
 
-*The subsections below describe the issues that need to be addressed or resolved prior to or while completing the design, as well as issues that may influence the design process.*
-
 ### 1.1 Assumptions
 
-*Describe any assumption, background, or dependencies of the software, its use, the operational environment, or significant project issues.*
+1. Any user will access one cryptogram at the same time
+2. Any user will save the current state of the cryptogram before log off
+3. Any user or administrator will login on one machine at the same time
+4. Any user will not do conflict operations, for example, under certain circumstances, he/she successfully logs in at different machines and do the same operation at the same time
+5. The machine users run our app on should have all the libraries required for the application to run successfully
+6. Any administrator won’t make changes to any user that is currently active
+7. Any administrator won’t make changes to any cryptogram that is current actively used by some user
 
 ### 1.2 Constraints
 
-*Describe any constraints on the system that have a significant impact on the design of the system.*
+1. Any user can access only one cryptogram at the same time
+2. Current state of cryptogram is stored when users sign off
+3. Any user or administrator remain active on only one machine at the same time
+4. Any administrator can’t make changes to any user that is currently active
+5. Any administrator can’t make changes to any cryptogram that is current actively used by some user
 
 ### 1.3 System Environment
 
-*Describe the hardware and software that the system must operate in and interact with.*
+* Android phones running on API 23 or higher.
+* RAM >= 512MB
+* Resolution >= 720p
+* CPU frequency >= 1.5 GHz
+* Network access
 
 ## 2 Architectural Design
 
