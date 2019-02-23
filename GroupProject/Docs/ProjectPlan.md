@@ -33,20 +33,6 @@ The cryptogram game is a free software that everyone can use to generate thousan
 * **Entrance criteria:** Design unit testing, integration testing, system testing and regression testing
 * **Exit criteria:** A good testing design that doesn’t require re-run every test when there are changes made to the system.
 
-1. Create Class Diagram
-2. Determine User Use Cases
-3. Make Design Considerations
-4. Architect App Design
-5. Create Low-Level Design diagrams
-6. Generate Test Plan
-7. Develop App
-	* Create Administrator scenarios
-	* Create Player scenarios
-8. Test Functional Units
-9. Test UI
-10. Test Systems Integration
-
-
 ## 3 Team
 
 ### Team Members
@@ -56,5 +42,19 @@ The cryptogram game is a free software that everyone can use to generate thousan
 * Justin Wong
 
 ### Roles
-- *Roles, with a short description of each role*
-- *Table showing which team member(s) has which role(s)*
+
+* Architect 
+	* Create the overall architecture of the application
+	* Ensure that the non-functional requirements are taken into account during the development
+* Project Manager 
+	* Leads the team
+	* Ensure that the software development process works as intended
+	* Organizes the team tasks and meetings  
+	* Tracks the progress of the project
+* Developer 
+	* Implements the design
+	* Ensure code efficiency
+* Tester 
+	* Design testing scenarios
+	* Develop test cases
+	* Execute test cases
