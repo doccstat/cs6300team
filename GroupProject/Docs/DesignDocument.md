@@ -72,6 +72,8 @@ Finally, the Administrator can return back to the menu at any time.  They can al
 
 #### 3.2.2 Player Sequence Diagram
 
+<img src="img/PlayerSequenceDiagram.PNG" alt="PlayerSequenceDiagram" width="900">
+
 In the Player Sequence Diagram, the user will proceed to the Player Menu UI if they log in successfully at the Player.  If the login credentials are wrong, they will be returned back to the Login screen.  The Player when logged in, can then go to the Player Statistics screen or Choose Cryptogram.  
 
 On the Choose Cryptogram UI, the app will retrieve a list of all the cryptograms from the Cryptogram service to populate the view.  The Player can then select one of the Cryptograms that are unsolved or in-progress to play.  Completed cryptograms, whether solved or unsolved, will not be selectable by the Player.
@@ -81,5 +83,5 @@ When the Player selects an unsolved or in-progress cryptogram, they will then go
 Finally, the Player can return back to the Player menu.  From there they can completely logout.
 
 ## 4 User Interface Design
-*For GUI-based systems, this section should provide the specific format/layout of the user interface of the system (e.g., in the form of graphical mockups).*
 
+<img src="img/UImockup.PNG" alt="UImockup" width="900">
