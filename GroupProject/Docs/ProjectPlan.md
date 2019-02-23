@@ -58,3 +58,10 @@ The cryptogram game is a free software that everyone can use to generate thousan
 	* Design testing scenarios
 	* Develop test cases
 	* Execute test cases
+
+| **Team Member**      | **Primary Role** | **Secondary Role** |
+|----------------------|------------------|--------------------|
+| Calvin Lam           | Tester           | Developer          |
+| Xingchi Li           | Developer        | Tester             |
+| Wafa Nakbi Ep Jenzri | Project Manager  | Developer          |
+| Justin Wong          | Architect        | Developer          |
