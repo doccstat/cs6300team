@@ -8,9 +8,9 @@
 
 ## 2 Use Case Descriptions
 
-### User Use Cases
+### 2.1 User Use Cases
 
-#### View Player Statistics
+#### 2.1.1 View Player Statistics
 **Requirements**: this use case allows a user (a player or the administrator ) to view the list of players statistics.
 <br>**Pre-conditions**: the user must have been logged in successfully and selected /pressed the view player statistics option/button.
 <br>**Post-conditions**: A list containing players first name, number of cryptograms won and number of cryptograms lost is displayed. The list is ordered by the number of cryptograms won. If the user is the administrator, he can also see players username and difficulty status..
@@ -22,9 +22,9 @@
   * The administrator select /press the view player statistics option/button.
   * A list containing players username,  first name, difficulty status, number of cryptograms won and number of cryptograms lost is displayed.
 
-### **Administrator Use Cases**
+### 2.2 **Administrator Use Cases**
 
-#### **Create Player**
+#### 2.2.1 **Create Player**
 **Requirements**: this use case allows the administrator to add a new player.
 <br>**Pre-conditions**: the administrator must have been logged in successfully, chose/pressed  the add player option/button.
 <br>**Post-conditions**: a confirmation that the new player has been added is displayed if all the required fields are entered, or an error message if there are missing or incorrect information entered.
@@ -39,7 +39,7 @@
   * Do the first 3 steps of scenario 1.
   * There is an empty field, the entered first or last name are not alphabetic, the entered username already exists or the entered string for difficulty is other than easy, normal or hard. An error is displayed near each of the corresponding fields and the new player is not added to the list of players.
 
-#### **Create Cryptogram**
+#### 2.2.2 **Create Cryptogram**
 **Requirements**: this use case allows the administrator to add a new cryptogram.
 <br>**Pre-conditions**:  the administrator must have been logged in successfully, chose/pressed  the add cryptogram option/button.
 <br>**Post-conditions**:  a confirmation that the new cryptogram has been added is displayed if all the required fields are entered, or an error message if there are missing or incorrect information entered.
@@ -56,9 +56,9 @@
   * There is an empty field, the entered name already exists or the entered string for the number of allowed incorrect solution attempts for the easy, normal and hard difficulty is not a number. An error is displayed near each of the corresponding fields and the new cryptogram is not added to the list of cryptograms.
   * The administrator edit any of the mentioned fields.
 
-### **Player Use Cases**
+### 2.3 **Player Use Cases**
 
-#### **Choose Cryptogram**
+#### 2.3.1 **Choose Cryptogram**
 **Requirements**: this use case allows the player to choose a cryptogram.
 <br>**Pre-conditions**: the player must have been logged in successfully, chose/pressed  the view unsolved cryptograms option/button.
 <br>**Post-Conditions**:  If the chosen cryptogram has not been played by the player before, the fully encrypted phrase is generated and displayed.  If the cryptogram is in progress, the previous state of the phrase is displayed.
@@ -73,14 +73,14 @@
   * The status of the chosen cryptogram is in progress. The previous state of the phrase is displayed.
   * The number of incorrect solution attempts remaining is displayed.
 
-#### **View Unsolved Cryptograms**
+#### 2.3.2 **View Unsolved Cryptograms**
 <br>**Requirements**: this use case allows the player to view the list of unsolved   cryptograms. It is a requirement for the choose cryptogram use case.
 <br>**Pre-conditions**: the player must have been logged in successfully, chose/pressed  the view unsolved cryptograms option/button.
 <br>**Post-conditions**: A list of unsolved cryptograms for the specific player,  alongside their status as in progress or unstarted is displayed.
 <br>**Scenarios**:
 * Display the list of all unsolved cryptograms for the player.
 
-#### **View Attempts Remaining**
+#### 2.3.3 **View Attempts Remaining**
 <br>**Requirements**: this use case allows the player to view the number of attempts remaining for the chosen cryptogram.
 <br>**Pre-conditions**: the player must have chosen a cryptogam to solve.
 <br>**Post-conditions**: the number of incorrect solution attempts remaining is displayed.
@@ -90,7 +90,7 @@
 * **Scenario 2**
   * The chosen cryptogram is in progress.  The number of incorrect solution  attempts remaining is the last value of attempts remaining for this cryptogram attempt. 
 
-#### **Generate Attempt**
+#### 2.3.4 **Generate Attempt**
 **Requirements**: this use case allows the player to generate and display a fully encrypted phrase, when he chooses a new cryptogram.
 <br>**Pre-conditions**: the player chooses a cryptogram  having as status unstarted.
 <br>**Post-conditions**: the encrypted phrase is generated.
@@ -98,7 +98,7 @@
 *  The encrypted phrase is added the player cryptogram attempt.
 *  The submission status of the cryptogram attempt is changed to in progress.
 
-#### **Solve Cryptogram**
+#### 2.3.5 **Solve Cryptogram**
 **Requirements**: this use case allows the player to solve the cryptogram.
 <br>**Pre-conditions**: the player must have chosen a cryptogram to solve.
 <br>**Post-conditions**: the cryptogram status is updated based on the proposed solution.
