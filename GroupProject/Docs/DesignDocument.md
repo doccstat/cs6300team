@@ -34,7 +34,7 @@
 
 ### 2.1 Component Diagram
 
-<img src="img/ComponentDiagram.PNG" alt="ComponentDiagram" width="900">
+<img src="img/ComponentDiagram.png" alt="ComponentDiagram" width="900">
 
 In the component diagram above, the user interacts first with the Login Screen and then proceeds to either an Administrator or Player Menu UI.  From either one of these menus, they are able to interact with the components: Player, Player Statistics, Cryptogram, or CryptogramAttempt.  
 
@@ -44,7 +44,7 @@ Finally, we see that the menus interface with each these components.  The labels
 
 ### 2.2 Deployment Diagram
 
-<img src="img/DeploymentDiagram.PNG" alt="DeploymentDiagram" width="900">
+<img src="img/DeploymentDiagram.png" alt="DeploymentDiagram" width="900">
 
 The Deployment Diagram above shows the main compiled classes as part of an overall Android app.  The User will then interact directly with this .apk file as an app on their Android phone or tablet.
 
@@ -54,13 +54,13 @@ The Deployment Diagram above shows the main compiled classes as part of an overa
 
 The class diagram below represents the main classes used in the Cryptogram app.  This design is presented unmodified from the previous Deliverable submission.
 
-<img src="img/Assignment5UML.PNG" alt="Assignment5UML" width="900">
+<img src="img/Assignment5UML.png" alt="Assignment5UML" width="900">
 
 ### 3.2 Other Diagrams
 
 #### 3.2.1 Administrator Sequence Diagram
 
-<img src="img/AdministratorSequenceDiagram.PNG" alt="AdministratorSequenceDiagram" width="900">
+<img src="img/AdministratorSequenceDiagram.png" alt="AdministratorSequenceDiagram" width="900">
 
 In the Administrator Sequence Diagram above, the user logs in as an Administrator and proceeds to the menu view.  If they are unable to login successfully they are booted back out to the login screen.  The Administrator is able to access the Player Statistics, Cryptogram UI, and User UI, from the Menu UI.
 
@@ -72,7 +72,7 @@ Finally, the Administrator can return back to the menu at any time.  They can al
 
 #### 3.2.2 Player Sequence Diagram
 
-<img src="img/PlayerSequenceDiagram.PNG" alt="PlayerSequenceDiagram" width="900">
+<img src="img/PlayerSequenceDiagram.png" alt="PlayerSequenceDiagram" width="900">
 
 In the Player Sequence Diagram, the user will proceed to the Player Menu UI if they log in successfully at the Player.  If the login credentials are wrong, they will be returned back to the Login screen.  The Player when logged in, can then go to the Player Statistics screen or Choose Cryptogram.  
 
@@ -84,4 +84,4 @@ Finally, the Player can return back to the Player menu.  From there they can com
 
 ## 4 User Interface Design
 
-<img src="img/UImockup.PNG" alt="UImockup" width="900">
+<img src="img/UImockup.png" alt="UImockup" width="900">
