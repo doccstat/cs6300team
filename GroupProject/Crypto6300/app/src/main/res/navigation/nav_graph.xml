@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_playerMenuFragment"
+            app:destination="@id/playerMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminMenuFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.AdminMenuFragment"
+        android:label="fragment_admin_menu"
+        tools:layout="@layout/fragment_admin_menu" >
+        <action
+            android:id="@+id/action_adminMenuFragment_to_addPlayerFragment"
+            app:destination="@id/addPlayerFragment" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_addCryptogramFragment"
+            app:destination="@id/addCryptogramFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerMenuFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.PlayerMenuFragment"
+        android:label="fragment_player_menu"
+        tools:layout="@layout/fragment_player_menu" >
+        <action
+            android:id="@+id/action_playerMenuFragment_to_chooseCryptogramFragment"
+            app:destination="@id/chooseCryptogramFragment" />
+        <action
+            android:id="@+id/action_playerMenuFragment_to_playerStatisticsFragment"
+            app:destination="@id/playerStatisticsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerStatisticsFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.PlayerStatisticsFragment"
+        android:label="fragment_player_statistics"
+        tools:layout="@layout/fragment_player_statistics" />
+    <fragment
+        android:id="@+id/addPlayerFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.AddPlayerFragment"
+        android:label="fragment_add_player"
+        tools:layout="@layout/fragment_add_player" />
+    <fragment
+        android:id="@+id/addCryptogramFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.AddCryptogramFragment"
+        android:label="fragment_add_cryptogram"
+        tools:layout="@layout/fragment_add_cryptogram" />
+    <fragment
+        android:id="@+id/chooseCryptogramFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.ChooseCryptogramFragment"
+        android:label="fragment_choose_cryptogram"
+        tools:layout="@layout/fragment_choose_cryptogram" >
+        <action
+            android:id="@+id/action_chooseCryptogramFragment_to_solveCryptogramFragment"
+            app:destination="@id/solveCryptogramFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/solveCryptogramFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.SolveCryptogramFragment"
+        android:label="fragment_solve_cryptogram"
+        tools:layout="@layout/fragment_solve_cryptogram" >
+        <action
+            android:id="@+id/action_solveCryptogramFragment_to_gameWonFragment"
+            app:destination="@id/gameWonFragment" />
+        <action
+            android:id="@+id/action_solveCryptogramFragment_to_gameOverFragment"
+            app:destination="@id/gameOverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameWonFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.GameWonFragment"
+        android:label="fragment_game_won"
+        tools:layout="@layout/fragment_game_won" />
+    <fragment
+        android:id="@+id/gameOverFragment"
+        android:name="edu.gatech.seclass.crypto6300.ui.GameOverFragment"
+        android:label="fragment_game_over"
+        tools:layout="@layout/fragment_game_over" />
+</navigation>
