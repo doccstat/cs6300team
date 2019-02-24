@@ -3,8 +3,14 @@ package edu.gatech.seclass.crypto6300.ui;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import butterknife.BindView;
 import edu.gatech.seclass.crypto6300.R;
 
 /**
@@ -16,6 +22,11 @@ import edu.gatech.seclass.crypto6300.R;
  * create an instance of this fragment.
  */
 public class LoginFragment extends BaseFragment {
+
+
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -61,6 +72,15 @@ public class LoginFragment extends BaseFragment {
     @Override
     public int getLayout() {
         return R.layout.fragment_login;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        btnLogin.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_adminMenuFragment);
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

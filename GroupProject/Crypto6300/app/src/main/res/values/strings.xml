@@ -3,4 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="administrator_menu">Administrator Menu</string>
+    <string name="player_menu">Player Menu</string>
 </resources>
