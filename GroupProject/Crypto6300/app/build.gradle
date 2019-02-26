@@ -32,14 +32,12 @@ android {
     }
 }
 
-
 //
 //dependencies {
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
 //    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
 //    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
 //    testImplementation 'junit:junit:4.12'
-//    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
 //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 //}
 
@@ -54,6 +52,10 @@ def ktlintVersion = '0.19.0'
 def androidktxVersion = '0.2'
 def guavaVersion = '18.0'
 
+def legacySupportVersion = '1.0.0'
+def junitTestVersion = '4.12'
+def junitAndroidTestVersion = '1.1.0'
+def espressoVersion = '3.1.1'
 
 dependencies {
     implementation(
@@ -67,27 +69,45 @@ dependencies {
             "android.arch.navigation:navigation-ui:$nav_version", // use -ktx for Kotlin
 
             // Timber
-            "com.jakewharton.timber:timber:${timberVersion}",
+            "com.jakewharton.timber:timber:$timberVersion",
 
             // Kotlin
             "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-            "androidx.core:core-ktx:${androidktxVersion}",
+            "androidx.core:core-ktx:$androidktxVersion",
 
             // Guava
-            "com.google.guava:guava:${guavaVersion}",
+            "com.google.guava:guava:$guavaVersion",
 
             // Butterknife
-            "com.jakewharton:butterknife:${butterknifeVersion}"
+            "com.jakewharton:butterknife:$butterknifeVersion",
 
+            // Room components
+            "android.arch.persistence.room:runtime:$rootProject.roomVersion",
+
+            // Lifecycle components
+            "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion",
+
+            // Legacy Supporrt
+            "androidx.legacy:legacy-support-v4:$legacySupportVersion"
     )
 
-    annotationProcessor "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+    annotationProcessor(
+            // Butterknife
+            "com.jakewharton:butterknife-compiler:$butterknifeVersion",
 
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+            // Room components
+            "android.arch.persistence.room:compiler:$rootProject.roomVersion",
+
+            // Lifecycle components
+            "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+    )
+
+    testImplementation "junit:junit:$junitTestVersion"
     androidTestImplementation(
-            "androidx.test.ext:junit:1.1.0",
-            "androidx.test.espresso:espresso-core:3.1.1"
+            "androidx.test:runner:$junitAndroidTestVersion",
+            "androidx.test.ext:junit:$junitAndroidTestVersion",
+            "androidx.test.espresso:espresso-core:$espressoVersion",
+            "android.arch.persistence.room:testing:$rootProject.roomVersion"
     )
 
 }
