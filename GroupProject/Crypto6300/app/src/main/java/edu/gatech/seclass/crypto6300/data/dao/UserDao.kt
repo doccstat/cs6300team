@@ -22,5 +22,5 @@ interface UserDao {
     fun deleteAllUsers()
 
     @Query("DELETE FROM Users where category is NOT NULL")
-    fun DeleteAllPlayers()
+    fun deleteAllPlayers()
 }

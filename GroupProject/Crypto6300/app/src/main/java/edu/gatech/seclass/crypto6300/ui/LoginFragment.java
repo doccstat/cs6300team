@@ -23,7 +23,6 @@ import edu.gatech.seclass.crypto6300.R;
  */
 public class LoginFragment extends BaseFragment {
 
-
     @BindView(R.id.btnLogin)
     Button btnLogin;
 

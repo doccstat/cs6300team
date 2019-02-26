@@ -8,14 +8,14 @@ interface CryptogramAttemptDao {
     @Query("SELECT * FROM CryptogramAttempt")
     fun getAllCryptogramAttempts(): List<CryptogramAttempt>
 
-    @Query("SELECT * FROM CryptogramAttempt WHERE userId = :userId")
+    @Query("SELECT * FROM CryptogramAttempt WHERE user_id = :userId")
     fun getAllAttemptsForPlayer(userId: String): List<CryptogramAttempt>
 
-    @Query("SELECT * FROM CryptogramAttempt WHERE cryptogramId = :cryptogramId")
+    @Query("SELECT * FROM CryptogramAttempt WHERE cryptogram_id = :cryptogramId")
     fun getAllAttemptsForCryptogram(cryptogramId: String): List<CryptogramAttempt>
 
-    @Query("SELECT * FROM CryptogramAttempt WHERE id = :id LIMIT 1")
-    fun getAttemptById(id: String)
+    @Query("SELECT * FROM CryptogramAttempt WHERE id = :cryptogramAttemptId LIMIT 1")
+    fun getAttemptById(cryptogramAttemptId: String): CryptogramAttempt
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertAttempt(cryptogram: CryptogramAttempt): Long
@@ -29,9 +29,9 @@ interface CryptogramAttemptDao {
     @Query("DELETE FROM CryptogramAttempt")
     fun deleteAllAttempts()
 
-    @Query("DELETE FROM CryptogramAttempt WHERE userId = :userId")
+    @Query("DELETE FROM CryptogramAttempt WHERE user_id = :userId")
     fun deleteAllAttemptsForPlayer(userId: String)
 
-    @Query("DELETE FROM CryptogramAttempt WHERE cryptogramId = :cryptogramId")
+    @Query("DELETE FROM CryptogramAttempt WHERE cryptogram_id = :cryptogramId")
     fun deleteAllAttemptsForCryptogram(cryptogramId: String)
 }

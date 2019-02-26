@@ -11,7 +11,7 @@ import edu.gatech.seclass.crypto6300.data.entities.Cryptogram
 import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt
 import edu.gatech.seclass.crypto6300.data.entities.User
 
-@Database(entities = [Cryptogram::class, CryptogramAttempt::class, User::class], version = 1)
+@Database(entities = [Cryptogram::class, CryptogramAttempt::class, User::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun cryptogramDao(): CryptogramDao
