@@ -64,6 +64,11 @@ public class AdminMenuFragment extends BaseFragment {
         return R.layout.fragment_admin_menu;
     }
 
+    @Override
+    public int getTitle() {
+        return R.string.administrator_menu;
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

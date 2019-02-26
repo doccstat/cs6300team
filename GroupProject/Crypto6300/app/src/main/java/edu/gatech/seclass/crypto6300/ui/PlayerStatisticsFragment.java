@@ -64,6 +64,11 @@ public class PlayerStatisticsFragment extends BaseFragment {
         return R.layout.fragment_player_statistics;
     }
 
+    @Override
+    public int getTitle() {
+        return R.string.player_statistics;
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

@@ -64,6 +64,11 @@ public class PlayerMenuFragment extends BaseFragment {
         return R.layout.fragment_player_menu;
     }
 
+    @Override
+    public int getTitle() {
+        return R.string.player_menu;
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

@@ -64,6 +64,11 @@ public class AddPlayerFragment extends BaseFragment {
         return R.layout.fragment_add_player;
     }
 
+    @Override
+    public int getTitle() {
+        return R.string.add_player;
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

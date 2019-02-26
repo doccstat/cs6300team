@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import edu.gatech.seclass.crypto6300.R;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -19,6 +21,15 @@ public abstract class BaseFragment extends Fragment {
 
     @LayoutRes
     public abstract int getLayout();
+
+    public abstract int getTitle();
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle(getTitle());
+    }
 
     @Nullable
     @Override

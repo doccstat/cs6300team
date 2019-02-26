@@ -64,6 +64,11 @@ public class SolveCryptogramFragment extends BaseFragment {
         return R.layout.fragment_solve_cryptogram;
     }
 
+    @Override
+    public int getTitle() {
+        return R.string.solve_cryptogram;
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

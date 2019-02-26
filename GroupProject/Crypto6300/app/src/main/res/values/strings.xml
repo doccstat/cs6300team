@@ -6,4 +6,11 @@
     <string name="login">Login</string>
     <string name="administrator_menu">Administrator Menu</string>
     <string name="player_menu">Player Menu</string>
+    <string name="add_cryptogram">Add Cryptogram</string>
+    <string name="add_player">Add Player</string>
+    <string name="choose_cryptogram">Choose Cryptogram</string>
+    <string name="game_over">Game Over</string>
+    <string name="game_won">Game Won</string>
+    <string name="player_statistics">Player Statistics</string>
+    <string name="solve_cryptogram">Solve Cryptogram</string>
 </resources>

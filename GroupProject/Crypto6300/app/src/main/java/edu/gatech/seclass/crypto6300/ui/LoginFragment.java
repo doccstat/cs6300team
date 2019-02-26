@@ -74,6 +74,11 @@ public class LoginFragment extends BaseFragment {
     }
 
     @Override
+    public int getTitle() {
+        return R.string.login;
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 

@@ -64,6 +64,11 @@ public class GameOverFragment extends BaseFragment {
         return R.layout.fragment_game_over;
     }
 
+    @Override
+    public int getTitle() {
+        return R.string.game_over;
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
