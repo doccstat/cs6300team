@@ -1,21 +1,22 @@
 package edu.gatech.seclass.crypto6300.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt
 
 @Dao
 interface CryptogramAttemptDao {
     @Query("SELECT * FROM CryptogramAttempt")
-    fun getAllCryptogramAttempts(): List<CryptogramAttempt>
+    fun getAllCryptogramAttempts(): LiveData<List<CryptogramAttempt>>
 
     @Query("SELECT * FROM CryptogramAttempt WHERE user_id = :userId")
-    fun getAllAttemptsForPlayer(userId: String): List<CryptogramAttempt>
+    fun getAllAttemptsForPlayer(userId: String): LiveData<List<CryptogramAttempt>>
 
     @Query("SELECT * FROM CryptogramAttempt WHERE cryptogram_id = :cryptogramId")
-    fun getAllAttemptsForCryptogram(cryptogramId: String): List<CryptogramAttempt>
+    fun getAllAttemptsForCryptogram(cryptogramId: String): LiveData<List<CryptogramAttempt>>
 
     @Query("SELECT * FROM CryptogramAttempt WHERE id = :cryptogramAttemptId LIMIT 1")
-    fun getAttemptById(cryptogramAttemptId: String): CryptogramAttempt
+    fun getAttemptById(cryptogramAttemptId: String): LiveData<CryptogramAttempt>
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertAttempt(cryptogram: CryptogramAttempt): Long

@@ -9,9 +9,13 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import butterknife.BindView;
+import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
+import edu.gatech.seclass.crypto6300.data.view_models.UserViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +29,8 @@ public class LoginFragment extends BaseFragment {
 
     @BindView(R.id.btnLogin)
     Button btnLogin;
+
+    private UserViewModel userViewModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,33 +47,6 @@ public class LoginFragment extends BaseFragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static LoginFragment newInstance(String param1, String param2) {
-        LoginFragment fragment = new LoginFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public int getLayout() {
         return R.layout.fragment_login;
@@ -82,9 +61,12 @@ public class LoginFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        btnLogin.setOnClickListener(v -> {
-            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_adminMenuFragment);
-        });
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+    }
+
+    @OnClick(R.id.btnLogin)
+    public void clickLogin(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_adminMenuFragment);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

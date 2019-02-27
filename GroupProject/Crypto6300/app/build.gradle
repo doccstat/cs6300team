@@ -100,7 +100,8 @@ dependencies {
             "android.arch.persistence.room:compiler:$rootProject.roomVersion",
 
             // Lifecycle components
-            "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+            "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion",
+
     )
 
     kapt (
