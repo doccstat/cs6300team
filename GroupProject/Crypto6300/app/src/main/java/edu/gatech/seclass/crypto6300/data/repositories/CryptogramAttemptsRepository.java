@@ -15,7 +15,7 @@ public class CryptogramAttemptsRepository {
     private CryptogramAttemptDao cryptogramAttemptDao;
 
     public CryptogramAttemptsRepository(Application application) {
-        AppDatabase db = AppDatabase.Companion.getAppDb(application);
+        AppDatabase db = AppDatabase.Companion.getInstance(application);
         cryptogramAttemptDao = db.cryptogramAttemptDao();
     }
 

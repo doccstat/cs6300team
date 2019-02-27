@@ -54,6 +54,7 @@ def androidktxVersion = '0.2'
 def guavaVersion = '18.0'
 
 def legacySupportVersion = '1.0.0'
+def stetho_version = '1.5.0'
 
 def junitTestVersion = '4.12'
 def junitAndroidTestVersion = '1.1.0'
@@ -92,7 +93,13 @@ dependencies {
             "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion",
 
             // Legacy Supporrt
-            "androidx.legacy:legacy-support-v4:$legacySupportVersion"
+            "androidx.legacy:legacy-support-v4:$legacySupportVersion",
+
+            // Stetho core
+            "com.facebook.stetho:stetho:$stetho_version",
+
+            // Stetho network helper
+            "com.facebook.stetho:stetho-okhttp:$stetho_version"
     )
 
     annotationProcessor(
@@ -118,6 +125,7 @@ dependencies {
     )
 
     androidTestImplementation(
+            "androidx.test:rules:$junitAndroidTestVersion",
             "androidx.test:runner:$junitAndroidTestVersion",
             "androidx.test.ext:junit:$junitAndroidTestVersion",
             "androidx.test.espresso:espresso-core:$espressoVersion",

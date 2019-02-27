@@ -16,7 +16,7 @@ public class UserRepository {
     private LiveData<List<User>> playerList;
 
     public UserRepository(Application application) {
-        AppDatabase db = AppDatabase.Companion.getAppDb(application);
+        AppDatabase db = AppDatabase.Companion.getInstance(application);
         userDao = db.userDao();
         playerList = userDao.getPlayers();
     }

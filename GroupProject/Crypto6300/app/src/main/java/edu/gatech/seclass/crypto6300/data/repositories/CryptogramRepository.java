@@ -15,7 +15,7 @@ public class CryptogramRepository {
     private CryptogramDao cryptogramDao;
 
     public CryptogramRepository(Application application) {
-        AppDatabase db = AppDatabase.Companion.getAppDb(application);
+        AppDatabase db = AppDatabase.Companion.getInstance(application);
         cryptogramDao = db.cryptogramDao();
     }
 

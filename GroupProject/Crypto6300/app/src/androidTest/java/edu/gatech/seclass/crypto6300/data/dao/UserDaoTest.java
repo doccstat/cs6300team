@@ -1,6 +1,8 @@
 package edu.gatech.seclass.crypto6300.data.dao;
 
+import android.app.Application;
 import android.content.Context;
+import android.os.AsyncTask;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,6 +26,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import edu.gatech.seclass.crypto6300.data.AppDatabase;
 import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.entities.UserKt;
+import kotlin.Unit;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -38,6 +41,15 @@ public class UserDaoTest {
 
     private AppDatabase db;
     private UserDao dao;
+    private User adminUser = new User(
+            "admin",
+            "admin",
+            "admin",
+            "admin",
+            null,
+            0,
+            0
+    );
 
     @Mock
     private Observer<List<User>> observer;
@@ -48,14 +60,51 @@ public class UserDaoTest {
 
         Context context = InstrumentationRegistry.getTargetContext();
         db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class)
+                .addCallback(new RoomDatabase.Callback() {
+                    @Override
+                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                        super.onCreate(db);
+                        prepopulateDb();
+                    }
+                })
                 .allowMainThreadQueries()
                 .build();
         dao = db.userDao();
     }
 
+    private void prepopulateDb() {
+        new PopulateDbAsync(dao).execute();
+    }
+
+    class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
+
+        UserDao userDao;
+
+        PopulateDbAsync(UserDao userDao) {
+            this.userDao = userDao;
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            userDao.insert(adminUser);
+            return null;
+        }
+
+    }
+
     @After
     public void tearDown() {
         db.close();
+    }
+
+
+    @Test
+    public void testAdminUser() throws InterruptedException {
+        dao.getAllUsers().observeForever(observer);
+        verify(observer).onChanged(
+                Collections.singletonList(adminUser)
+        );
     }
 
     @Test

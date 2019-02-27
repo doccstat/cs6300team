@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,7 +67,7 @@ public class LoginFragment extends BaseFragment {
                     // there was something wrong
                 }
             } else {
-                // TODO: show login error for wrong username or password
+                Toast.makeText(getContext(), "Incorrect username or password.", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -79,6 +80,8 @@ public class LoginFragment extends BaseFragment {
             etUsername.setError(getString(R.string.error_username_required));
             etUsername.requestFocus();
             return false;
+        // } else if () {
+            // TODO: possibly check required length
         } else {
             etUsername.setError(null);
         }
@@ -87,6 +90,8 @@ public class LoginFragment extends BaseFragment {
             etPassword.setError(getString(R.string.error_password_required));
             etPassword.requestFocus();
             return false;
+        // } else if () {
+            // TODO: possibly check required length
         } else {
             etPassword.setError(null);
         }
