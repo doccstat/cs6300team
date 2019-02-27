@@ -9,13 +9,12 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
-import edu.gatech.seclass.crypto6300.data.view_models.UserViewModel;
+import edu.gatech.seclass.crypto6300.data.viewmodels.UserViewModel;
 
 /**
  * A simple {@link Fragment} subclass.

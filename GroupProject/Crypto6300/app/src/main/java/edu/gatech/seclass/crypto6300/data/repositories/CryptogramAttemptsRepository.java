@@ -1,5 +1,6 @@
 package edu.gatech.seclass.crypto6300.data.repositories;
 
+import android.app.Application;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class CryptogramAttemptsRepository {
 
     private CryptogramAttemptDao cryptogramAttemptDao;
 
-    public CryptogramAttemptsRepository() {
-        AppDatabase db = AppDatabase.Companion.getINSTANCE();
+    public CryptogramAttemptsRepository(Application application) {
+        AppDatabase db = AppDatabase.Companion.getAppDb(application);
         cryptogramAttemptDao = db.cryptogramAttemptDao();
     }
 

@@ -1,5 +1,6 @@
 package edu.gatech.seclass.crypto6300.data.repositories;
 
+import android.app.Application;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class UserRepository {
     private UserDao userDao;
     private LiveData<List<User>> playerList;
 
-    public UserRepository() {
-        AppDatabase db = AppDatabase.Companion.getINSTANCE();
+    public UserRepository(Application application) {
+        AppDatabase db = AppDatabase.Companion.getAppDb(application);
         userDao = db.userDao();
         playerList = userDao.getPlayers();
     }

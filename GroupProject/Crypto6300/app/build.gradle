@@ -54,9 +54,12 @@ def androidktxVersion = '0.2'
 def guavaVersion = '18.0'
 
 def legacySupportVersion = '1.0.0'
+
 def junitTestVersion = '4.12'
 def junitAndroidTestVersion = '1.1.0'
 def espressoVersion = '3.1.1'
+def core_testing_version = '2.0.0'
+def mockito_version = '2.24.5'
 
 dependencies {
     implementation(
@@ -109,12 +112,18 @@ dependencies {
             "android.arch.persistence.room:compiler:$rootProject.roomVersion"
     )
 
-    testImplementation "junit:junit:$junitTestVersion"
+    testImplementation (
+            "junit:junit:$junitTestVersion",
+            "org.mockito:mockito-core:$mockito_version"
+    )
+
     androidTestImplementation(
             "androidx.test:runner:$junitAndroidTestVersion",
             "androidx.test.ext:junit:$junitAndroidTestVersion",
             "androidx.test.espresso:espresso-core:$espressoVersion",
-            "android.arch.persistence.room:testing:$rootProject.roomVersion"
+            "android.arch.persistence.room:testing:$rootProject.roomVersion",
+            "androidx.arch.core:core-testing:$core_testing_version",
+            "org.mockito:mockito-android:$mockito_version"
     )
 
 }

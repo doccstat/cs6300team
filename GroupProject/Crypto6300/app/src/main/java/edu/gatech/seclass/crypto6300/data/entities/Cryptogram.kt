@@ -21,7 +21,36 @@ data class Cryptogram(
 
         @Embedded
         val maxAttempts: Attempts
-)
+) {
+    constructor(
+            name: String = "",
+            solution: String = "",
+            difficulty: Int,
+            maxAttempts: Attempts
+    ) : this(null, name, solution, difficulty, maxAttempts)
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Cryptogram
+
+        if (name != other.name) return false
+        if (solution != other.solution) return false
+        if (difficulty != other.difficulty) return false
+        if (maxAttempts != other.maxAttempts) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + solution.hashCode()
+        result = 31 * result + difficulty
+        result = 31 * result + maxAttempts.hashCode()
+        return result
+    }
+}
 
 data class Attempts(
         val easy: Int,
