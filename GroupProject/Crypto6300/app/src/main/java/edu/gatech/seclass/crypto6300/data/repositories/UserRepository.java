@@ -49,6 +49,13 @@ public class UserRepository {
         new deleteAllPlayersAsyncTask(userDao).execute();
     }
 
+    /*
+    ###############################
+
+        Async Tasks
+
+    ###############################
+     */
     private class insertAsyncTask extends AsyncTask<User, Void, Void> {
 
         private UserDao userDao;

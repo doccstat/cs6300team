@@ -54,6 +54,13 @@ public class CryptogramRepository {
         }
     }
 
+    /*
+    ###############################
+
+        Async Tasks
+
+    ###############################
+     */
     private class deleteCryptogramsAsyncTask extends AsyncTask<Cryptogram, Void, Void> {
         private CryptogramDao cryptogramDao;
 

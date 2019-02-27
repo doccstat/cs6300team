@@ -55,6 +55,13 @@ public class CryptogramAttemptsRepository {
         new deleteAllAttemptsAsyncTask(cryptogramAttemptDao).execute();
     }
 
+    /*
+    ###############################
+
+        Async Tasks
+
+    ###############################
+     */
     private class insertAttemptAsyncTask extends AsyncTask<CryptogramAttempt, Void, Void> {
 
         private CryptogramAttemptDao attemptDao;
