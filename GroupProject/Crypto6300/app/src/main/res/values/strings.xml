@@ -1,16 +1,39 @@
 <resources>
     <string name="app_name">Crypto6300</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Login -->
     <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="error_password_required">Password required</string>
+    <string name="error_username_required">Username required</string>
+
+    <!-- administrator menu -->
     <string name="administrator_menu">Administrator Menu</string>
+
+    <!-- player menu -->
     <string name="player_menu">Player Menu</string>
+
+    <!-- add cryptogram -->
     <string name="add_cryptogram">Add Cryptogram</string>
+
+    <!-- add player -->
     <string name="add_player">Add Player</string>
+
+    <!-- choose cryptogram -->
     <string name="choose_cryptogram">Choose Cryptogram</string>
+
+    <!-- game over -->
     <string name="game_over">Game Over</string>
+
+    <!-- game won -->
     <string name="game_won">Game Won</string>
+
+    <!-- player statistics -->
     <string name="player_statistics">Player Statistics</string>
+
+    <!-- solve cryptogram -->
     <string name="solve_cryptogram">Solve Cryptogram</string>
+    <string name="hello_blank_fragment">hello world</string>
+
 </resources>

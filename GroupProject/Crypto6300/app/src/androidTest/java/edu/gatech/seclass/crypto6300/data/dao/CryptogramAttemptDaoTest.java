@@ -58,7 +58,7 @@ public class CryptogramAttemptDaoTest {
     }
 
     @Test
-    public void insert() throws Exception {
+    public void insertCryptogramAndGetCryptogram() throws Exception {
         User user = new User("John", "Smith", "jsmith", "passw0rd", 1, 3, 2);
         Cryptogram cryptogram = new Cryptogram("Caesar", "android", 2, new Attempts(2,3,4));
         CryptogramAttempt attempt = new CryptogramAttempt(1, 1, 3, "fjkdla", "quka kdjv", false, false);
