@@ -15,7 +15,7 @@ public class CryptogramAttemptViewModel extends AndroidViewModel {
 
     public CryptogramAttemptViewModel(Application application) {
         super(application);
-        repository = new CryptogramAttemptsRepository(application);
+        repository = new CryptogramAttemptsRepository();
     }
 
     public void insert(CryptogramAttempt cryptogramAttempt) {

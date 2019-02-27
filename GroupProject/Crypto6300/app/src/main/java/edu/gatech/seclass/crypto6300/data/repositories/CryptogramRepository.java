@@ -1,6 +1,5 @@
 package edu.gatech.seclass.crypto6300.data.repositories;
 
-import android.app.Application;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -13,21 +12,22 @@ import edu.gatech.seclass.crypto6300.data.entities.Cryptogram;
 public class CryptogramRepository {
 
     private CryptogramDao cryptogramDao;
-    private LiveData<Cryptogram> cryptogram;
-    private LiveData<List<Cryptogram>> cryptogramList;
 
-    public CryptogramRepository(Application application) {
+    public CryptogramRepository() {
         AppDatabase db = AppDatabase.Companion.getINSTANCE();
         cryptogramDao = db.cryptogramDao();
-        cryptogramList = cryptogramDao.getAllCryptograms();
     }
 
     public LiveData<List<Cryptogram>> getAllCryptograms() {
-        return cryptogramList;
+        return cryptogramDao.getAllCryptograms();
     }
 
     public LiveData<Cryptogram> getCryptogramById(String cryptogramId) {
         return cryptogramDao.getById(cryptogramId);
+    }
+
+    public LiveData<List<Cryptogram>> getAllCryptogramsByDifficulty(String difficulty) {
+        return cryptogramDao.getAllCryptogramsByDifficulty(difficulty);
     }
 
     public void insert(Cryptogram cryptogram) {

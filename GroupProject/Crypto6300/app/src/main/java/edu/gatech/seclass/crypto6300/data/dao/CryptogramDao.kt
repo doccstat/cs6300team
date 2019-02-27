@@ -9,6 +9,9 @@ interface CryptogramDao {
     @Query("SELECT * FROM Cryptogram")
     fun getAllCryptograms() : LiveData<List<Cryptogram>>
 
+    @Query("SELECT * FROM Cryptogram WHERE difficulty = :difficulty")
+    fun getAllCryptogramsByDifficulty(difficulty: String): LiveData<List<Cryptogram>>
+
     @Query("SELECT * FROM Cryptogram WHERE id = :cryptogramId LIMIT 1")
     fun getById(cryptogramId: String): LiveData<Cryptogram>
 
