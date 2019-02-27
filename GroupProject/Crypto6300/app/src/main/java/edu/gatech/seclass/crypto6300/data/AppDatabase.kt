@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import edu.gatech.seclass.crypto6300.data.dao.CryptogramAttemptDao
 import edu.gatech.seclass.crypto6300.data.dao.CryptogramDao
 import edu.gatech.seclass.crypto6300.data.dao.UserDao
@@ -45,28 +44,8 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "crypto6300db")
-//                    .addCallback(
-//                            object : RoomDatabase.Callback() {
-//                                override fun onCreate(db: SupportSQLiteDatabase) {
-//                                    super.onCreate(db)
-//                                    Thread(Runnable { prepopulateDb(getInstance(context)) }).start()
-//                                }
-//                            }
-//                    )
-//                            .addCallback(object : RoomDatabase.Callback() {
-//
-//                                override fun onCreate(db: SupportSQLiteDatabase) {
-//                                    super.onCreate(db)
-//
-//                                    prepopulateDb(context.applicationContext as Application)
-//                                }
-//                            })
                     .build()
         }
-
-//        private fun prepopulateDb(appDatabase: AppDatabase?) {
-//            appDatabase?.userDao()?.insert(adminUser)
-//        }
 
         fun destroyDb() {
             instance = null
@@ -75,7 +54,9 @@ abstract class AppDatabase : RoomDatabase() {
 
     private fun prepopulateDb() {
         Thread(Runnable {
-            this.userDao().insert(adminUser)
+            if (userDao().getAllUsers().value.isNullOrEmpty()) {
+                this.userDao().insert(adminUser)
+            }
         }).start()
     }
 }

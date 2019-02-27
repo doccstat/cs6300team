@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.repositories.UserRepository;
 
@@ -17,9 +18,8 @@ public class LoginFragmentViewModel extends AndroidViewModel {
         userRepository = new UserRepository(application);
     }
 
-    public boolean login(String username, String password) {
-        user = userRepository.getUserByLoginInfo(username, password).getValue();
-        return user != null;
+    public LiveData<User> login(String username, String password) {
+        return userRepository.getUserByLoginInfo(username, password);
     }
 
     public User getUser() {

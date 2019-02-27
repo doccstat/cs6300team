@@ -8,11 +8,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
+import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.entities.UserKt;
 import edu.gatech.seclass.crypto6300.data.viewmodels.LoginFragmentViewModel;
 
@@ -56,19 +58,17 @@ public class LoginFragment extends BaseFragment {
             String username = etUsername.getText().toString();
             String password = etPassword.getText().toString();
 
-            if (viewModel.login(username, password)) {
-                if (viewModel.getUser() != null) {
-                    if (UserKt.isAdmin(viewModel.getUser())) {
+            viewModel.login(username, password).observe(this, user -> {
+                if (user != null) {
+                    if (UserKt.isAdmin(user)) {
                         Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_adminMenuFragment);
                     } else {
                         Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_playerMenuFragment);
                     }
                 } else {
-                    // there was something wrong
+                    Toast.makeText(getContext(), "Incorrect username or password.", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                Toast.makeText(getContext(), "Incorrect username or password.", Toast.LENGTH_LONG).show();
-            }
+            });
         }
     }
 
