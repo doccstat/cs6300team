@@ -11,8 +11,6 @@ public class MainActivity extends AppCompatActivity implements
         AddCryptogramFragment.OnFragmentInteractionListener,
         AddPlayerFragment.OnFragmentInteractionListener,
         ChooseCryptogramFragment.OnFragmentInteractionListener,
-        GameOverFragment.OnFragmentInteractionListener,
-        GameWonFragment.OnFragmentInteractionListener,
         PlayerStatisticsFragment.OnFragmentInteractionListener,
         SolveCryptogramFragment.OnFragmentInteractionListener {
 
