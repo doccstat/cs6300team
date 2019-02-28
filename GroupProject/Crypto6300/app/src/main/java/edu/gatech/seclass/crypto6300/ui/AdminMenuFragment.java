@@ -32,7 +32,7 @@ public class AdminMenuFragment extends BaseFragment {
         Navigation.findNavController(v).navigate(R.id.action_adminMenuFragment_to_addCryptogramFragment);
     }
 
-    @OnClick(R.id.viewPlayerStatisticsItem)
+    @OnClick(R.id.viewStatisticsItem)
     public void viewPlayerStatisticsItem(View v) {
         Navigation.findNavController(v).navigate(R.id.action_adminMenuFragment_to_playerStatisticsFragment);
     }
