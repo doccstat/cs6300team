@@ -19,7 +19,7 @@ interface UserDao {
     @Query("SELECT * FROM Users WHERE username = :username AND password = :password LIMIT 1")
     fun getUserByLoginInfo(username: String, password: String): LiveData<User>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(user: User): Long
 
     @Delete
