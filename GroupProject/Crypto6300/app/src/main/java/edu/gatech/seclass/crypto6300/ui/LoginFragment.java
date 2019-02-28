@@ -60,10 +60,14 @@ public class LoginFragment extends BaseFragment {
 
             viewModel.login(username, password).observe(this, user -> {
                 if (user != null) {
+
+                    Bundle args = new Bundle();
+                    args.putParcelable("user", user);
+
                     if (UserKt.isAdmin(user)) {
-                        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_adminMenuFragment);
+                        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_adminMenuFragment, args);
                     } else {
-                        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_playerMenuFragment);
+                        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_playerMenuFragment, args);
                     }
                 } else {
                     Toast.makeText(getContext(), R.string.error_wrong_username_or_password, Toast.LENGTH_LONG).show();

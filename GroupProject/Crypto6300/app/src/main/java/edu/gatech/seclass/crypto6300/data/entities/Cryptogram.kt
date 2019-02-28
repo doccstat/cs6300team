@@ -1,5 +1,7 @@
 package edu.gatech.seclass.crypto6300.data.entities
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -21,7 +23,14 @@ data class Cryptogram(
 
         @Embedded
         val maxAttempts: Attempts
-) {
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readValue(Long::class.java.classLoader) as? Long,
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readInt(),
+            parcel.readParcelable(Attempts::class.java.classLoader))
+
     constructor(
             name: String = "",
             solution: String = "",
@@ -50,10 +59,58 @@ data class Cryptogram(
         result = 31 * result + maxAttempts.hashCode()
         return result
     }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeValue(id)
+        parcel.writeString(name)
+        parcel.writeString(solution)
+        parcel.writeInt(difficulty)
+        parcel.writeParcelable(maxAttempts, flags)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Cryptogram> {
+        override fun createFromParcel(parcel: Parcel): Cryptogram {
+            return Cryptogram(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Cryptogram?> {
+            return arrayOfNulls(size)
+        }
+    }
 }
 
 data class Attempts(
         val easy: Int,
         val normal: Int,
         val hard: Int
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readInt(),
+            parcel.readInt(),
+            parcel.readInt()) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(easy)
+        parcel.writeInt(normal)
+        parcel.writeInt(hard)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Attempts> {
+        override fun createFromParcel(parcel: Parcel): Attempts {
+            return Attempts(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Attempts?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

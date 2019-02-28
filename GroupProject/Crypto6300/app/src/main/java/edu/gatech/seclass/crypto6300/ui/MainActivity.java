@@ -10,8 +10,6 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity implements
         AddCryptogramFragment.OnFragmentInteractionListener,
         AddPlayerFragment.OnFragmentInteractionListener,
-        ChooseCryptogramFragment.OnFragmentInteractionListener,
-        PlayerStatisticsFragment.OnFragmentInteractionListener,
         SolveCryptogramFragment.OnFragmentInteractionListener {
 
     @Override

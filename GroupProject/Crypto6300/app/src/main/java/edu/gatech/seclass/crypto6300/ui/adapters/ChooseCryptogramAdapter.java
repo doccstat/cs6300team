@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.gatech.seclass.crypto6300.R;
 import edu.gatech.seclass.crypto6300.data.entities.Cryptogram;
@@ -43,6 +44,7 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView label;
+        Cryptogram cryptogram;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,7 +52,14 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
         }
 
         public void bind(Cryptogram cryptogram) {
+            this.cryptogram = cryptogram;
             label.setText(cryptogram.getName());
+
+            itemView.setOnClickListener(v -> {
+
+                // TODO: handle navigation if not completed
+                Navigation.findNavController(v).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment);
+            });
         }
     }
 }
