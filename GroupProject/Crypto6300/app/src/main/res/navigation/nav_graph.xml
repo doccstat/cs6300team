@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_adminMenuFragment_to_addCryptogramFragment"
             app:destination="@id/addCryptogramFragment" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_playerStatisticsFragment"
+            app:destination="@id/playerStatisticsFragment" />
     </fragment>
     <fragment
         android:id="@+id/playerMenuFragment"

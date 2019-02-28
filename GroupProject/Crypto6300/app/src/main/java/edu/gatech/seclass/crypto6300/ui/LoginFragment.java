@@ -66,7 +66,7 @@ public class LoginFragment extends BaseFragment {
                         Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_playerMenuFragment);
                     }
                 } else {
-                    Toast.makeText(getContext(), "Incorrect username or password.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), R.string.error_wrong_username_or_password, Toast.LENGTH_LONG).show();
                 }
             });
         }
