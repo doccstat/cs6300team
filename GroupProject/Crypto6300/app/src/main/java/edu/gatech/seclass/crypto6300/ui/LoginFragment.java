@@ -8,13 +8,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
-import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.entities.UserKt;
 import edu.gatech.seclass.crypto6300.data.viewmodels.LoginFragmentViewModel;
 
@@ -84,7 +82,7 @@ public class LoginFragment extends BaseFragment {
             etUsername.setError(getString(R.string.error_username_required));
             etUsername.requestFocus();
             return false;
-        // } else if () {
+            // } else if () {
             // TODO: possibly check required length
         } else {
             etUsername.setError(null);
@@ -94,7 +92,7 @@ public class LoginFragment extends BaseFragment {
             etPassword.setError(getString(R.string.error_password_required));
             etPassword.requestFocus();
             return false;
-        // } else if () {
+            // } else if () {
             // TODO: possibly check required length
         } else {
             etPassword.setError(null);
