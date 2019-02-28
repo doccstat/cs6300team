@@ -11,6 +11,7 @@ import edu.gatech.seclass.crypto6300.data.entities.Cryptogram
 import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt
 import edu.gatech.seclass.crypto6300.data.entities.User
 
+
 @Database(entities = [Cryptogram::class, CryptogramAttempt::class, User::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
@@ -18,20 +19,44 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun cryptogramAttemptDao(): CryptogramAttemptDao
 
     companion object {
-        var INSTANCE: AppDatabase? = null
+        private val adminUser = User(
+                firstName = "admin",
+                lastName = "admin",
+                username = "admin",
+                password = "admin",
+                category = null,
+                wins = 0,
+                losses = 0
+        )
 
-        fun getAppDb(context: Context): AppDatabase? {
-            if (INSTANCE == null) {
+        private var instance: AppDatabase? = null
+
+        fun getInstance(context: Context): AppDatabase? {
+            if (instance == null) {
                 synchronized(AppDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "crypto6300db").build()
+                    instance = buildDatabase(context)
+                    instance?.prepopulateDb()
                 }
             }
 
-            return INSTANCE
+            return instance
+        }
+
+        private fun buildDatabase(context: Context): AppDatabase {
+            return Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "crypto6300db")
+                    .build()
         }
 
         fun destroyDb() {
-            INSTANCE = null
+            instance = null
         }
+    }
+
+    private fun prepopulateDb() {
+        Thread(Runnable {
+            if (userDao().getAllUsers().value.isNullOrEmpty()) {
+                this.userDao().insert(adminUser)
+            }
+        }).start()
     }
 }

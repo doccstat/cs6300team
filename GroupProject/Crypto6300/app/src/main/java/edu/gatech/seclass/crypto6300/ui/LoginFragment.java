@@ -1,47 +1,33 @@
 package edu.gatech.seclass.crypto6300.ui;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
-import edu.gatech.seclass.crypto6300.data.view_models.UserViewModel;
+import edu.gatech.seclass.crypto6300.data.entities.User;
+import edu.gatech.seclass.crypto6300.data.entities.UserKt;
+import edu.gatech.seclass.crypto6300.data.viewmodels.LoginFragmentViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LoginFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LoginFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class LoginFragment extends BaseFragment {
 
+    @BindView(R.id.etUsername)
+    EditText etUsername;
+    @BindView(R.id.etPassword)
+    EditText etPassword;
     @BindView(R.id.btnLogin)
     Button btnLogin;
 
-    private UserViewModel userViewModel;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    private LoginFragmentViewModel viewModel;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -61,50 +47,57 @@ public class LoginFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(LoginFragmentViewModel.class);
     }
 
     @OnClick(R.id.btnLogin)
     public void clickLogin(View v) {
-        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_adminMenuFragment);
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        // TODO: handle login validation properly
+        if (isValidInput()) {
+            String username = etUsername.getText().toString();
+            String password = etPassword.getText().toString();
+
+            viewModel.login(username, password).observe(this, user -> {
+                if (user != null) {
+                    if (UserKt.isAdmin(user)) {
+                        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_adminMenuFragment);
+                    } else {
+                        Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_playerMenuFragment);
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Incorrect username or password.", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+    private boolean isValidInput() {
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (username.isEmpty()) {
+            etUsername.setError(getString(R.string.error_username_required));
+            etUsername.requestFocus();
+            return false;
+        // } else if () {
+            // TODO: possibly check required length
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            etUsername.setError(null);
         }
+
+        if (password.isEmpty()) {
+            etPassword.setError(getString(R.string.error_password_required));
+            etPassword.requestFocus();
+            return false;
+        // } else if () {
+            // TODO: possibly check required length
+        } else {
+            etPassword.setError(null);
+        }
+
+        return true;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

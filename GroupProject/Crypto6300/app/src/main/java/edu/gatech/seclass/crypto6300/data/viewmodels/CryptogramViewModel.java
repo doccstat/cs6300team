@@ -1,4 +1,4 @@
-package edu.gatech.seclass.crypto6300.data.view_models;
+package edu.gatech.seclass.crypto6300.data.viewmodels;
 
 import android.app.Application;
 
@@ -7,6 +7,7 @@ import java.util.List;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import edu.gatech.seclass.crypto6300.data.entities.Cryptogram;
+import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt;
 import edu.gatech.seclass.crypto6300.data.repositories.CryptogramRepository;
 
 public class CryptogramViewModel extends AndroidViewModel {
@@ -15,9 +16,21 @@ public class CryptogramViewModel extends AndroidViewModel {
 
     public CryptogramViewModel(Application application) {
         super(application);
-        repository = new CryptogramRepository();
+        repository = new CryptogramRepository(application);
     }
 
+    private CryptogramAttempt generateAttemptForUser(String username) {
+        // TODO
+        return null;
+    }
+
+    public Boolean checkSolution(String playerSolution) {
+        // TODO
+        return false;
+    }
+
+
+    // CRUD functions
     public void insert(Cryptogram cryptogram) {
         repository.insert(cryptogram);
     }

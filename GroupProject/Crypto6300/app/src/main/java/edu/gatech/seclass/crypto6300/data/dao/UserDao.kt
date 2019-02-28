@@ -7,6 +7,9 @@ import edu.gatech.seclass.crypto6300.data.entities.User
 @Dao
 interface UserDao {
 
+    @Query("SELECT * FROM Users")
+    fun getAllUsers(): LiveData<List<User>>
+
     @Query("SELECT * FROM Users WHERE category is NOT NULL")
     fun getPlayers(): LiveData<List<User>>
 

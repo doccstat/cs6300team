@@ -1,4 +1,4 @@
-package edu.gatech.seclass.crypto6300.data.view_models;
+package edu.gatech.seclass.crypto6300.data.viewmodels;
 
 import android.app.Application;
 
@@ -15,9 +15,15 @@ public class CryptogramAttemptViewModel extends AndroidViewModel {
 
     public CryptogramAttemptViewModel(Application application) {
         super(application);
-        repository = new CryptogramAttemptsRepository();
+        repository = new CryptogramAttemptsRepository(application);
     }
 
+    public void saveSubmissionState(String attemptString) {
+        // TODO
+    }
+
+
+    // CRUD functions
     public void insert(CryptogramAttempt cryptogramAttempt) {
         repository.insert(cryptogramAttempt);
     }

@@ -15,7 +15,7 @@
     <string name="player_menu">Player Menu</string>
 
     <!-- add cryptogram -->
-    <string name="add_cryptogram">Add Cryptogram</string>
+
     <string name="cryptogram_name">Cryptogram Name</string>
     <string name="category">Easy/Normal/Hard</string>
     <string name="solution">Solution</string>
