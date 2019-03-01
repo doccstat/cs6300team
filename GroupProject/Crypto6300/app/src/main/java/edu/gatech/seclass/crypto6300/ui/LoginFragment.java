@@ -17,6 +17,7 @@ import edu.gatech.seclass.crypto6300.data.entities.UserKt;
 import edu.gatech.seclass.crypto6300.data.viewmodels.LoginFragmentViewModel;
 
 public class LoginFragment extends BaseFragment {
+    private static final String ARG_PARAM1 = "user";
 
     @BindView(R.id.etUsername)
     EditText etUsername;
@@ -60,7 +61,7 @@ public class LoginFragment extends BaseFragment {
                 if (user != null) {
 
                     Bundle args = new Bundle();
-                    args.putParcelable("user", user);
+                    args.putParcelable(ARG_PARAM1, user);
 
                     if (UserKt.isAdmin(user)) {
                         Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_adminMenuFragment, args);

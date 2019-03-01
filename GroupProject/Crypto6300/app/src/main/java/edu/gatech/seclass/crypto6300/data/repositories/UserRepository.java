@@ -49,6 +49,10 @@ public class UserRepository {
         new deleteAllPlayersAsyncTask(userDao).execute();
     }
 
+    public LiveData<User> getUserByUsername(String username) {
+        return userDao.getUserByUsername(username);
+    }
+
     /*
     ###############################
 

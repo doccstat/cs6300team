@@ -39,6 +39,17 @@ public class CryptogramRepository {
         new deleteAllCryptogramsAsyncTask(cryptogramDao).execute();
     }
 
+    public LiveData<Cryptogram> getCryptogramByName(String name) {
+        return cryptogramDao.getCryptogramByName(name);
+    }
+
+    /*
+    ###############################
+
+        Async Tasks
+
+    ###############################
+     */
     private class insertCryptogramAsyncTask extends AsyncTask<Cryptogram, Void, Void> {
 
         private CryptogramDao cryptogramDao;
@@ -54,13 +65,6 @@ public class CryptogramRepository {
         }
     }
 
-    /*
-    ###############################
-
-        Async Tasks
-
-    ###############################
-     */
     private class deleteCryptogramsAsyncTask extends AsyncTask<Cryptogram, Void, Void> {
         private CryptogramDao cryptogramDao;
 

@@ -9,19 +9,24 @@
         android:id="@+id/loginFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_adminMenuFragment"
-            app:destination="@id/adminMenuFragment" />
+            app:destination="@id/adminMenuFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_playerMenuFragment"
-            app:destination="@id/playerMenuFragment" />
+            app:destination="@id/playerMenuFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
+
     <fragment
         android:id="@+id/adminMenuFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.AdminMenuFragment"
         android:label="fragment_admin_menu"
-        tools:layout="@layout/fragment_admin_menu" >
+        tools:layout="@layout/fragment_admin_menu">
         <action
             android:id="@+id/action_adminMenuFragment_to_addPlayerFragment"
             app:destination="@id/addPlayerFragment" />
@@ -30,7 +35,7 @@
             app:destination="@id/addCryptogramFragment" />
         <action
             android:id="@+id/action_adminMenuFragment_to_playerStatisticsFragment"
-            app:destination="@id/playerStatisticsFragment" >
+            app:destination="@id/playerStatisticsFragment">
             <argument
                 android:name="isAdminViewingContent"
                 android:defaultValue="true" />
@@ -39,17 +44,19 @@
             android:name="user"
             app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
     </fragment>
+
+
     <fragment
         android:id="@+id/playerMenuFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.PlayerMenuFragment"
         android:label="fragment_player_menu"
-        tools:layout="@layout/fragment_player_menu" >
+        tools:layout="@layout/fragment_player_menu">
         <action
             android:id="@+id/action_playerMenuFragment_to_chooseCryptogramFragment"
             app:destination="@id/chooseCryptogramFragment" />
         <action
             android:id="@+id/action_playerMenuFragment_to_playerStatisticsFragment"
-            app:destination="@id/playerStatisticsFragment" >
+            app:destination="@id/playerStatisticsFragment">
             <argument
                 android:name="isAdminViewingContent"
                 android:defaultValue="false" />
@@ -62,27 +69,35 @@
         android:id="@+id/playerStatisticsFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.PlayerStatisticsFragment"
         android:label="fragment_player_statistics"
-        tools:layout="@layout/fragment_player_statistics" >
+        tools:layout="@layout/fragment_player_statistics">
         <argument
             android:name="isAdminViewingContent"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/addPlayerFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.AddPlayerFragment"
         android:label="fragment_add_player"
-        tools:layout="@layout/fragment_add_player" />
+        tools:layout="@layout/fragment_add_player">
+        <action
+            android:id="@+id/action_addPlayerFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addCryptogramFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.AddCryptogramFragment"
         android:label="fragment_add_cryptogram"
-        tools:layout="@layout/fragment_add_cryptogram" />
+        tools:layout="@layout/fragment_add_cryptogram">
+        <action
+            android:id="@+id/action_addCryptogramFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chooseCryptogramFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.ChooseCryptogramFragment"
         android:label="fragment_choose_cryptogram"
-        tools:layout="@layout/fragment_choose_cryptogram" >
+        tools:layout="@layout/fragment_choose_cryptogram">
         <action
             android:id="@+id/action_chooseCryptogramFragment_to_solveCryptogramFragment"
             app:destination="@id/solveCryptogramFragment" />
@@ -94,7 +109,7 @@
         android:id="@+id/solveCryptogramFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.SolveCryptogramFragment"
         android:label="fragment_solve_cryptogram"
-        tools:layout="@layout/fragment_solve_cryptogram" >
+        tools:layout="@layout/fragment_solve_cryptogram">
         <action
             android:id="@+id/action_solveCryptogramFragment_to_gameWonFragment"
             app:destination="@id/gameWonFragment" />
@@ -109,10 +124,18 @@
         android:id="@+id/gameWonFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.GameWonFragment"
         android:label="fragment_game_won"
-        tools:layout="@layout/fragment_game_won" />
+        tools:layout="@layout/fragment_game_won">
+        <action
+            android:id="@+id/action_gameWonFragment_to_chooseCryptogramFragment"
+            app:destination="@id/chooseCryptogramFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.GameOverFragment"
         android:label="fragment_game_over"
-        tools:layout="@layout/fragment_game_over" />
+        tools:layout="@layout/fragment_game_over">
+        <action
+            android:id="@+id/action_gameOverFragment_to_chooseCryptogramFragment"
+            app:destination="@id/chooseCryptogramFragment" />
+    </fragment>
 </navigation>

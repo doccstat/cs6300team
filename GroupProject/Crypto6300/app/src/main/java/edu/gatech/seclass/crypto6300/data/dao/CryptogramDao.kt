@@ -6,6 +6,9 @@ import edu.gatech.seclass.crypto6300.data.entities.Cryptogram
 
 @Dao
 interface CryptogramDao {
+    @Query("SELECT * FROM Cryptogram WHERE name = :name LIMIT 1")
+    fun getCryptogramByName(name: String): LiveData<Cryptogram?>
+
     @Query("SELECT * FROM Cryptogram")
     fun getAllCryptograms() : LiveData<List<Cryptogram>>
 
@@ -15,7 +18,7 @@ interface CryptogramDao {
     @Query("SELECT * FROM Cryptogram WHERE id = :cryptogramId LIMIT 1")
     fun getById(cryptogramId: String): LiveData<Cryptogram>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(cryptogram: Cryptogram): Long
 
     @Delete

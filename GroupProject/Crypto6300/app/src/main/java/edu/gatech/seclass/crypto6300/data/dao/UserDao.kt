@@ -6,6 +6,8 @@ import edu.gatech.seclass.crypto6300.data.entities.User
 
 @Dao
 interface UserDao {
+    @Query("SELECT * FROM Users WHERE username = :username LIMIT 1")
+    fun getUserByUsername(username: String): LiveData<User>
 
     @Query("SELECT * FROM Users")
     fun getAllUsers(): LiveData<List<User>>
