@@ -28,6 +28,16 @@
         <action
             android:id="@+id/action_adminMenuFragment_to_addCryptogramFragment"
             app:destination="@id/addCryptogramFragment" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_playerStatisticsFragment"
+            app:destination="@id/playerStatisticsFragment" >
+            <argument
+                android:name="isAdminViewingContent"
+                android:defaultValue="true" />
+        </action>
+        <argument
+            android:name="user"
+            app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
     </fragment>
     <fragment
         android:id="@+id/playerMenuFragment"
@@ -39,13 +49,25 @@
             app:destination="@id/chooseCryptogramFragment" />
         <action
             android:id="@+id/action_playerMenuFragment_to_playerStatisticsFragment"
-            app:destination="@id/playerStatisticsFragment" />
+            app:destination="@id/playerStatisticsFragment" >
+            <argument
+                android:name="isAdminViewingContent"
+                android:defaultValue="false" />
+        </action>
+        <argument
+            android:name="user"
+            app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
     </fragment>
     <fragment
         android:id="@+id/playerStatisticsFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.PlayerStatisticsFragment"
         android:label="fragment_player_statistics"
-        tools:layout="@layout/fragment_player_statistics" />
+        tools:layout="@layout/fragment_player_statistics" >
+        <argument
+            android:name="isAdminViewingContent"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
     <fragment
         android:id="@+id/addPlayerFragment"
         android:name="edu.gatech.seclass.crypto6300.ui.AddPlayerFragment"
@@ -64,6 +86,9 @@
         <action
             android:id="@+id/action_chooseCryptogramFragment_to_solveCryptogramFragment"
             app:destination="@id/solveCryptogramFragment" />
+        <argument
+            android:name="user"
+            app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
     </fragment>
     <fragment
         android:id="@+id/solveCryptogramFragment"
@@ -76,6 +101,9 @@
         <action
             android:id="@+id/action_solveCryptogramFragment_to_gameOverFragment"
             app:destination="@id/gameOverFragment" />
+        <argument
+            android:name="player"
+            app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
     </fragment>
     <fragment
         android:id="@+id/gameWonFragment"

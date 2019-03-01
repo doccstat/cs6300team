@@ -1,36 +1,39 @@
 package edu.gatech.seclass.crypto6300.data.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(
         tableName = "Users",
         indices = [Index(value = ["username"], unique = true)]
     )
+@Parcelize
 data class User(
         @PrimaryKey(autoGenerate = true)
         val id: Long?,
 
         @ColumnInfo(name = "firstname")
-        val firstName: String,
+        val firstName: String = "",
         @ColumnInfo(name = "lastname")
-        val lastName: String,
+        val lastName: String = "",
 
         @ColumnInfo(name = "username")
-        val username: String,
+        val username: String = "",
         @ColumnInfo(name = "password")
-        val password: String,
+        val password: String = "",
 
         @ColumnInfo(name = "category")
         val category: Int? = null,
 
         @ColumnInfo(name = "wins")
-        val wins: Int,
+        val wins: Int = 0,
         @ColumnInfo(name = "losses")
-        val losses: Int
-) {
+        val losses: Int = 0
+) : Parcelable {
     constructor(
             firstName: String = "",
             lastName: String = "",

@@ -1,9 +1,11 @@
 package edu.gatech.seclass.crypto6300.data.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(
         tableName = "CryptogramAttempt",
@@ -12,6 +14,7 @@ import androidx.room.PrimaryKey
             ForeignKey(entity = User::class, parentColumns = ["id"], childColumns = ["user_id"], onDelete = ForeignKey.CASCADE)
         ]
 )
+@Parcelize
 data class CryptogramAttempt(
         @PrimaryKey(autoGenerate = true)
         val id: Long?,
@@ -31,7 +34,7 @@ data class CryptogramAttempt(
         val isCompleted: Boolean = false,
         @ColumnInfo(name = "is_solved")
         val isSolved: Boolean = false
-) {
+) : Parcelable {
     constructor(
             userId: Long,
             cryptogramId: Long,

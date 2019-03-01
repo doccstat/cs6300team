@@ -35,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
             if (instance == null) {
                 synchronized(AppDatabase::class) {
                     instance = buildDatabase(context)
-                    instance?.prepopulateDb()
+                    instance?.prepopulateDb(context)
                 }
             }
 
@@ -52,11 +52,9 @@ abstract class AppDatabase : RoomDatabase() {
         }
     }
 
-    private fun prepopulateDb() {
+    private fun prepopulateDb(context: Context) {
         Thread(Runnable {
-            if (userDao().getAllUsers().value.isNullOrEmpty()) {
-                this.userDao().insert(adminUser)
-            }
+            userDao().insert(adminUser)
         }).start()
     }
 }

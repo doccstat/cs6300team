@@ -6,8 +6,10 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import edu.gatech.seclass.crypto6300.data.AppDatabase;
 import edu.gatech.seclass.crypto6300.data.dao.CryptogramAttemptDao;
+import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
 import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt;
 
 public class CryptogramAttemptsRepository {
@@ -22,6 +24,21 @@ public class CryptogramAttemptsRepository {
     public LiveData<List<CryptogramAttempt>> getAllAttemptsForCryptogram(String cryptogramId) {
         return cryptogramAttemptDao.getAllAttemptsForCryptogram(cryptogramId);
     }
+
+
+    public LiveData<List<ChooseCryptogram>> getChooseList(String playerId) {
+        LiveData<List<ChooseCryptogram>> attempts = cryptogramAttemptDao.getCryptogramsAndAttemptsForPlayer(playerId);
+        LiveData<List<ChooseCryptogram>> unsolved = cryptogramAttemptDao.getUnsolvedCryptogramsForPlayer(playerId);
+
+        MediatorLiveData<List<ChooseCryptogram>> data = new MediatorLiveData<>();
+        data.addSource(attempts, value -> data.setValue(value));
+        data.addSource(unsolved, value -> data.setValue(value));
+
+        return attempts;
+    }
+
+
+
 
     public LiveData<List<CryptogramAttempt>> getAllAttemptsForPlayer(String playerId) {
         return cryptogramAttemptDao.getAllAttemptsForPlayer(playerId);
