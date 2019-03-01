@@ -10,46 +10,84 @@
         android:id="@+id/row_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:padding="10dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/guideline_v40"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="username" />
+        tools:text="Username" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v40"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.40" />
 
     <TextView
         android:id="@+id/row_firstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:padding="10dp"
-        app:layout_constraintStart_toEndOf="@id/row_username"
+        android:singleLine="true"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline_v40"
+        app:layout_constraintStart_toStartOf="@id/guideline_v40"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="firstname" />
+        tools:text="Alice" />
 
     <TextView
         android:id="@+id/row_lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:maxLines="1"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/guideline_v80"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/row_firstname"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="lastname" />
+        tools:text="Eve" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v80"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
 
     <TextView
         android:id="@+id/row_wins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:padding="10dp"
+        android:singleLine="true"
         app:layout_constraintEnd_toStartOf="@id/row_losses"
-        app:layout_constraintStart_toEndOf="@id/row_lastname"
+        app:layout_constraintStart_toEndOf="@id/guideline_v80"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="W" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_v90"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
 
     <TextView
         android:id="@+id/row_losses"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:maxLines="1"
         android:padding="10dp"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/row_wins"
+        app:layout_constraintStart_toEndOf="@id/guideline_v90"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="L" />
 

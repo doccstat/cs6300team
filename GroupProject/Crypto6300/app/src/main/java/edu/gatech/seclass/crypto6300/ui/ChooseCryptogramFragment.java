@@ -70,7 +70,7 @@ public class ChooseCryptogramFragment extends BaseFragment {
 
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ChooseCryptogramAdapter();
+        adapter = new ChooseCryptogramAdapter(userParam);
         recyclerView.setAdapter(adapter);
     }
 

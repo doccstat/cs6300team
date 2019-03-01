@@ -11,7 +11,7 @@
 
     <!-- administrator menu -->
     <string name="administrator_menu">Administrator Menu</string>
-
+    <string name="logout">Logout</string>
 
     <!-- player menu -->
     <string name="player_menu">Player Menu</string>
@@ -40,6 +40,7 @@
 
     <!-- choose cryptogram -->
     <string name="choose_cryptogram">Choose Cryptogram</string>
+    <string name="in_progress">in-progress</string>
 
     <!-- game over -->
     <string name="game_over">Game Over</string>
@@ -54,6 +55,5 @@
     <string name="solve_cryptogram">Solve Cryptogram</string>
     <string name="hello_blank_fragment">hello world</string>
     <string name="error_wrong_username_or_password">Incorrect username or password.</string>
-    <string name="in_progress">in-progress</string>
 
 </resources>

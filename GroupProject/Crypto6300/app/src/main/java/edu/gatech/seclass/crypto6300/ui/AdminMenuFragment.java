@@ -3,6 +3,7 @@ package edu.gatech.seclass.crypto6300.ui;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 import butterknife.OnClick;
@@ -63,5 +64,10 @@ public class AdminMenuFragment extends BaseFragment {
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM1, userParam);
         Navigation.findNavController(v).navigate(R.id.action_adminMenuFragment_to_playerStatisticsFragment, args);
+    }
+
+    @OnClick(R.id.logoutAdminItem)
+    public void logoutAdmin(View v) {
+        Navigation.findNavController(v).navigate(R.id.action_adminMenuFragment_to_loginFragment);
     }
 }

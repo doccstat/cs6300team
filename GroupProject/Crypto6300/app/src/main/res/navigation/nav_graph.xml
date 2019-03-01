@@ -43,6 +43,12 @@
         <argument
             android:name="user"
             app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 
 
@@ -64,6 +70,12 @@
         <argument
             android:name="user"
             app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
+        <action
+            android:id="@+id/action_playerMenuFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/playerStatisticsFragment"

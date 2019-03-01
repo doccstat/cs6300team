@@ -15,8 +15,15 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.gatech.seclass.crypto6300.R;
 import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
+import edu.gatech.seclass.crypto6300.data.entities.User;
 
 public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogramAdapter.ViewHolder> {
+
+    private final User user;
+
+    public ChooseCryptogramAdapter(@NonNull User user) {
+        this.user = user;
+    }
 
     private List<ChooseCryptogram> cryptogramList = new ArrayList<>();
 
@@ -62,7 +69,8 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
 
             itemView.setOnClickListener(v -> {
                 Bundle args = new Bundle();
-                Navigation.findNavController(v).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment);
+                args.putParcelable("user", user);
+                Navigation.findNavController(v).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
             });
         }
     }
