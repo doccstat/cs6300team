@@ -1,5 +1,6 @@
 package edu.gatech.seclass.crypto6300.ui;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,9 +14,11 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
 import edu.gatech.seclass.crypto6300.data.entities.Attempts;
+import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.viewmodels.AddCryptogramFragmentViewModel;
 
 public class AddCryptogramFragment extends BaseFragment {
+    private static final String ARG_PARAM1 = "user";
 
     @BindView(R.id.txtCryptogramName)
     EditText etCryptogramName;
@@ -27,6 +30,7 @@ public class AddCryptogramFragment extends BaseFragment {
     Spinner categorySpinner;
 
     private AddCryptogramFragmentViewModel viewModel;
+    private User userParam;
 
     public AddCryptogramFragment() {
         // Required empty public constructor
@@ -37,6 +41,14 @@ public class AddCryptogramFragment extends BaseFragment {
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            userParam = getArguments().getParcelable(ARG_PARAM1);
+        }
     }
 
     @Override
@@ -66,18 +78,28 @@ public class AddCryptogramFragment extends BaseFragment {
         String category = categorySpinner.getSelectedItem().toString();
 
         // TODO: fix this with proper inputs
-        Attempts attempts = new Attempts(3,3,3);
+        Attempts attempts = new Attempts(3, 3, 3);
 
         viewModel.getCryptogramForName(name).observe(this, cryptogram -> {
             if (cryptogram == null) {
 
                 if (isValidInput()) {
                     viewModel.addCryptogram(name, solution, 2, attempts);
-                } else {
-                    // TODO: show error dialog
+
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Success!")
+                            .setMessage("Cryptogram '" + name + "' was added.")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", (dialog, which) -> Navigation.findNavController(v).popBackStack()).show();
                 }
             } else {
-                // TODO: show error dialog
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Error!")
+                        .setMessage("A cryptogram with that name already exists.")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            dialog.dismiss();
+                        }).show();
             }
         });
     }
