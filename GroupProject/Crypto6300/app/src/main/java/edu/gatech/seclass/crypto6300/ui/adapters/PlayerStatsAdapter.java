@@ -46,20 +46,19 @@ public class PlayerStatsAdapter extends RecyclerView.Adapter<PlayerStatsAdapter.
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.row_username)
         TextView username;
-        @BindView(R.id.row_firstname)
         TextView firstname;
-        @BindView(R.id.row_lastname)
         TextView lastname;
-        @BindView(R.id.row_wins)
         TextView wins;
-        @BindView(R.id.row_losses)
         TextView losses;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+            username = itemView.findViewById(R.id.row_username);
+            firstname = itemView.findViewById(R.id.row_firstname);
+            lastname = itemView.findViewById(R.id.row_lastname);
+            wins = itemView.findViewById(R.id.row_wins);
+            losses = itemView.findViewById(R.id.row_losses);
         }
 
         void bind(User user) {
@@ -75,8 +74,8 @@ public class PlayerStatsAdapter extends RecyclerView.Adapter<PlayerStatsAdapter.
             }
 
             username.setText(user.getUsername());
-            wins.setText(user.getWins());
-            losses.setText(user.getLosses());
+            wins.setText(String.valueOf(user.getWins()));
+            losses.setText(String.valueOf(user.getLosses()));
         }
     }
 }

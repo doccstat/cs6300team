@@ -87,7 +87,7 @@
             android:id="@+id/action_chooseCryptogramFragment_to_solveCryptogramFragment"
             app:destination="@id/solveCryptogramFragment" />
         <argument
-            android:name="player"
+            android:name="user"
             app:argType="edu.gatech.seclass.crypto6300.data.entities.User" />
     </fragment>
     <fragment

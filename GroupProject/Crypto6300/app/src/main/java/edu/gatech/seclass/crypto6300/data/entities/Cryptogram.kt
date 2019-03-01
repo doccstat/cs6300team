@@ -6,10 +6,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(
         tableName = "Cryptogram"
 )
+@Parcelize
 data class Cryptogram(
         @PrimaryKey(autoGenerate = true)
         val id: Long?,
@@ -24,13 +26,6 @@ data class Cryptogram(
         @Embedded
         val maxAttempts: Attempts
 ) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readValue(Long::class.java.classLoader) as? Long,
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readInt(),
-            parcel.readParcelable(Attempts::class.java.classLoader))
-
     constructor(
             name: String = "",
             solution: String = "",
@@ -58,28 +53,6 @@ data class Cryptogram(
         result = 31 * result + difficulty
         result = 31 * result + maxAttempts.hashCode()
         return result
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeValue(id)
-        parcel.writeString(name)
-        parcel.writeString(solution)
-        parcel.writeInt(difficulty)
-        parcel.writeParcelable(maxAttempts, flags)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Cryptogram> {
-        override fun createFromParcel(parcel: Parcel): Cryptogram {
-            return Cryptogram(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Cryptogram?> {
-            return arrayOfNulls(size)
-        }
     }
 }
 

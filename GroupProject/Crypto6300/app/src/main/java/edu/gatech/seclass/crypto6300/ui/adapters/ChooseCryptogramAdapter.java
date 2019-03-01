@@ -1,5 +1,7 @@
 package edu.gatech.seclass.crypto6300.ui.adapters;
 
+import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.gatech.seclass.crypto6300.R;
-import edu.gatech.seclass.crypto6300.data.entities.Cryptogram;
+import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
 
 public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogramAdapter.ViewHolder> {
 
-    private List<Cryptogram> cryptogramList = new ArrayList<>();
+    private List<ChooseCryptogram> cryptogramList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -34,7 +36,7 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
         return cryptogramList.size();
     }
 
-    public void setCryptogramList(List<Cryptogram> cryptogramList) {
+    public void setCryptogramList(List<ChooseCryptogram> cryptogramList) {
         if (cryptogramList == null) return;
         this.cryptogramList.clear();
         this.cryptogramList.addAll(cryptogramList);
@@ -44,20 +46,19 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView label;
-        Cryptogram cryptogram;
+        ChooseCryptogram cryptogram;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             label = itemView.findViewById(R.id.cryptogram_name);
         }
 
-        public void bind(Cryptogram cryptogram) {
-            this.cryptogram = cryptogram;
+        public void bind(ChooseCryptogram data) {
+            this.cryptogram = data;
             label.setText(cryptogram.getName());
 
             itemView.setOnClickListener(v -> {
-
-                // TODO: handle navigation if not completed
+                Bundle args = new Bundle();
                 Navigation.findNavController(v).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment);
             });
         }

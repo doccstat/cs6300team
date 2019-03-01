@@ -1,48 +1,39 @@
 package edu.gatech.seclass.crypto6300.data.entities
 
-import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(
         tableName = "Users",
         indices = [Index(value = ["username"], unique = true)]
     )
+@Parcelize
 data class User(
         @PrimaryKey(autoGenerate = true)
         val id: Long?,
 
         @ColumnInfo(name = "firstname")
-        val firstName: String,
+        val firstName: String = "",
         @ColumnInfo(name = "lastname")
-        val lastName: String,
+        val lastName: String = "",
 
         @ColumnInfo(name = "username")
-        val username: String,
+        val username: String = "",
         @ColumnInfo(name = "password")
-        val password: String,
+        val password: String = "",
 
         @ColumnInfo(name = "category")
         val category: Int? = null,
 
         @ColumnInfo(name = "wins")
-        val wins: Int,
+        val wins: Int = 0,
         @ColumnInfo(name = "losses")
-        val losses: Int
+        val losses: Int = 0
 ) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readValue(Long::class.java.classLoader) as? Long,
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readValue(Int::class.java.classLoader) as? Int,
-            parcel.readInt(),
-            parcel.readInt())
-
     constructor(
             firstName: String = "",
             lastName: String = "",
@@ -79,31 +70,6 @@ data class User(
         result = 31 * result + wins
         result = 31 * result + losses
         return result
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeValue(id)
-        parcel.writeString(firstName)
-        parcel.writeString(lastName)
-        parcel.writeString(username)
-        parcel.writeString(password)
-        parcel.writeValue(category)
-        parcel.writeInt(wins)
-        parcel.writeInt(losses)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<User> {
-        override fun createFromParcel(parcel: Parcel): User {
-            return User(parcel)
-        }
-
-        override fun newArray(size: Int): Array<User?> {
-            return arrayOfNulls(size)
-        }
     }
 }
 

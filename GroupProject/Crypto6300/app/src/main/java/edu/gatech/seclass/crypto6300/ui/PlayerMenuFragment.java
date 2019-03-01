@@ -48,13 +48,13 @@ public class PlayerMenuFragment extends BaseFragment {
     public void chooseCryptogramItem(View v) {
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM1, userParam);
-        Navigation.findNavController(v).navigate(R.id.action_playerMenuFragment_to_chooseCryptogramFragment);
+        Navigation.findNavController(v).navigate(R.id.action_playerMenuFragment_to_chooseCryptogramFragment, args);
     }
 
     @OnClick(R.id.viewPlayerStatisticsItem)
     public void viewPlayerStatisticsItem(View v) {
         Bundle args = new Bundle();
         args.putParcelable(ARG_PARAM1, userParam);
-        Navigation.findNavController(v).navigate(R.id.action_playerMenuFragment_to_playerStatisticsFragment);
+        Navigation.findNavController(v).navigate(R.id.action_playerMenuFragment_to_playerStatisticsFragment, args);
     }
 }

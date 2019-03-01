@@ -1,25 +1,36 @@
 package edu.gatech.seclass.crypto6300.ui;
 
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 import edu.gatech.seclass.crypto6300.R;
+import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
 import edu.gatech.seclass.crypto6300.data.entities.User;
+import edu.gatech.seclass.crypto6300.data.viewmodels.ChooseCryptogramFragmentViewModel;
+import edu.gatech.seclass.crypto6300.ui.adapters.ChooseCryptogramAdapter;
+import timber.log.Timber;
 
 public class ChooseCryptogramFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "user";
 
     private User userParam;
 
+    @BindView(R.id.choose_cryptogram_rv)
+    RecyclerView recyclerView;
+
+    private ChooseCryptogramFragmentViewModel viewModel;
+    private ChooseCryptogramAdapter adapter;
+
     public ChooseCryptogramFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment ChooseCryptogramFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static ChooseCryptogramFragment newInstance(User user) {
         ChooseCryptogramFragment fragment = new ChooseCryptogramFragment();
         Bundle args = new Bundle();
@@ -34,6 +45,28 @@ public class ChooseCryptogramFragment extends BaseFragment {
         if (getArguments() != null) {
             userParam = getArguments().getParcelable(ARG_PARAM1);
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        initRecyclerView();
+        viewModel = ViewModelProviders.of(this).get(ChooseCryptogramFragmentViewModel.class);
+        viewModel.getList(String.valueOf(userParam.getId())).observe(this, chooseCryptogramList -> {
+
+            for (ChooseCryptogram c : chooseCryptogramList) {
+                Timber.e(String.valueOf(c));
+            }
+
+            adapter.setCryptogramList(chooseCryptogramList);
+        });
+    }
+
+    private void initRecyclerView() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new ChooseCryptogramAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

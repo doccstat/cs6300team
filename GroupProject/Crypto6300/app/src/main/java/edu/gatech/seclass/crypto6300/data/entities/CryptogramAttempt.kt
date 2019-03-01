@@ -1,11 +1,11 @@
 package edu.gatech.seclass.crypto6300.data.entities
 
-import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(
         tableName = "CryptogramAttempt",
@@ -14,6 +14,7 @@ import androidx.room.PrimaryKey
             ForeignKey(entity = User::class, parentColumns = ["id"], childColumns = ["user_id"], onDelete = ForeignKey.CASCADE)
         ]
 )
+@Parcelize
 data class CryptogramAttempt(
         @PrimaryKey(autoGenerate = true)
         val id: Long?,
@@ -34,16 +35,6 @@ data class CryptogramAttempt(
         @ColumnInfo(name = "is_solved")
         val isSolved: Boolean = false
 ) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readValue(Long::class.java.classLoader) as? Long,
-            parcel.readLong(),
-            parcel.readLong(),
-            parcel.readInt(),
-            parcel.readString(),
-            parcel.readString(),
-            parcel.readByte() != 0.toByte(),
-            parcel.readByte() != 0.toByte())
-
     constructor(
             userId: Long,
             cryptogramId: Long,
@@ -80,30 +71,5 @@ data class CryptogramAttempt(
         result = 31 * result + isCompleted.hashCode()
         result = 31 * result + isSolved.hashCode()
         return result
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeValue(id)
-        parcel.writeLong(userId)
-        parcel.writeLong(cryptogramId)
-        parcel.writeInt(attemptsRemaining)
-        parcel.writeString(currentSubmissionState)
-        parcel.writeString(encryptedPhrase)
-        parcel.writeByte(if (isCompleted) 1 else 0)
-        parcel.writeByte(if (isSolved) 1 else 0)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<CryptogramAttempt> {
-        override fun createFromParcel(parcel: Parcel): CryptogramAttempt {
-            return CryptogramAttempt(parcel)
-        }
-
-        override fun newArray(size: Int): Array<CryptogramAttempt?> {
-            return arrayOfNulls(size)
-        }
     }
 }
