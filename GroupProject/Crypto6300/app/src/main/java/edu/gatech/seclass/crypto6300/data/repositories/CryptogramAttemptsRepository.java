@@ -25,20 +25,9 @@ public class CryptogramAttemptsRepository {
         return cryptogramAttemptDao.getAllAttemptsForCryptogram(cryptogramId);
     }
 
-
     public LiveData<List<ChooseCryptogram>> getChooseList(String playerId) {
-        LiveData<List<ChooseCryptogram>> attempts = cryptogramAttemptDao.getCryptogramsAndAttemptsForPlayer(playerId);
-        LiveData<List<ChooseCryptogram>> unsolved = cryptogramAttemptDao.getUnsolvedCryptogramsForPlayer(playerId);
-
-        MediatorLiveData<List<ChooseCryptogram>> data = new MediatorLiveData<>();
-        data.addSource(attempts, value -> data.setValue(value));
-        data.addSource(unsolved, value -> data.setValue(value));
-
-        return attempts;
+        return cryptogramAttemptDao.getAttemptsAndUnsolvedCryptogramsForPlayer(playerId);
     }
-
-
-
 
     public LiveData<List<CryptogramAttempt>> getAllAttemptsForPlayer(String playerId) {
         return cryptogramAttemptDao.getAllAttemptsForPlayer(playerId);

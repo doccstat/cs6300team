@@ -10,6 +10,8 @@ data class ChooseCryptogram(
         val cryptogramId: Long,
         val name: String,
         val difficulty: Int,
-        @ColumnInfo(name = "in_progress")
-        val inProgress: Boolean
+        @ColumnInfo(name = "is_completed")
+        val isCompleted: Boolean,
+        @ColumnInfo(name = "attempts_remaining")
+        val attemptsRemaining: Int
 ) : Parcelable

@@ -46,16 +46,19 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView label;
+        TextView status;
         ChooseCryptogram cryptogram;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             label = itemView.findViewById(R.id.cryptogram_name);
+            status = itemView.findViewById(R.id.cryptogram_status);
         }
 
         public void bind(ChooseCryptogram data) {
             this.cryptogram = data;
             label.setText(cryptogram.getName());
+            status.setVisibility(data.getAttemptsRemaining() > 0 ? View.VISIBLE: View.INVISIBLE);
 
             itemView.setOnClickListener(v -> {
                 Bundle args = new Bundle();

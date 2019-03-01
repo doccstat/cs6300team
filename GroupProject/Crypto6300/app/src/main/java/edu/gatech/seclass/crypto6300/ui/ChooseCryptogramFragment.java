@@ -3,6 +3,9 @@ package edu.gatech.seclass.crypto6300.ui;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
@@ -14,7 +17,6 @@ import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
 import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.viewmodels.ChooseCryptogramFragmentViewModel;
 import edu.gatech.seclass.crypto6300.ui.adapters.ChooseCryptogramAdapter;
-import timber.log.Timber;
 
 public class ChooseCryptogramFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "user";
@@ -55,11 +57,14 @@ public class ChooseCryptogramFragment extends BaseFragment {
         viewModel = ViewModelProviders.of(this).get(ChooseCryptogramFragmentViewModel.class);
         viewModel.getList(String.valueOf(userParam.getId())).observe(this, chooseCryptogramList -> {
 
+            List<ChooseCryptogram> filteredList = new ArrayList<>();
             for (ChooseCryptogram c : chooseCryptogramList) {
-                Timber.e(String.valueOf(c));
+                if (!c.isCompleted()) {
+                    filteredList.add(c);
+                }
             }
 
-            adapter.setCryptogramList(chooseCryptogramList);
+            adapter.setCryptogramList(filteredList);
         });
     }
 

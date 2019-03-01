@@ -13,21 +13,15 @@ interface CryptogramAttemptDao {
     fun getAllCryptogramAttempts(): LiveData<List<CryptogramAttempt>>
 
     @Query(
-            "SELECT Cryptogram.id AS cryptogram_id, Cryptogram.name AS name, "
-                    + "Cryptogram.difficulty AS difficulty, CryptogramAttempt.is_completed AS in_progress "
-                    + "FROM CryptogramAttempt "
-            + "LEFT OUTER JOIN Cryptogram ON Cryptogram.id = CryptogramAttempt.cryptogram_id "
-            + "WHERE CryptogramAttempt.user_id = :playerId AND CryptogramAttempt.is_completed = 'false'"
-    )
-    fun getCryptogramsAndAttemptsForPlayer(playerId: String): LiveData<List<ChooseCryptogram>>
-
-    @Query(
-
-            "SELECT Cryptogram.id AS cryptogram_id, Cryptogram.name AS name, "
-                    + "Cryptogram.difficulty AS difficulty, CryptogramAttempt.is_completed AS in_progress "
-                    + "FROM Cryptogram "
-            + "INNER JOIN CryptogramAttempt ON Cryptogram.id = CryptogramAttempt.cryptogram_id WHERE user_id != :playerId")
-    fun getUnsolvedCryptogramsForPlayer(playerId: String): LiveData<List<ChooseCryptogram>>
+            "SELECT "
+                    + "Cryptogram.id AS cryptogram_id, Cryptogram.name AS name, "
+                    + "ca.attempts_remaining AS attempts_remaining, "
+                    + "Cryptogram.difficulty AS difficulty, ca.is_completed AS is_completed FROM Cryptogram "
+                    + "LEFT OUTER JOIN ("
+                        + "SELECT * FROM CryptogramAttempt WHERE user_id = :playerId"
+                    + ") ca "
+                    + "ON Cryptogram.id = ca.cryptogram_id")
+    fun getAttemptsAndUnsolvedCryptogramsForPlayer(playerId: String): LiveData<List<ChooseCryptogram>>
 
     @Query("SELECT * FROM CryptogramAttempt WHERE user_id = :userId")
     fun getAllAttemptsForPlayer(userId: String): LiveData<List<CryptogramAttempt>>

@@ -54,5 +54,6 @@
     <string name="solve_cryptogram">Solve Cryptogram</string>
     <string name="hello_blank_fragment">hello world</string>
     <string name="error_wrong_username_or_password">Incorrect username or password.</string>
+    <string name="in_progress">in-progress</string>
 
 </resources>
