@@ -67,36 +67,49 @@
             app:layout_constraintTop_toBottomOf="@+id/txtPlayerLastName"
             app:layout_constraintVertical_bias="0.151" />
 
-        <EditText
-            android:id="@+id/txtPlayerCategory"
+        <TextView
+            android:id="@+id/txtCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:ems="10"
-            android:hint="@string/category"
-            android:inputType="textPersonName"
+            android:text="Category"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintHorizontal_bias="0.242"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPlayerUsername"
-            app:layout_constraintVertical_bias="0.184" />
+            app:layout_constraintVertical_bias="0.254" />
+
+
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.415"
+            app:layout_constraintStart_toEndOf="@+id/txtCategory"
+            app:layout_constraintTop_toBottomOf="@+id/txtPlayerUsername"
+            app:layout_constraintVertical_bias="0.255"></Spinner>
 
         <Button
             android:id="@+id/addPlayerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="112dp"
             android:text="@string/add_player"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPlayerCategory" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

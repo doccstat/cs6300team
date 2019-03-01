@@ -12,6 +12,8 @@
     <!-- administrator menu -->
     <string name="administrator_menu">Administrator Menu</string>
 
+
+
     <!-- player menu -->
     <string name="player_menu">Player Menu</string>
 
@@ -19,7 +21,12 @@
 
     <string name="cryptogram_name">Cryptogram Name</string>
     <string name="add_cryptogram">Add Cryptogram</string>
-    <string name="category">Easy/Normal/Hard</string>
+     <string-array name="category_items">
+        <item>Easy</item>
+        <item>Normal</item>
+        <item>Hard</item>
+     </string-array>
+    <string name="category">Category</string>
     <string name="solution">Solution</string>
 
     <!-- add player -->

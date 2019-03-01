@@ -45,36 +45,53 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtCryptogramName" />
 
-        <EditText
+        <TextView
             android:id="@+id/txtCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/category"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.351"
+            android:layout_marginBottom="8dp"
+            android:text="@string/category"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/categorySpinner"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCryptogramSolution" />
+            app:layout_constraintTop_toBottomOf="@+id/txtCryptogramSolution"
+            app:layout_constraintVertical_bias="0.229" />
+
+
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.553"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtCryptogramSolution"
+            app:layout_constraintVertical_bias="0.233"></Spinner>
 
         <Button
             android:id="@+id/addCryptogramButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="76dp"
             android:text="@string/add_cryptogram"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.465"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtCategory"
-            app:layout_constraintVertical_bias="0.64" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
