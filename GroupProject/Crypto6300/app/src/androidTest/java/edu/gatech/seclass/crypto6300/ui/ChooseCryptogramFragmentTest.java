@@ -24,5 +24,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+@RunWith(AndroidJUnit4.class)
 public class ChooseCryptogramFragmentTest {
 }

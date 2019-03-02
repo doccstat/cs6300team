@@ -24,5 +24,19 @@ import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+@RunWith(AndroidJUnit4.class)
 public class GameWonFragmentTest {
+
+    @Rule
+    public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
+
+    private View decorView;
+
+    @Before
+    public void setUp() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            decorView = activity.getWindow().getDecorView();
+        });
+    }
+
 }
