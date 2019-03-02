@@ -31,6 +31,10 @@
     <string name="easy_attempts">Easy Attempts</string>
     <string name="normal_attempts">Normal Attempts</string>
     <string name="hard_attempts">Hard Attempts</string>
+    <string name="error_number_required">Number required</string>
+    <string name="error_negative_attempts">Positive Number required</string>
+    <string name="error_cryptogram_name">Cryptogram Name required</string>
+    <string name="error_cryptogram_solution">Cryptogram Solution required</string>
 
     <!-- add player -->
     <string name="add_player">Add Player</string>

@@ -1,7 +1,9 @@
 package edu.gatech.seclass.crypto6300.ui;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,8 +28,12 @@ public class AddCryptogramFragment extends BaseFragment {
     @BindView(R.id.txtCryptogramSolution)
     EditText etCryptogramSolution;
 
-    @BindView(R.id.categorySpinner)
-    Spinner categorySpinner;
+    @BindView(R.id.easy_attempts_txt)
+    EditText etEasyAttempts;
+    @BindView(R.id.normal_attempts_txt)
+    EditText etNormalAttempts;
+    @BindView(R.id.hard_attempts_txt)
+    EditText etHardAttempts;
 
     private AddCryptogramFragmentViewModel viewModel;
     private User userParam;
@@ -73,12 +79,63 @@ public class AddCryptogramFragment extends BaseFragment {
 
         String name = etCryptogramName.getText().toString();
         String solution = etCryptogramSolution.getText().toString();
+        String easy_attempts= etEasyAttempts.getText().toString();
+        String normal_attempts= etNormalAttempts.getText().toString();
+        String hard_attempts= etHardAttempts.getText().toString();
+        Integer easy=0;
+        Integer normal=0;
+        Integer hard=0;
 
-        // TODO: change this property
-        String category = categorySpinner.getSelectedItem().toString();
+        if (isNumber(easy_attempts)){
+             easy =  Integer.parseInt(easy_attempts);
+             if (easy<=0){ etEasyAttempts.setError(getString(R.string.error_negative_attempts));}
+             else {etEasyAttempts.setError(null);}
+        }
+        else{
+            etEasyAttempts.setError(getString(R.string.error_number_required));
+            etEasyAttempts.requestFocus();
+        }
+
+        if (isNumber(normal_attempts)){
+             normal =  Integer.parseInt(normal_attempts);
+            if (normal<=0){ etNormalAttempts.setError(getString(R.string.error_negative_attempts));}
+            else if (normal>easy){
+                etNormalAttempts.setError(null);
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Warning!")
+                        .setMessage("Are you sure? Normal category has more attempts than Easy category!")
+                        .setCancelable(true)
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            dialog.dismiss();
+                        }).show();
+            }
+        }
+        else{
+            etNormalAttempts.setError(getString(R.string.error_number_required));
+            etHardAttempts.requestFocus();
+        }
+
+        if (isNumber(hard_attempts)){
+             hard =  Integer.parseInt(hard_attempts);
+             if (hard<=0){etHardAttempts.setError(getString(R.string.error_negative_attempts));}
+             else if (hard> normal || hard>easy){
+                 new AlertDialog.Builder(getContext())
+                         .setTitle("Warning!")
+                         .setMessage("Are you sure? Hard category doesn't have the lowest attempts!")
+                         .setCancelable(true)
+                         .setPositiveButton("OK", (dialog, which) -> {
+                             dialog.dismiss();
+                         }).show();
+             }
+        }
+        else{
+            etHardAttempts.setError(getString(R.string.error_number_required));
+            etHardAttempts.requestFocus();
+        }
+
 
         // TODO: fix this with proper inputs
-        Attempts attempts = new Attempts(3, 3, 3);
+        Attempts attempts = new Attempts(easy, normal, hard);
 
         viewModel.getCryptogramForName(name).observe(this, cryptogram -> {
             if (cryptogram == null) {
@@ -106,6 +163,31 @@ public class AddCryptogramFragment extends BaseFragment {
 
     private boolean isValidInput() {
         // TODO
-        return false;
+        String name=etCryptogramName.getText().toString();
+        String solution= etCryptogramSolution.getText().toString();
+        if (name.isEmpty()) {
+            etCryptogramName.setError(getString(R.string.error_cryptogram_name));
+            etCryptogramName.requestFocus();
+            return false;
+        } else {
+            etCryptogramName.setError(null);
+        }
+
+        if (solution.isEmpty()) {
+            etCryptogramSolution.setError(getString(R.string.error_cryptogram_solution));
+            etCryptogramSolution.requestFocus();
+            return false;
+        } else {
+            etCryptogramSolution.setError(null);
+        }
+        return  true;
     }
+    private boolean isNumber(String number){
+        if(!TextUtils.isEmpty(number)){
+            return TextUtils.isDigitsOnly(number);
+        }else{
+            return false;
+        }
+    }
+
 }
