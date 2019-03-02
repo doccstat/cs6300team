@@ -55,7 +55,8 @@
     <string name="cryptograms_lost">Cryptograms Lost:</string>
 
     <!-- game won -->
-    <string name="game_won">Game Won</string>
+    <string name="game_won">You Won The Game</string>
+    <string name="congrats">Congratulations!</string>
 
     <!-- player statistics -->
     <string name="player_statistics">Player Statistics</string>
