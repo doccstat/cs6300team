@@ -51,6 +51,8 @@
 
     <!-- game over -->
     <string name="game_over">Game Over</string>
+    <string name="cryptograms_won">Cryptograms Won:</string>
+    <string name="cryptograms_lost">Cryptograms Lost:</string>
 
     <!-- game won -->
     <string name="game_won">Game Won</string>
