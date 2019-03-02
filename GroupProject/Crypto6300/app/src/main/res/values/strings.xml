@@ -28,6 +28,9 @@
     <string name="category">Category</string>
     <string name="solution">Solution</string>
     <string name="solution_label">Solution:</string>
+    <string name="easy_attempts">Easy Attempts</string>
+    <string name="normal_attempts">Normal Attempts</string>
+    <string name="hard_attempts">Hard Attempts</string>
 
     <!-- add player -->
     <string name="add_player">Add Player</string>
