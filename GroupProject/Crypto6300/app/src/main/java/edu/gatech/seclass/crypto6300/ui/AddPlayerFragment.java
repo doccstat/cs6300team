@@ -33,6 +33,7 @@ public class AddPlayerFragment extends BaseFragment {
     Spinner categorySpinner;
 
     private AddPlayerFragmentViewModel viewModel;
+    private AlertDialog dialog;
 
     public AddPlayerFragment() {
         // Required empty public constructor
@@ -71,6 +72,9 @@ public class AddPlayerFragment extends BaseFragment {
         String categoryString = categorySpinner.getSelectedItem().toString();
 
         viewModel.getUserForUsername(username).observe(this, user -> {
+
+            if (dialog != null && dialog.isShowing()) dialog.dismiss();
+
             if (user == null) {
                 int category = 0;
                 switch (categoryString) {
@@ -88,20 +92,22 @@ public class AddPlayerFragment extends BaseFragment {
                 if (isValidInput()) {
                     viewModel.addPlayer(firstname, lastname, username, password, category);
 
-                    new AlertDialog.Builder(getContext())
-                            .setTitle("Success!")
-                            .setMessage("User '" + username + "' was added.")
+                    dialog = new AlertDialog.Builder(getContext())
+                            .setTitle(R.string.success)
+                            .setMessage(String.format(getString(R.string.user_was_added), username))
                             .setCancelable(false)
-                            .setPositiveButton("OK", (dialog, which) -> Navigation.findNavController(v).popBackStack()).show();
+                            .setPositiveButton(R.string.ok, (dialog, which) -> Navigation.findNavController(v).popBackStack())
+                            .show();
                 }
             } else {
-                new AlertDialog.Builder(getContext())
-                        .setTitle("Error!")
-                        .setMessage("A user with that username already exists.")
+               dialog = new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.error)
+                        .setMessage(R.string.username_exists)
                         .setCancelable(false)
-                        .setPositiveButton("OK", (dialog, which) -> {
+                        .setPositiveButton(R.string.ok, (dialog, which) -> {
                             dialog.dismiss();
-                        }).show();
+                        })
+                       .show();
             }
         });
 
@@ -109,6 +115,6 @@ public class AddPlayerFragment extends BaseFragment {
 
     private boolean isValidInput() {
         // TODO
-        return false;
+        return true;
     }
 }

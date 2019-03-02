@@ -14,9 +14,17 @@ interface CryptogramAttemptDao {
 
     @Query(
             "SELECT "
-                    + "Cryptogram.id AS cryptogram_id, Cryptogram.name AS name, "
+                    + "Cryptogram.id AS cryptogram_id, "
+                    + "Cryptogram.name AS name, "
                     + "ca.attempts_remaining AS attempts_remaining, "
-                    + "Cryptogram.difficulty AS difficulty, ca.is_completed AS is_completed FROM Cryptogram "
+                    + "Cryptogram.solution AS solution, "
+                    + "Cryptogram.difficulty AS difficulty, "
+                    + "Cryptogram.easy AS easy, "
+                    + "Cryptogram.normal AS normal, "
+                    + "Cryptogram.hard AS hard, "
+                    + "ca.is_completed AS is_completed "
+
+                    + "FROM Cryptogram "
                     + "LEFT OUTER JOIN ("
                         + "SELECT * FROM CryptogramAttempt WHERE user_id = :playerId"
                     + ") ca "
@@ -28,6 +36,9 @@ interface CryptogramAttemptDao {
 
     @Query("SELECT * FROM CryptogramAttempt WHERE cryptogram_id = :cryptogramId")
     fun getAllAttemptsForCryptogram(cryptogramId: String): LiveData<List<CryptogramAttempt>>
+
+    @Query("SELECT * FROM CryptogramAttempt WHERE user_id = :playerId AND cryptogram_id = :cryptogramId LIMIT 1")
+    fun getAttemptByUserIdAndCryptogramId(playerId: String, cryptogramId: String) : LiveData<CryptogramAttempt>
 
     @Query("SELECT * FROM CryptogramAttempt WHERE id = :cryptogramAttemptId LIMIT 1")
     fun getAttemptById(cryptogramAttemptId: String): LiveData<CryptogramAttempt>

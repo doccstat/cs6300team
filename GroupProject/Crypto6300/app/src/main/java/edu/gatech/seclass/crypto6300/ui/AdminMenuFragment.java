@@ -3,7 +3,6 @@ package edu.gatech.seclass.crypto6300.ui;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.navigation.Navigation;
 import butterknife.OnClick;

@@ -55,5 +55,10 @@
     <string name="solve_cryptogram">Solve Cryptogram</string>
     <string name="hello_blank_fragment">hello world</string>
     <string name="error_wrong_username_or_password">Incorrect username or password.</string>
+    <string name="success">Success!</string>
+    <string name="error">Error!</string>
+    <string name="username_exists">A user with that username already exists.</string>
+    <string name="user_was_added">User \'%s\' was added.</string>
+    <string name="ok">OK</string>
 
 </resources>

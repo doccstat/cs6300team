@@ -9,25 +9,28 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import edu.gatech.seclass.crypto6300.R;
 import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
 import edu.gatech.seclass.crypto6300.data.entities.User;
+import edu.gatech.seclass.crypto6300.data.repositories.CryptogramAttemptsRepository;
 import edu.gatech.seclass.crypto6300.data.viewmodels.ChooseCryptogramFragmentViewModel;
 import edu.gatech.seclass.crypto6300.ui.adapters.ChooseCryptogramAdapter;
 
-public class ChooseCryptogramFragment extends BaseFragment {
+public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryptogramAdapter.ItemClickListener, CryptogramAttemptsRepository.insertAttemptAsyncTask.InsertResponse {
     private static final String ARG_PARAM1 = "user";
+    private static final String ARG_PARAM2 = "attempt";
 
-    private User userParam;
 
     @BindView(R.id.choose_cryptogram_rv)
     RecyclerView recyclerView;
 
-    private ChooseCryptogramFragmentViewModel viewModel;
-    private ChooseCryptogramAdapter adapter;
+    User userParam;
+    ChooseCryptogramFragmentViewModel viewModel;
+    ChooseCryptogramAdapter adapter;
 
     public ChooseCryptogramFragment() {
         // Required empty public constructor
@@ -71,6 +74,7 @@ public class ChooseCryptogramFragment extends BaseFragment {
     private void initRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ChooseCryptogramAdapter(userParam);
+        adapter.setListener(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -82,5 +86,35 @@ public class ChooseCryptogramFragment extends BaseFragment {
     @Override
     public int getTitle() {
         return R.string.choose_cryptogram;
+    }
+
+    @Override
+    public void onItemClick(ChooseCryptogram cryptogram) {
+
+        viewModel.getAttemptForPlayer(
+                String.valueOf(userParam.getId()),
+                String.valueOf(cryptogram.getCryptogramId())
+        ).observe(this, attempt -> {
+            if (attempt == null) {
+                viewModel.generateAttemptForPlayer(
+                        userParam,
+                        cryptogram,
+                        this
+                );
+            } else {
+                Bundle args = new Bundle();
+                args.putParcelable(ARG_PARAM1, userParam);
+                args.putString(ARG_PARAM2, String.valueOf(attempt.getId()));
+                Navigation.findNavController(getView()).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
+            }
+        });
+    }
+
+    @Override
+    public void processFinished(String attemptId) {
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_PARAM1, userParam);
+        args.putString(ARG_PARAM2, attemptId);
+        Navigation.findNavController(getView()).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
     }
 }

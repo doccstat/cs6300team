@@ -19,7 +19,12 @@ import edu.gatech.seclass.crypto6300.data.entities.User;
 
 public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogramAdapter.ViewHolder> {
 
+    public interface ItemClickListener {
+        void onItemClick(ChooseCryptogram cryptogram);
+    }
+
     private final User user;
+    private ItemClickListener listener;
 
     public ChooseCryptogramAdapter(@NonNull User user) {
         this.user = user;
@@ -50,6 +55,10 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
         notifyDataSetChanged();
     }
 
+    public void setListener(ItemClickListener listener) {
+        this.listener = listener;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView label;
@@ -68,9 +77,7 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
             status.setVisibility(data.getAttemptsRemaining() > 0 ? View.VISIBLE: View.INVISIBLE);
 
             itemView.setOnClickListener(v -> {
-                Bundle args = new Bundle();
-                args.putParcelable("user", user);
-                Navigation.findNavController(v).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
+                if (listener != null) listener.onItemClick(cryptogram);
             });
         }
     }

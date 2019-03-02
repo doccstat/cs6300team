@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import edu.gatech.seclass.crypto6300.data.AppDatabase;
 import edu.gatech.seclass.crypto6300.data.dao.CryptogramAttemptDao;
 import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
@@ -29,6 +28,10 @@ public class CryptogramAttemptsRepository {
         return cryptogramAttemptDao.getAttemptsAndUnsolvedCryptogramsForPlayer(playerId);
     }
 
+    public LiveData<CryptogramAttempt> getAttemptByUserIdAndCryptogramId(String playerId, String cryptogramId) {
+        return cryptogramAttemptDao.getAttemptByUserIdAndCryptogramId(playerId, cryptogramId);
+    }
+
     public LiveData<List<CryptogramAttempt>> getAllAttemptsForPlayer(String playerId) {
         return cryptogramAttemptDao.getAllAttemptsForPlayer(playerId);
     }
@@ -41,8 +44,8 @@ public class CryptogramAttemptsRepository {
         return cryptogramAttemptDao.getAttemptById(attemptId);
     }
 
-    public void insert(CryptogramAttempt attempt) {
-        new insertAttemptAsyncTask(cryptogramAttemptDao).execute(attempt);
+    public void insert(CryptogramAttempt attempt, insertAttemptAsyncTask.InsertResponse response) {
+        new insertAttemptAsyncTask(cryptogramAttemptDao, response).execute(attempt);
     }
 
     public void update(CryptogramAttempt attempt) {
@@ -68,19 +71,29 @@ public class CryptogramAttemptsRepository {
 
     ###############################
      */
-    private class insertAttemptAsyncTask extends AsyncTask<CryptogramAttempt, Void, Void> {
+    public static class insertAttemptAsyncTask extends AsyncTask<CryptogramAttempt, Void, String> {
 
-        private CryptogramAttemptDao attemptDao;
-
-        insertAttemptAsyncTask(CryptogramAttemptDao attemptDao) {
-            this.attemptDao = attemptDao;
+        public interface InsertResponse {
+            void processFinished(String attemptId);
         }
 
+        private CryptogramAttemptDao attemptDao;
+        private InsertResponse delegate;
+
+        insertAttemptAsyncTask(CryptogramAttemptDao attemptDao, InsertResponse delegate) {
+            this.attemptDao = attemptDao;
+            this.delegate = delegate;
+        }
 
         @Override
-        protected Void doInBackground(CryptogramAttempt... cryptogramAttempts) {
-            attemptDao.insertAttempt(cryptogramAttempts[0]);
-            return null;
+        protected String doInBackground(CryptogramAttempt... cryptogramAttempts) {
+            return String.valueOf(attemptDao.insertAttempt(cryptogramAttempts[0]));
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            delegate.processFinished(result);
         }
     }
 
