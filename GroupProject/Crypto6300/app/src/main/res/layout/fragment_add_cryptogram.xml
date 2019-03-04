@@ -42,26 +42,26 @@
         android:id="@+id/labelSolution"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:text="@string/solution_label"
         app:layout_constraintBottom_toBottomOf="@id/txtCryptogramSolution"
         app:layout_constraintEnd_toStartOf="@id/txtCryptogramSolution"
-        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/txtCryptogramSolution"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/txtCryptogramSolution"
-        android:layout_width="210dp"
-        android:layout_height="34dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:maxLines="1"
-        android:padding="8dp"
+        android:padding="10dp"
         android:singleLine="true"
-        app:layout_constraintEnd_toEndOf="@id/txtCryptogramName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/txtCryptogramName"
         app:layout_constraintTop_toBottomOf="@+id/txtCryptogramName"
@@ -83,49 +83,51 @@
         android:id="@+id/easy_attempts_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/easy_attempts"
         app:layout_constraintBottom_toBottomOf="@+id/easy_attempts_txt"
         app:layout_constraintEnd_toStartOf="@+id/easy_attempts_txt"
-        app:layout_constraintHorizontal_bias="0.212"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/easy_attempts_txt"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/easy_attempts_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="number"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="202dp" />
+        app:layout_constraintStart_toStartOf="@id/txtCryptogramSolution"
+        app:layout_constraintTop_toBottomOf="@id/txtCryptogramSolution" />
 
     <TextView
         android:id="@+id/normal_attempts_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/normal_attempts"
         app:layout_constraintBottom_toBottomOf="@+id/normal_attempts_txt"
         app:layout_constraintEnd_toStartOf="@+id/normal_attempts_txt"
-        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/normal_attempts_txt"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/normal_attempts_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="307dp" />
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtCryptogramSolution"
+        app:layout_constraintTop_toBottomOf="@id/easy_attempts_txt" />
 
     <TextView
         android:id="@+id/hard_attempts_label"
@@ -134,17 +136,24 @@
         android:layout_marginStart="16dp"
         android:text="@string/hard_attempts"
         app:layout_constraintBottom_toBottomOf="@+id/hard_attempts_txt"
+        app:layout_constraintEnd_toStartOf="@id/hard_attempts_txt"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/hard_attempts_txt"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/hard_attempts_txt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="413dp" />
+        app:layout_constraintBottom_toTopOf="@id/addCryptogramButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtCryptogramSolution"
+        app:layout_constraintTop_toBottomOf="@id/normal_attempts_txt"
+        app:layout_constraintVertical_bias="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
