@@ -55,13 +55,11 @@ interface CryptogramAttemptDao {
     )
     fun checkSolutionForAttempt(attemptId: String, solution: String): LiveData<Boolean>
 
-
     @Query("UPDATE CryptogramAttempt "
-            + "SET (attempts_remaining, submission) "
-            + "= (attempts_remaining - 1, :submission) "
+            + "SET attempts_remaining = attempts_remaining - 1, "
+            + "submission = :submission "
             + "WHERE CryptogramAttempt.id = :attemptId")
-    fun updateAttemptForTry(attemptId: String, submission: String): LiveData<Boolean>
-
+    fun updateAttemptForTry(attemptId: String, submission: String)
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertAttempt(cryptogram: CryptogramAttempt): Long
