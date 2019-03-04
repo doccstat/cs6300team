@@ -44,6 +44,10 @@ public class CryptogramAttemptsRepository {
         return cryptogramAttemptDao.getAttemptById(attemptId);
     }
 
+    public LiveData<Boolean> checkSolution(String attemptId, String solution) {
+        return cryptogramAttemptDao.checkSolutionForAttempt(attemptId, solution);
+    }
+
     public void insert(CryptogramAttempt attempt, insertAttemptAsyncTask.InsertResponse response) {
         new insertAttemptAsyncTask(cryptogramAttemptDao, response).execute(attempt);
     }

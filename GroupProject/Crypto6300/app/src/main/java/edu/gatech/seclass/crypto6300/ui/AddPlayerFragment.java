@@ -3,8 +3,8 @@ package edu.gatech.seclass.crypto6300.ui;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,16 +18,16 @@ import edu.gatech.seclass.crypto6300.data.viewmodels.AddPlayerFragmentViewModel;
 public class AddPlayerFragment extends BaseFragment {
 
     @BindView(R.id.txtPlayerFirstName)
-    TextView tvFirstName;
+    EditText etFirstName;
 
     @BindView(R.id.txtPlayerLastName)
-    TextView tvLastName;
+    EditText etLastName;
 
     @BindView(R.id.txtPlayerUsername)
-    TextView tvUsername;
+    EditText etUsername;
 
     @BindView(R.id.txtPlayerPassword)
-    TextView tvPassword;
+    EditText etPassword;
 
     @BindView(R.id.categorySpinner)
     Spinner categorySpinner;
@@ -65,10 +65,10 @@ public class AddPlayerFragment extends BaseFragment {
 
     @OnClick(R.id.addPlayerButton)
     public void addPlayerButton(View v) {
-        String firstname = tvFirstName.getText().toString();
-        String lastname = tvLastName.getText().toString();
-        String username = tvUsername.getText().toString();
-        String password = tvPassword.getText().toString();
+        String firstname = etFirstName.getText().toString();
+        String lastname = etLastName.getText().toString();
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
         String categoryString = categorySpinner.getSelectedItem().toString();
 
         viewModel.getUserForUsername(username).observe(this, user -> {
@@ -100,21 +100,52 @@ public class AddPlayerFragment extends BaseFragment {
                             .show();
                 }
             } else {
-               dialog = new AlertDialog.Builder(getContext())
+                dialog = new AlertDialog.Builder(getContext())
                         .setTitle(R.string.error)
                         .setMessage(R.string.username_exists)
                         .setCancelable(false)
                         .setPositiveButton(R.string.ok, (dialog, which) -> {
                             dialog.dismiss();
                         })
-                       .show();
+                        .show();
             }
         });
-
     }
 
     private boolean isValidInput() {
-        // TODO
+        String firstname = etFirstName.getText().toString();
+        String lastname = etLastName.getText().toString();
+        String username = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (firstname.isEmpty()) {
+            etFirstName.setError(getString(R.string.error_firstname));
+            return false;
+        } else {
+            etFirstName.setError(null);
+        }
+
+        if (lastname.isEmpty()) {
+            etLastName.setError(getString(R.string.error_lastname));
+            return false;
+        } else {
+            etLastName.setError(null);
+        }
+
+        if (username.isEmpty()) {
+            etUsername.setError(getString(R.string.error_username));
+            return false;
+        } else {
+            etUsername.setError(null);
+        }
+
+        if (password.isEmpty()) {
+            etPassword.setError(getString(R.string.error_password));
+            return false;
+        } else {
+            etPassword.setError(null);
+        }
+
         return true;
     }
 }

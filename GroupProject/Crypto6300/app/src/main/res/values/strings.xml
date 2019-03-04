@@ -70,5 +70,10 @@
     <string name="username_exists">A user with that username already exists.</string>
     <string name="user_was_added">User \'%s\' was added.</string>
     <string name="ok">OK</string>
+    <string name="error_firstname">First name is required.</string>
+    <string name="error_lastname">Last name is required.</string>
+    <string name="error_username">Username is required.</string>
+    <string name="error_password">Password is required.</string>
+    <string name="submit">Submit</string>
 
 </resources>

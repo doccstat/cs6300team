@@ -26,7 +26,7 @@ interface CryptogramAttemptDao {
 
                     + "FROM Cryptogram "
                     + "LEFT OUTER JOIN ("
-                        + "SELECT * FROM CryptogramAttempt WHERE user_id = :playerId"
+                    + "SELECT * FROM CryptogramAttempt WHERE user_id = :playerId"
                     + ") ca "
                     + "ON Cryptogram.id = ca.cryptogram_id")
     fun getAttemptsAndUnsolvedCryptogramsForPlayer(playerId: String): LiveData<List<ChooseCryptogram>>
@@ -38,10 +38,30 @@ interface CryptogramAttemptDao {
     fun getAllAttemptsForCryptogram(cryptogramId: String): LiveData<List<CryptogramAttempt>>
 
     @Query("SELECT * FROM CryptogramAttempt WHERE user_id = :playerId AND cryptogram_id = :cryptogramId LIMIT 1")
-    fun getAttemptByUserIdAndCryptogramId(playerId: String, cryptogramId: String) : LiveData<CryptogramAttempt>
+    fun getAttemptByUserIdAndCryptogramId(playerId: String, cryptogramId: String): LiveData<CryptogramAttempt>
 
     @Query("SELECT * FROM CryptogramAttempt WHERE id = :cryptogramAttemptId LIMIT 1")
     fun getAttemptById(cryptogramAttemptId: String): LiveData<CryptogramAttempt>
+
+
+    @Query(
+            "SELECT "
+                    + "CASE WHEN EXISTS("
+                    + "SELECT * FROM Cryptogram INNER JOIN CryptogramAttempt "
+                    + "ON Cryptogram.id = CryptogramAttempt.cryptogram_id "
+                    + "WHERE CryptogramAttempt.id = :attemptId AND Cryptogram.solution = :solution LIMIT 1) "
+                    + "THEN CAST(1 AS BIT)"
+                    + "ELSE CAST(0 AS BIT) END"
+    )
+    fun checkSolutionForAttempt(attemptId: String, solution: String): LiveData<Boolean>
+
+
+    @Query("UPDATE CryptogramAttempt "
+            + "SET (attempts_remaining, submission) "
+            + "= (attempts_remaining - 1, :submission) "
+            + "WHERE CryptogramAttempt.id = :attemptId")
+    fun updateAttemptForTry(attemptId: String, submission: String): LiveData<Boolean>
+
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertAttempt(cryptogram: CryptogramAttempt): Long
