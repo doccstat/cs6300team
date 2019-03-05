@@ -43,7 +43,6 @@ interface CryptogramAttemptDao {
     @Query("SELECT * FROM CryptogramAttempt WHERE id = :cryptogramAttemptId LIMIT 1")
     fun getAttemptById(cryptogramAttemptId: String): LiveData<CryptogramAttempt>
 
-
     @Query(
             "SELECT "
                     + "CASE WHEN EXISTS("
@@ -57,9 +56,14 @@ interface CryptogramAttemptDao {
 
     @Query("UPDATE CryptogramAttempt "
             + "SET attempts_remaining = attempts_remaining - 1, "
-            + "submission = :submission "
+                + "submission = :submission, "
+                + "is_solved = :isSolved, "
+                + "is_completed = (CASE WHEN attempts_remaining > 1 THEN 0 ELSE 1 END)"
             + "WHERE CryptogramAttempt.id = :attemptId")
-    fun updateAttemptForTry(attemptId: String, submission: String)
+    fun updateAttemptForTry(attemptId: String, submission: String, isSolved: Boolean)
+
+    @Query("SELECT is_completed FROM CryptogramAttempt WHERE id = :attemptId LIMIT 1")
+    fun checkIfAttemptCompleted(attemptId: String) : LiveData<Boolean>
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
     fun insertAttempt(cryptogram: CryptogramAttempt): Long

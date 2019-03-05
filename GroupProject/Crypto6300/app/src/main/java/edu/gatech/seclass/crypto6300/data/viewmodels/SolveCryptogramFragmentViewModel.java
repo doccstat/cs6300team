@@ -32,4 +32,16 @@ public class SolveCryptogramFragmentViewModel extends AndroidViewModel {
     public LiveData<Boolean> submitSolution(@NonNull String attemptId, @NonNull String solution) {
         return attemptsRepository.checkSolution(attemptId, solution);
     }
+
+    public LiveData<Boolean> checkIfAttemptComplete(String attemptId) {
+        return attemptsRepository.checkIfAttemptCompleted(attemptId);
+    }
+
+    public void updateAttemptForTry(String attemptId, String submission, boolean isSolved) {
+        attemptsRepository.updateAttemptForTry(attemptId, submission, isSolved);
+    }
+
+    public void updateUserWinLossRecord(String userId, boolean isWin) {
+        userRepository.updateUserWinLossRecord(userId, isWin);
+    }
 }

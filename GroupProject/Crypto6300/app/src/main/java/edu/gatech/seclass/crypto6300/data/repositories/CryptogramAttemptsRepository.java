@@ -48,6 +48,14 @@ public class CryptogramAttemptsRepository {
         return cryptogramAttemptDao.checkSolutionForAttempt(attemptId, solution);
     }
 
+    public LiveData<Boolean> checkIfAttemptCompleted(String attemptId) {
+        return cryptogramAttemptDao.checkIfAttemptCompleted(attemptId);
+    }
+
+    public void updateAttemptForTry(String attemptId, String submission, boolean isSolved) {
+        new updateAttemptForTryAsyncTask(cryptogramAttemptDao).execute(attemptId, submission, isSolved);
+    }
+
     public void insert(CryptogramAttempt attempt, insertAttemptAsyncTask.InsertResponse response) {
         new insertAttemptAsyncTask(cryptogramAttemptDao, response).execute(attempt);
     }
@@ -163,4 +171,17 @@ public class CryptogramAttemptsRepository {
     }
 
 
+    private class updateAttemptForTryAsyncTask extends AsyncTask<Object, Void, Void> {
+        private CryptogramAttemptDao attemptDao;
+
+        updateAttemptForTryAsyncTask(CryptogramAttemptDao attemptDao) {
+            this.attemptDao = attemptDao;
+        }
+
+        @Override
+        protected Void doInBackground(Object... params) {
+            attemptDao.updateAttemptForTry((String) params[0], (String) params[1], (boolean) params[2]);
+            return null;
+        }
+    }
 }

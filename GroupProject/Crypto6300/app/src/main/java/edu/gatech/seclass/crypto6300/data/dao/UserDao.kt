@@ -21,6 +21,12 @@ interface UserDao {
     @Query("SELECT * FROM Users WHERE username = :username AND password = :password LIMIT 1")
     fun getUserByLoginInfo(username: String, password: String): LiveData<User>
 
+    @Query("UPDATE Users SET wins = wins + 1 WHERE Users.id = :userId")
+    fun updateUserWin(userId: String)
+
+    @Query("UPDATE Users SET losses = losses + 1 WHERE Users.id = :userId")
+    fun updateUserLoss(userId: String)
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(user: User): Long
 

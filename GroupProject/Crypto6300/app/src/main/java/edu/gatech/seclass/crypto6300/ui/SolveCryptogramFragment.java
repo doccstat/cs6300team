@@ -12,6 +12,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -109,17 +110,28 @@ public class SolveCryptogramFragment extends BaseFragment {
         Timber.e("result=[" + adapter.getResultString() + "]");
         viewModel.submitSolution(attemptIdParam, adapter.getResultString()).observe(this, isSolved -> {
 
-            Timber.e("isSolved? " + isSolved);
-            if (isSolved) {
-                Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment);
-            } else {
-                // if completed
-//                if () {
-//                    Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment);
-//                } else {
-//
-//                }
-            }
+            Timber.e("isSolved? %s", isSolved);
+            // mark this attempt complete
+            viewModel.updateAttemptForTry(attemptIdParam, adapter.getResultString(), isSolved);
+
+            viewModel.checkIfAttemptComplete(attemptIdParam).observe(this, isComplete -> {
+                if (isComplete) {
+                    // update win-loss record since we're done
+                    viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isSolved);
+
+                    if (isSolved) {
+                        Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment);
+                    } else {
+                        Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment);
+                    }
+                } else {
+                    // restart attempt since we're done
+                    Bundle args = new Bundle();
+                    args.putParcelable(ARG_PARAM1, userParam);
+                    args.putString(ARG_PARAM2, attemptIdParam);
+                    Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_self, args);
+                }
+            });
         });
     }
 }

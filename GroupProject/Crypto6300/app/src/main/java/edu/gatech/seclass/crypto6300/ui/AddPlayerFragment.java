@@ -34,6 +34,7 @@ public class AddPlayerFragment extends BaseFragment {
 
     private AddPlayerFragmentViewModel viewModel;
     private AlertDialog dialog;
+    private boolean isAdded = false;
 
     public AddPlayerFragment() {
         // Required empty public constructor
@@ -72,6 +73,7 @@ public class AddPlayerFragment extends BaseFragment {
         String categoryString = categorySpinner.getSelectedItem().toString();
 
         viewModel.getUserForUsername(username).observe(this, user -> {
+            if (isAdded) return;
 
             if (dialog != null && dialog.isShowing()) dialog.dismiss();
 
@@ -91,6 +93,7 @@ public class AddPlayerFragment extends BaseFragment {
 
                 if (isValidInput()) {
                     viewModel.addPlayer(firstname, lastname, username, password, category);
+                    isAdded = true;
 
                     dialog = new AlertDialog.Builder(getContext())
                             .setTitle(R.string.success)

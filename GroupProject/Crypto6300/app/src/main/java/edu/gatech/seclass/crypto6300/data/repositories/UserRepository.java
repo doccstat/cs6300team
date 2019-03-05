@@ -53,6 +53,10 @@ public class UserRepository {
         return userDao.getUserByUsername(username);
     }
 
+    public void updateUserWinLossRecord(String userId, boolean isWin) {
+        new updateUserWinLossRecordAsyncTask(userDao).execute(userId, isWin);
+    }
+
     /*
     ###############################
 
@@ -60,6 +64,29 @@ public class UserRepository {
 
     ###############################
      */
+    public static class updateUserWinLossRecordAsyncTask extends AsyncTask<Object, Void, Void> {
+
+        private UserDao userDao;
+
+        public updateUserWinLossRecordAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
+        }
+
+        @Override
+        protected Void doInBackground(Object... params) {
+            String userId = (String) params[0];
+            boolean isWin = (boolean) params[1];
+
+            if (isWin) {
+                userDao.updateUserWin(userId);
+            } else {
+                userDao.updateUserLoss(userId);
+            }
+
+            return null;
+        }
+    }
+
     private class insertAsyncTask extends AsyncTask<User, Void, Void> {
 
         private UserDao userDao;
