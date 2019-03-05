@@ -59,7 +59,7 @@ interface CryptogramAttemptDao {
                 + "submission = :submission, "
                 + "is_solved = :isSolved, "
                 + "is_completed = (CASE WHEN attempts_remaining > 1 THEN 0 ELSE 1 END)"
-            + "WHERE CryptogramAttempt.id = :attemptId")
+            + "WHERE CryptogramAttempt.id = :attemptId AND attempts_remaining > 0")
     fun updateAttemptForTry(attemptId: String, submission: String, isSolved: Boolean)
 
     @Query("SELECT is_completed FROM CryptogramAttempt WHERE id = :attemptId LIMIT 1")

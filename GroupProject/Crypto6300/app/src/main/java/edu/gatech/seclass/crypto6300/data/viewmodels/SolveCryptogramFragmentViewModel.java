@@ -37,11 +37,15 @@ public class SolveCryptogramFragmentViewModel extends AndroidViewModel {
         return attemptsRepository.checkIfAttemptCompleted(attemptId);
     }
 
-    public void updateAttemptForTry(String attemptId, String submission, boolean isSolved) {
-        attemptsRepository.updateAttemptForTry(attemptId, submission, isSolved);
+    public void updateAttemptForTry(
+            @NonNull String attemptId,
+            @NonNull String submission,
+            boolean isSolved,
+            CryptogramAttemptsRepository.updateAttemptForTryAsyncTask.UpdateTryResponse response) {
+        attemptsRepository.updateAttemptForTry(attemptId, submission, isSolved, response);
     }
 
-    public void updateUserWinLossRecord(String userId, boolean isWin) {
+    public void updateUserWinLossRecord(@NonNull String userId, boolean isWin) {
         userRepository.updateUserWinLossRecord(userId, isWin);
     }
 }

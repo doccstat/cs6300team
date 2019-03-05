@@ -2,30 +2,27 @@ package edu.gatech.seclass.crypto6300.ui;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
-import edu.gatech.seclass.crypto6300.data.entities.Cryptogram;
 import edu.gatech.seclass.crypto6300.data.entities.User;
+import edu.gatech.seclass.crypto6300.data.repositories.CryptogramAttemptsRepository;
 import edu.gatech.seclass.crypto6300.data.viewmodels.SolveCryptogramFragmentViewModel;
 import edu.gatech.seclass.crypto6300.ui.adapters.GameAdapter;
 import timber.log.Timber;
 
-public class SolveCryptogramFragment extends BaseFragment {
+public class SolveCryptogramFragment extends BaseFragment implements CryptogramAttemptsRepository.updateAttemptForTryAsyncTask.UpdateTryResponse {
     private static final String ARG_PARAM1 = "user";
     private static final String ARG_PARAM2 = "attempt";
 
@@ -40,6 +37,8 @@ public class SolveCryptogramFragment extends BaseFragment {
     RecyclerView recyclerView;
 
     private GameAdapter adapter;
+
+    private boolean isSubmissionSent = false;
 
     public SolveCryptogramFragment() {
         // Required empty public constructor
@@ -109,29 +108,38 @@ public class SolveCryptogramFragment extends BaseFragment {
 
         Timber.e("result=[" + adapter.getResultString() + "]");
         viewModel.submitSolution(attemptIdParam, adapter.getResultString()).observe(this, isSolved -> {
+            if (isSubmissionSent) return;
 
             Timber.e("isSolved? %s", isSolved);
             // mark this attempt complete
-            viewModel.updateAttemptForTry(attemptIdParam, adapter.getResultString(), isSolved);
+            isSubmissionSent = true;
+            viewModel.updateAttemptForTry(attemptIdParam, adapter.getResultString(), isSolved, this);
+        });
+    }
 
-            viewModel.checkIfAttemptComplete(attemptIdParam).observe(this, isComplete -> {
-                if (isComplete) {
-                    // update win-loss record since we're done
-                    viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isSolved);
+    @Override
+    public void updateTryFinished(Boolean isAttemptSolved) {
+        // wait for completion
+        viewModel.checkIfAttemptComplete(attemptIdParam).observe(this, isComplete -> {
 
-                    if (isSolved) {
-                        Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment);
-                    } else {
-                        Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment);
-                    }
+            if (getView() == null) return;
+
+            if (isComplete) {
+                // update win-loss record since we're done
+                viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isAttemptSolved);
+
+                if (isAttemptSolved) {
+                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment);
                 } else {
-                    // restart attempt since we're done
-                    Bundle args = new Bundle();
-                    args.putParcelable(ARG_PARAM1, userParam);
-                    args.putString(ARG_PARAM2, attemptIdParam);
-                    Navigation.findNavController(v).navigate(R.id.action_solveCryptogramFragment_self, args);
+                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment);
                 }
-            });
+            } else {
+                // restart attempt since we're done
+                Bundle args = new Bundle();
+                args.putParcelable(ARG_PARAM1, userParam);
+                args.putString(ARG_PARAM2, attemptIdParam);
+                Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_self, args);
+            }
         });
     }
 }

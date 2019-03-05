@@ -52,8 +52,8 @@ public class CryptogramAttemptsRepository {
         return cryptogramAttemptDao.checkIfAttemptCompleted(attemptId);
     }
 
-    public void updateAttemptForTry(String attemptId, String submission, boolean isSolved) {
-        new updateAttemptForTryAsyncTask(cryptogramAttemptDao).execute(attemptId, submission, isSolved);
+    public void updateAttemptForTry(String attemptId, String submission, boolean isSolved, updateAttemptForTryAsyncTask.UpdateTryResponse response) {
+        new updateAttemptForTryAsyncTask(cryptogramAttemptDao, response).execute(attemptId, submission, isSolved);
     }
 
     public void insert(CryptogramAttempt attempt, insertAttemptAsyncTask.InsertResponse response) {
@@ -106,6 +106,37 @@ public class CryptogramAttemptsRepository {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             delegate.processFinished(result);
+        }
+    }
+
+    public static class updateAttemptForTryAsyncTask extends AsyncTask<Object, Void, Boolean> {
+
+        public interface UpdateTryResponse {
+            void updateTryFinished(Boolean isSolved);
+        }
+
+        private CryptogramAttemptDao attemptDao;
+        private UpdateTryResponse delegate;
+
+        updateAttemptForTryAsyncTask(CryptogramAttemptDao attemptDao, UpdateTryResponse delegate) {
+            this.attemptDao = attemptDao;
+            this.delegate = delegate;
+        }
+
+        @Override
+        protected Boolean doInBackground(Object... params) {
+            String attemptId = (String) params[0];
+            String submission = (String) params[1];
+            boolean isSolved = (Boolean) params[2];
+            attemptDao.updateAttemptForTry(attemptId, submission, isSolved);
+
+            return isSolved;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean isSolved) {
+            super.onPostExecute(isSolved);
+            delegate.updateTryFinished(isSolved);
         }
     }
 
@@ -166,21 +197,6 @@ public class CryptogramAttemptsRepository {
         @Override
         protected Void doInBackground(CryptogramAttempt... cryptogramAttempts) {
             attemptDao.deleteAllAttempts();
-            return null;
-        }
-    }
-
-
-    private class updateAttemptForTryAsyncTask extends AsyncTask<Object, Void, Void> {
-        private CryptogramAttemptDao attemptDao;
-
-        updateAttemptForTryAsyncTask(CryptogramAttemptDao attemptDao) {
-            this.attemptDao = attemptDao;
-        }
-
-        @Override
-        protected Void doInBackground(Object... params) {
-            attemptDao.updateAttemptForTry((String) params[0], (String) params[1], (boolean) params[2]);
             return null;
         }
     }

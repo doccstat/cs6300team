@@ -44,7 +44,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
         this.data.addAll(data);
 
         result.clear();
-        result = new ArrayList<>(Arrays.asList(new String[data.size()]));
+        for (String ignored : data) {
+            result.add("");
+        }
 
         notifyDataSetChanged();
     }
