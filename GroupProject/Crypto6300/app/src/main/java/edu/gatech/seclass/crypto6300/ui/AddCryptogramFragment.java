@@ -37,6 +37,7 @@ public class AddCryptogramFragment extends BaseFragment {
 
     private AddCryptogramFragmentViewModel viewModel;
     private User userParam;
+    private boolean isCryptogramAdded = false;
 
     public AddCryptogramFragment() {
         // Required empty public constructor
@@ -138,10 +139,13 @@ public class AddCryptogramFragment extends BaseFragment {
         Attempts attempts = new Attempts(easy, normal, hard);
 
         viewModel.getCryptogramForName(name).observe(this, cryptogram -> {
+            if (isCryptogramAdded) return;
+
             if (cryptogram == null) {
 
                 if (isValidInput()) {
                     viewModel.addCryptogram(name, solution, 2, attempts);
+                    isCryptogramAdded = true;
 
                     new AlertDialog.Builder(getContext())
                             .setTitle("Success!")
