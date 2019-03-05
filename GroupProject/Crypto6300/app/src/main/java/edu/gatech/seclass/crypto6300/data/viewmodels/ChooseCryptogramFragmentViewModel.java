@@ -64,8 +64,11 @@ public class ChooseCryptogramFragmentViewModel extends AndroidViewModel {
         final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final int N = alphabet.length();
         Set<Character> charSet = new HashSet<Character>();
+        Set<String> newchars = new HashSet<String>();
         for (char l : solution.toCharArray()) {
-            if (Character.isLetter(l)){charSet.add(l);}
+            if (Character.isLetter(l)){
+                charSet.add(l);
+            }
 
         }
         for (int i=0; i<solution.length();i++){
@@ -73,6 +76,11 @@ public class ChooseCryptogramFragmentViewModel extends AndroidViewModel {
             if (charSet.contains(c)){
                 Random rand = new Random();
                 String r= Character.toString(alphabet.charAt(rand.nextInt(N)));
+                while(! newchars.add(r)){
+                    rand = new Random();
+                    r= Character.toString(alphabet.charAt(rand.nextInt(N)));
+                }
+
                 if(Character.isUpperCase(c)) {
 
                     //System.out.println(alphabet.charAt(rand.nextInt(N)));
@@ -87,7 +95,7 @@ public class ChooseCryptogramFragmentViewModel extends AndroidViewModel {
                 }
                 if(Character.isLowerCase(c)) {
 
-                    solution=solution.replaceAll(Character.toString(c),r.toUpperCase());
+                    solution=solution.replaceAll(Character.toString(c),r.toLowerCase());
                     charSet.remove(c);
                     if (charSet.contains(Character.toUpperCase(c))){
                         solution=solution.replaceAll(Character.toString(Character.toUpperCase(c)),r);
@@ -100,7 +108,8 @@ public class ChooseCryptogramFragmentViewModel extends AndroidViewModel {
 
             }
         }
-        
+
+
         return solution;
     }
 
