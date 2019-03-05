@@ -2,7 +2,10 @@ package edu.gatech.seclass.crypto6300.data.viewmodels;
 
 import android.app.Application;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -57,6 +60,47 @@ public class ChooseCryptogramFragmentViewModel extends AndroidViewModel {
 
     private String generateEncryptedPhrase(String solution) {
         // TODO: implement scrambling
+        char c;
+        final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        final int N = alphabet.length();
+        Set<Character> charSet = new HashSet<Character>();
+        for (char l : solution.toCharArray()) {
+            if (Character.isLetter(l)){charSet.add(l);}
+
+        }
+        for (int i=0; i<solution.length();i++){
+            c= solution.charAt((i));
+            if (charSet.contains(c)){
+                Random rand = new Random();
+                String r= Character.toString(alphabet.charAt(rand.nextInt(N)));
+                if(Character.isUpperCase(c)) {
+
+                    //System.out.println(alphabet.charAt(rand.nextInt(N)));
+                    solution= solution.replaceAll(Character.toString(c),r);
+                    charSet.remove(c);
+                    if (charSet.contains(Character.toLowerCase(c))){
+                        solution=solution.replaceAll(Character.toString(Character.toLowerCase(c)),r.toLowerCase());
+
+                        charSet.remove(Character.toLowerCase(c));
+                    }
+
+                }
+                if(Character.isLowerCase(c)) {
+
+                    solution=solution.replaceAll(Character.toString(c),r.toUpperCase());
+                    charSet.remove(c);
+                    if (charSet.contains(Character.toUpperCase(c))){
+                        solution=solution.replaceAll(Character.toString(Character.toUpperCase(c)),r);
+                        charSet.remove(Character.toUpperCase(c));
+                    }
+
+
+
+                }
+
+            }
+        }
+        
         return solution;
     }
 
