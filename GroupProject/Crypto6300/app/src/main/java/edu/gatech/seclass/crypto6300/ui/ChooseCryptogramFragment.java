@@ -123,6 +123,7 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
                 args.putParcelable(ARG_PARAM1, userParam);
                 args.putString(ARG_PARAM2, String.valueOf(attempt.getId()));
                 Navigation.findNavController(getView()).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
+                wasItemClicked = false;
             }
         });
     }
@@ -133,5 +134,6 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
         args.putParcelable(ARG_PARAM1, userParam);
         args.putString(ARG_PARAM2, attemptId);
         Navigation.findNavController(getView()).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
+        wasItemClicked = false;
     }
 }

@@ -86,6 +86,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
         void bind(String s) {
             if (s.isEmpty() || !Character.isLetter(s.charAt(0))) {
                 etLetter.setVisibility(View.INVISIBLE);
+                etLetter.setText(s);
             } else {
                 etLetter.setVisibility(View.VISIBLE);
             }
