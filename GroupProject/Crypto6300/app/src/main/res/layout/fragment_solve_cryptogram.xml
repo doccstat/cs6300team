@@ -7,28 +7,86 @@
     tools:context=".ui.SolveCryptogramFragment">
 
     <TextView
+        android:id="@+id/attemptsRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/labelPrevAttempt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Attempts Remaining: 3" />
+
+    <TextView
+        android:id="@+id/labelPrevAttempt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/previous_attempt"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/prevSubmission"
+        app:layout_constraintEnd_toStartOf="@id/prevSubmission"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/attemptsRemaining"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/prevSubmission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@id/labelEncryptedPhrase"
+        app:layout_constraintEnd_toEndOf="@id/encryptedPhrase"
+        app:layout_constraintStart_toStartOf="@id/encryptedPhrase"
+        app:layout_constraintTop_toBottomOf="@id/labelPrevAttempt"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="fjd81jggkflf" />
+
+    <TextView
+        android:id="@+id/labelEncryptedPhrase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/label_encrypted_phrase"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/encryptedPhrase"
+        app:layout_constraintEnd_toStartOf="@id/encryptedPhrase"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/prevSubmission"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/encryptedPhrase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
-        android:layout_marginEnd="8dp"
+        android:layout_margin="8dp"
         android:textSize="24sp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toTopOf="@id/solve_cryptogram_rv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelEncryptedPhrase"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="fjd81jggkflf" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/solve_cryptogram_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        app:layout_constraintBottom_toTopOf="@id/submitSubmission"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/encryptedPhrase"
+        app:layout_constraintVertical_bias="0.0"
         tools:itemCount="15"
         tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/solve_item"
@@ -46,20 +104,4 @@
         app:layout_constraintTop_toBottomOf="@id/solve_cryptogram_rv"
         app:layout_constraintVertical_bias="1" />
 
-    <TextView
-        android:id="@+id/attemptsRemaining"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text=""
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/encryptedPhrase"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
 </androidx.constraintlayout.widget.ConstraintLayout>

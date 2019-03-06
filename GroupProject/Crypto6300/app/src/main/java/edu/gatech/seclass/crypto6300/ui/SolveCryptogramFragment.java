@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
+import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt;
 import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.repositories.CryptogramAttemptsRepository;
 import edu.gatech.seclass.crypto6300.data.viewmodels.SolveCryptogramFragmentViewModel;
@@ -36,6 +37,11 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
     TextView encryptedPhrase;
     @BindView(R.id.attemptsRemaining)
     TextView attempts;
+
+    @BindView(R.id.labelPrevAttempt)
+    TextView labelPrevAttempt;
+    @BindView(R.id.prevSubmission)
+    TextView tvPrevAttempt;
 
     @BindView(R.id.solve_cryptogram_rv)
     RecyclerView recyclerView;
@@ -86,26 +92,38 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
 
 
         initRecyclerView();
-        viewModel.getNumberOfCryptogramAttempts(String.valueOf(userParam.getId()), attemptIdParam).observe(this, attempts_number -> {
-
-            String numAttempts = attempts_number == null ? "" : String.valueOf(attempts_number);
-
-            attempts.setText(String.format("%s %s", getString(R.string.attempts), numAttempts));
-        });
-
-
-        viewModel.getEncryptedPhrase(attemptIdParam).observe(this, attempt -> {
+        viewModel.getAttemptById(attemptIdParam).observe(this, attempt -> {
             if (attempt == null) return;
-
-            String phrase = attempt.getEncryptedPhrase();
-            ArrayList<String> phraseAsList = new ArrayList<>(Arrays.asList((phrase.split(""))));
-
-            // First element is usually a blank character, remove it
-            phraseAsList.remove(0);
-
-            encryptedPhrase.setText(phrase);
-            adapter.setData(phraseAsList);
+            handleLabels(attempt);
+            handleEncryptedPhrase(attempt);
         });
+    }
+
+    private void handleLabels(@NonNull CryptogramAttempt attempt) {
+        String currentSubmissionState = attempt.getCurrentSubmissionState();
+        if (currentSubmissionState.isEmpty()) {
+            labelPrevAttempt.setVisibility(View.GONE);
+            tvPrevAttempt.setVisibility(View.GONE);
+        } else {
+            labelPrevAttempt.setVisibility(View.VISIBLE);
+            tvPrevAttempt.setVisibility(View.VISIBLE);
+            tvPrevAttempt.setText(currentSubmissionState);
+        }
+
+        int attemptsRemaining = attempt.getAttemptsRemaining();
+        attempts.setText(String.format("%s %s", getString(R.string.attempts), attemptsRemaining));
+
+    }
+
+    private void handleEncryptedPhrase(@NonNull CryptogramAttempt attempt) {
+        String phrase = attempt.getEncryptedPhrase();
+        ArrayList<String> phraseAsList = new ArrayList<>(Arrays.asList((phrase.split(""))));
+
+        // First element is usually a blank character, remove it
+        phraseAsList.remove(0);
+
+        encryptedPhrase.setText(phrase);
+        adapter.setData(phraseAsList);
     }
 
     private void initRecyclerView() {
@@ -142,12 +160,12 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
             args.putParcelable(ARG_PARAM1, userParam);
             args.putString(ARG_PARAM2, attemptIdParam);
 
-            if (isAttemptSolved) {
+            if (isAttemptSolved != null && isAttemptSolved.booleanValue()) {
                 // update win-loss record since we're done
                 viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isAttemptSolved);
                 Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment, args);
             } else {
-                if (isComplete) {
+                if (isComplete != null && isComplete.booleanValue()) {
                     // update win-loss record since we're done
                     viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isAttemptSolved);
                     Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment, args);

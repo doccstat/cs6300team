@@ -72,12 +72,8 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
 
             List<ChooseCryptogram> filteredList = new ArrayList<>();
             for (ChooseCryptogram c : chooseCryptogramList) {
-                Timber.e(c.toString());
-                if (c.isSolved()) continue;
-
-                if (!c.isCompleted()) {
-                    filteredList.add(c);
-                }
+                if (c.isSolved() || c.isCompleted()) continue;
+                filteredList.add(c);
             }
 
             if (filteredList.isEmpty()) {
@@ -110,6 +106,12 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        wasItemClicked = false;
+    }
+
+    @Override
     public void onItemClick(ChooseCryptogram cryptogram) {
 
         viewModel.getAttemptForPlayer(
@@ -131,7 +133,7 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
                 args.putParcelable(ARG_PARAM1, userParam);
                 args.putString(ARG_PARAM2, String.valueOf(attempt.getId()));
                 Navigation.findNavController(getView()).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
-                wasItemClicked = false;
+//                wasItemClicked = false;
             }
         });
     }
@@ -142,6 +144,6 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
         args.putParcelable(ARG_PARAM1, userParam);
         args.putString(ARG_PARAM2, attemptId);
         Navigation.findNavController(getView()).navigate(R.id.action_chooseCryptogramFragment_to_solveCryptogramFragment, args);
-        wasItemClicked = false;
+//        wasItemClicked = false;
     }
 }

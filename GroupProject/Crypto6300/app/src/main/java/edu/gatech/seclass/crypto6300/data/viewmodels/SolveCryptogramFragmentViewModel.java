@@ -23,11 +23,7 @@ public class SolveCryptogramFragmentViewModel extends AndroidViewModel {
         attemptsRepository = new CryptogramAttemptsRepository(application);
     }
 
-    public LiveData<Integer> getNumberOfCryptogramAttempts(@NonNull String userId, @NonNull String attemptId) {
-        return attemptsRepository.getNumberOfCryptogramAttempts(userId, attemptId);
-    }
-
-    public LiveData<CryptogramAttempt> getEncryptedPhrase(@NonNull String attemptId) {
+    public LiveData<CryptogramAttempt> getAttemptById(@NonNull String attemptId) {
         return attemptsRepository.getAttemptById(attemptId);
     }
 

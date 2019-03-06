@@ -23,8 +23,8 @@ interface CryptogramAttemptDao {
                     + "Cryptogram.normal AS normal, "
                     + "Cryptogram.hard AS hard, "
 
-                    + "(CASE WHEN ca.is_completed = 1 THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END) AS is_completed, "
-                    + "(CASE WHEN ca.is_solved = 1 THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END) AS is_solved "
+                    + "ca.is_completed AS is_completed, "
+                    + "ca.is_solved = 1 AS is_solved "
 
                     + "FROM Cryptogram "
                     + "LEFT OUTER JOIN ("
@@ -64,7 +64,7 @@ interface CryptogramAttemptDao {
             + "SET attempts_remaining = attempts_remaining - 1, "
                 + "submission = :submission, "
                 + "is_solved = :isSolved, "
-                + "is_completed = (CASE WHEN attempts_remaining < 1 OR :isSolved = 1 THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END)"
+                + "is_completed = (CASE WHEN attempts_remaining <= 1 OR :isSolved = 1 THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END)"
             + "WHERE CryptogramAttempt.id = :attemptId AND attempts_remaining > 0")
     fun updateAttemptForTry(attemptId: String, submission: String, isSolved: Boolean)
 

@@ -82,5 +82,7 @@
     <string name="error_letters_only">First name must be letters only.</string>
     <string name="no_cryptograms_available">No cryptograms available.</string>
     <string name="return_to_menu">Return to Menu</string>
+    <string name="previous_attempt">Previous attempt:</string>
+    <string name="label_encrypted_phrase">Encrypted Phrase:</string>
 
 </resources>
