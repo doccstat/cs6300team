@@ -80,5 +80,6 @@
     <string name="error_password_chars">Password must use only be letters, numbers, or underscores.</string>
     <string name="error_letters_only">First name must be letters only.</string>
     <string name="no_cryptograms_available">No cryptograms available.</string>
+    <string name="return_to_menu">Return to Menu</string>
 
 </resources>
