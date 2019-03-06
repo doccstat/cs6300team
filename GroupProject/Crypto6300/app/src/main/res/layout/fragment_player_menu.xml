@@ -52,7 +52,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/design_default_color_primary"
+        android:background="@drawable/rounded_corner"
         android:text="@string/choose_cryptogram"
         android:textAlignment="center"
         android:textSize="40sp"
@@ -67,19 +67,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/design_default_color_primary"
+        android:background="@drawable/rounded_corner"
         android:text="@string/player_statistics"
         android:textAlignment="center"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseCryptogramItem"
-        app:layout_constraintVertical_bias="0.54" />
+        tools:layout_editor_absoluteY="456dp" />
 
     <TextView
         android:id="@+id/logoutPlayerItem"
@@ -98,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseCryptogramItem"
+        app:layout_constraintTop_toBottomOf="@+id/viewPlayerStatisticsItem"
         app:layout_constraintVertical_bias="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
