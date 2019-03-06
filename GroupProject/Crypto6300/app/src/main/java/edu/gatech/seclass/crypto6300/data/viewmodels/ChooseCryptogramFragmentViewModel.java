@@ -12,7 +12,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import edu.gatech.seclass.crypto6300.data.entities.Attempts;
 import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
-import edu.gatech.seclass.crypto6300.data.entities.Cryptogram;
 import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt;
 import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.repositories.CryptogramAttemptsRepository;

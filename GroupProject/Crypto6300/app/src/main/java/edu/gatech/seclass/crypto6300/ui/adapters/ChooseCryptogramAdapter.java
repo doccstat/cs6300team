@@ -1,7 +1,5 @@
 package edu.gatech.seclass.crypto6300.ui.adapters;
 
-import android.os.Bundle;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 import edu.gatech.seclass.crypto6300.R;
 import edu.gatech.seclass.crypto6300.data.entities.ChooseCryptogram;
@@ -23,7 +20,7 @@ public class ChooseCryptogramAdapter extends RecyclerView.Adapter<ChooseCryptogr
         void onItemClick(ChooseCryptogram cryptogram);
     }
 
-    private final User user;
+    private User user;
     private ItemClickListener listener;
 
     public ChooseCryptogramAdapter(@NonNull User user) {

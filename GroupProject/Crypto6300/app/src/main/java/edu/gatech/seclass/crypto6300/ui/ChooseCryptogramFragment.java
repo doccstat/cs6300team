@@ -21,6 +21,7 @@ import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.repositories.CryptogramAttemptsRepository;
 import edu.gatech.seclass.crypto6300.data.viewmodels.ChooseCryptogramFragmentViewModel;
 import edu.gatech.seclass.crypto6300.ui.adapters.ChooseCryptogramAdapter;
+import timber.log.Timber;
 
 public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryptogramAdapter.ItemClickListener, CryptogramAttemptsRepository.insertAttemptAsyncTask.InsertResponse {
     private static final String ARG_PARAM1 = "user";
@@ -71,6 +72,9 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
 
             List<ChooseCryptogram> filteredList = new ArrayList<>();
             for (ChooseCryptogram c : chooseCryptogramList) {
+                Timber.e(c.toString());
+                if (c.isSolved()) continue;
+
                 if (!c.isCompleted()) {
                     filteredList.add(c);
                 }
