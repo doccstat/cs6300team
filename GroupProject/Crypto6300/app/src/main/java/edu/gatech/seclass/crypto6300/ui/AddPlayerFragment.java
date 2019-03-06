@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
 import edu.gatech.seclass.crypto6300.data.viewmodels.AddPlayerFragmentViewModel;
+import edu.gatech.seclass.crypto6300.utils.PlayerUtils;
 
 public class AddPlayerFragment extends BaseFragment {
 
@@ -124,12 +125,24 @@ public class AddPlayerFragment extends BaseFragment {
         if (firstname.isEmpty()) {
             etFirstName.setError(getString(R.string.error_firstname));
             return false;
+        } else if (!PlayerUtils.isValidFirstnameLength(firstname)) {
+            etFirstName.setError(getString(R.string.error_firstname_length));
+            return false;
+        } else if (!PlayerUtils.isLettersOnly(firstname)) {
+            etFirstName.setError(getString(R.string.error_letters_only));
+            return false;
         } else {
             etFirstName.setError(null);
         }
 
         if (lastname.isEmpty()) {
             etLastName.setError(getString(R.string.error_lastname));
+            return false;
+        } else if (!PlayerUtils.isValidLastnameLength(lastname)) {
+            etLastName.setError(getString(R.string.error_lastname_length));
+            return false;
+        } else if (!PlayerUtils.isLettersOnly(firstname)) {
+            etLastName.setError(getString(R.string.error_letters_only));
             return false;
         } else {
             etLastName.setError(null);
@@ -138,12 +151,24 @@ public class AddPlayerFragment extends BaseFragment {
         if (username.isEmpty()) {
             etUsername.setError(getString(R.string.error_username));
             return false;
+        } else if (!PlayerUtils.isValidUsernameLength(username)) {
+            etUsername.setError(getString(R.string.error_username_length));
+            return false;
+        } else if (!PlayerUtils.isValidLettersNumAndUnderscore(username)) {
+            etUsername.setError(getString(R.string.error_username_chars));
+            return false;
         } else {
             etUsername.setError(null);
         }
 
         if (password.isEmpty()) {
             etPassword.setError(getString(R.string.error_password));
+            return false;
+        } else if (!PlayerUtils.isValidPasswordLength(password)) {
+            etPassword.setError(getString(R.string.error_password_length));
+            return false;
+        } else if (!PlayerUtils.isValidLettersNumAndUnderscore(username)) {
+            etPassword.setError(getString(R.string.error_password_chars));
             return false;
         } else {
             etPassword.setError(null);

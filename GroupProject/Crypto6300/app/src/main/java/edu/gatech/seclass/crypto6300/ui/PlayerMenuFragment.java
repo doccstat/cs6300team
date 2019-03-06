@@ -14,7 +14,6 @@ import edu.gatech.seclass.crypto6300.data.entities.User;
 
 public class PlayerMenuFragment extends BaseFragment {
     private static final String ARG_PARAM1 = "user";
-
     private User userParam;
 
     @BindView(R.id.welcome)

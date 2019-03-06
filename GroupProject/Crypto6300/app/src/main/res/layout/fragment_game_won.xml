@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.GameWonFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-
     <TextView
         android:id="@+id/tvCongrats"
         android:layout_width="wrap_content"
@@ -47,6 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCongrats"
         app:layout_constraintVertical_bias="0.079" />
+
     <TextView
         android:id="@+id/labelWon"
         android:layout_width="wrap_content"
@@ -63,7 +61,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGameWon"
         app:layout_constraintVertical_bias="0.251" />
-
 
 
     <TextView
@@ -95,7 +92,7 @@
         app:layout_constraintTop_toTopOf="@+id/labelWon" />
 
     <TextView
-        android:id="@+id/tvLostW"
+        android:id="@+id/tvLostL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -106,6 +103,18 @@
         app:layout_constraintStart_toEndOf="@+id/labelLost"
         app:layout_constraintTop_toTopOf="@+id/labelLost"
         app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/returnToMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@color/colorAccent"
+        android:padding="8dp"
+        android:text="@string/return_to_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

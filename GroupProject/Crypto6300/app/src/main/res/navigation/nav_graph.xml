@@ -125,12 +125,12 @@
         <action
             android:id="@+id/action_solveCryptogramFragment_to_gameWonFragment"
             app:destination="@id/gameWonFragment"
-            app:popUpTo="@id/chooseCryptogramFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_solveCryptogramFragment_to_gameOverFragment"
             app:destination="@id/gameOverFragment"
-            app:popUpTo="@id/chooseCryptogramFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
         <argument
             android:name="user"
@@ -141,7 +141,7 @@
         <action
             android:id="@+id/action_solveCryptogramFragment_self"
             app:destination="@id/solveCryptogramFragment"
-            app:popUpTo="@id/chooseCryptogramFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -150,8 +150,10 @@
         android:label="fragment_game_won"
         tools:layout="@layout/fragment_game_won">
         <action
-            android:id="@+id/action_gameWonFragment_to_chooseCryptogramFragment"
-            app:destination="@id/chooseCryptogramFragment" />
+            android:id="@+id/action_gameWonFragment_to_playerMenuFragment"
+            app:destination="@id/playerMenuFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/gameOverFragment"
@@ -159,7 +161,9 @@
         android:label="fragment_game_over"
         tools:layout="@layout/fragment_game_over">
         <action
-            android:id="@+id/action_gameOverFragment_to_chooseCryptogramFragment"
-            app:destination="@id/chooseCryptogramFragment" />
+            android:id="@+id/action_gameOverFragment_to_playerMenuFragment"
+            app:destination="@id/playerMenuFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
