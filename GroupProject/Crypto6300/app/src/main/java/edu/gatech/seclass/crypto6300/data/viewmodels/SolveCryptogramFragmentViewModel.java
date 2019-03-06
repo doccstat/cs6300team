@@ -5,9 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import edu.gatech.seclass.crypto6300.data.entities.Cryptogram;
 import edu.gatech.seclass.crypto6300.data.entities.CryptogramAttempt;
-import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.repositories.CryptogramAttemptsRepository;
 import edu.gatech.seclass.crypto6300.data.repositories.CryptogramRepository;
 import edu.gatech.seclass.crypto6300.data.repositories.UserRepository;
@@ -25,8 +23,8 @@ public class SolveCryptogramFragmentViewModel extends AndroidViewModel {
         attemptsRepository = new CryptogramAttemptsRepository(application);
     }
 
-    public LiveData<Integer >CryptogramAttempts(@NonNull String userId,@NonNull String attemptId){
-        return attemptsRepository.CryptogramAttempts(userId,attemptId);
+    public LiveData<Integer> getNumberOfCryptogramAttempts(@NonNull String userId, @NonNull String attemptId) {
+        return attemptsRepository.getNumberOfCryptogramAttempts(userId, attemptId);
     }
 
     public LiveData<CryptogramAttempt> getEncryptedPhrase(@NonNull String attemptId) {

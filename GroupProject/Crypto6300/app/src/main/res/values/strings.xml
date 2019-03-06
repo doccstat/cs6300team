@@ -57,7 +57,7 @@
     <!-- choose cryptogram -->
     <string name="choose_cryptogram">Choose Cryptogram</string>
     <string name="in_progress">in-progress</string>
-    <string name="attempts">Attempts Remaining: </string>>
+    <string name="attempts">Attempts Remaining: </string>
 
     <!-- game over -->
     <string name="game_over">Game Over</string>

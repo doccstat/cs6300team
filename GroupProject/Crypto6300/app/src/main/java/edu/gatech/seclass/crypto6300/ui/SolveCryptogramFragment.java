@@ -64,8 +64,8 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
             attemptIdParam = getArguments().getString(ARG_PARAM2);
         }
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
@@ -85,10 +85,12 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
         viewModel = ViewModelProviders.of(this).get(SolveCryptogramFragmentViewModel.class);
 
 
-
         initRecyclerView();
-        viewModel.CryptogramAttempts(String.valueOf(userParam.getId()),attemptIdParam).observe(this, attempts_number->{
-            attempts.setText(getString(R.string.attempts)+ Integer.toString(attempts_number));
+        viewModel.getNumberOfCryptogramAttempts(String.valueOf(userParam.getId()), attemptIdParam).observe(this, attempts_number -> {
+
+            String numAttempts = attempts_number == null ? "" : String.valueOf(attempts_number);
+
+            attempts.setText(String.format("%s %s", getString(R.string.attempts), numAttempts));
         });
 
 
@@ -138,6 +140,7 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
             if (getView() == null) return;
             Bundle args = new Bundle();
             args.putParcelable(ARG_PARAM1, userParam);
+            args.putString(ARG_PARAM2, attemptIdParam);
 
             if (isAttemptSolved) {
                 // update win-loss record since we're done
@@ -147,11 +150,9 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
                 if (isComplete) {
                     // update win-loss record since we're done
                     viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isAttemptSolved);
-
                     Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment, args);
                 } else {
                     // restart attempt since we're done
-                    args.putString(ARG_PARAM2, attemptIdParam);
                     Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_self, args);
                 }
             }
