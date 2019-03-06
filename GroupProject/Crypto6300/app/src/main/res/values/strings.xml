@@ -8,6 +8,7 @@
     <string name="password">Password</string>
     <string name="error_password_required">Password required</string>
     <string name="error_username_required">Username required</string>
+    <string name="error_wrong_username_or_password">Incorrect username or password.</string>
 
     <!-- administrator menu -->
     <string name="administrator_menu">Administrator Menu</string>
@@ -17,7 +18,6 @@
     <string name="player_menu">Player Menu</string>
 
     <!-- add cryptogram -->
-
     <string name="cryptogram_name">Cryptogram Name:</string>
     <string name="add_cryptogram">Add Cryptogram</string>
     <string-array name="category_items">
@@ -43,7 +43,16 @@
     <string name="username_label">Username:</string>
     <string name="password_label">Password:</string>
     <string name="category_label">Category:</string>
-
+    <string name="error_firstname">First name is required.</string>
+    <string name="error_lastname">Last name is required.</string>
+    <string name="error_username">Username is required.</string>
+    <string name="error_password">Password is required.</string>
+    <string name="error_firstname_length">First name must be between 3 and 25 letters.</string>
+    <string name="error_lastname_length">Last name must be between 3 and 25 letters.</string>
+    <string name="error_username_length">Username must be between 3 and 25 letters.</string>
+    <string name="error_password_length">Password must be between 3 and 25 letters.</string>
+    <string name="username_exists">A user with that username already exists.</string>
+    <string name="user_was_added">User \'%s\' was added.</string>
 
     <!-- choose cryptogram -->
     <string name="choose_cryptogram">Choose Cryptogram</string>
@@ -63,17 +72,13 @@
 
     <!-- solve cryptogram -->
     <string name="solve_cryptogram">Solve Cryptogram</string>
-    <string name="hello_blank_fragment">hello world</string>
-    <string name="error_wrong_username_or_password">Incorrect username or password.</string>
     <string name="success">Success!</string>
     <string name="error">Error!</string>
-    <string name="username_exists">A user with that username already exists.</string>
-    <string name="user_was_added">User \'%s\' was added.</string>
     <string name="ok">OK</string>
-    <string name="error_firstname">First name is required.</string>
-    <string name="error_lastname">Last name is required.</string>
-    <string name="error_username">Username is required.</string>
-    <string name="error_password">Password is required.</string>
     <string name="submit">Submit</string>
+    <string name="error_username_chars">Username must use only be letters, numbers, or underscores.</string>
+    <string name="error_password_chars">Password must use only be letters, numbers, or underscores.</string>
+    <string name="error_letters_only">First name must be letters only.</string>
+    <string name="no_cryptograms_available">No cryptograms available.</string>
 
 </resources>

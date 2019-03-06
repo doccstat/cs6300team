@@ -2,6 +2,7 @@ package edu.gatech.seclass.crypto6300.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
     private static final String ARG_PARAM1 = "user";
     private static final String ARG_PARAM2 = "attempt";
 
+    @BindView(R.id.tvNoCryptograms)
+    TextView tvNoCryptograms;
 
     @BindView(R.id.choose_cryptogram_rv)
     RecyclerView recyclerView;
@@ -65,6 +68,12 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
                 if (!c.isCompleted()) {
                     filteredList.add(c);
                 }
+            }
+
+            if (filteredList.isEmpty()) {
+                tvNoCryptograms.setVisibility(View.VISIBLE);
+            } else {
+                tvNoCryptograms.setVisibility(View.GONE);
             }
 
             adapter.setCryptogramList(filteredList);
