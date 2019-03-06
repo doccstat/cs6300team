@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,6 +38,9 @@ public class PlayerMenuFragment extends BaseFragment {
         if (getArguments() != null) {
             userParam = getArguments().getParcelable(ARG_PARAM1);
         }
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 
     @Override

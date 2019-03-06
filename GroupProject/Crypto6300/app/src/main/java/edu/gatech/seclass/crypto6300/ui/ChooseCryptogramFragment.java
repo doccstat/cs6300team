@@ -9,6 +9,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,6 +56,9 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
         if (getArguments() != null) {
             userParam = getArguments().getParcelable(ARG_PARAM1);
         }
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override

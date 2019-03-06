@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 import butterknife.OnClick;
 import edu.gatech.seclass.crypto6300.R;
@@ -32,6 +33,9 @@ public class AdminMenuFragment extends BaseFragment {
         if (getArguments() != null) {
             userParam = getArguments().getParcelable(ARG_PARAM1);
         }
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
     }
 
     @Override
