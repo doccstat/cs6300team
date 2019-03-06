@@ -25,6 +25,10 @@ public class SolveCryptogramFragmentViewModel extends AndroidViewModel {
         attemptsRepository = new CryptogramAttemptsRepository(application);
     }
 
+    public LiveData<Integer >CryptogramAttempts(@NonNull String userId,@NonNull String attemptId){
+        return attemptsRepository.CryptogramAttempts(userId,attemptId);
+    }
+
     public LiveData<CryptogramAttempt> getEncryptedPhrase(@NonNull String attemptId) {
         return attemptsRepository.getAttemptById(attemptId);
     }
@@ -48,4 +52,5 @@ public class SolveCryptogramFragmentViewModel extends AndroidViewModel {
     public void updateUserWinLossRecord(@NonNull String userId, boolean isWin) {
         userRepository.updateUserWinLossRecord(userId, isWin);
     }
+
 }

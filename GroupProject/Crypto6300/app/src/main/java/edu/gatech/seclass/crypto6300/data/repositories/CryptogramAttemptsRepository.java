@@ -20,6 +20,10 @@ public class CryptogramAttemptsRepository {
         cryptogramAttemptDao = db.cryptogramAttemptDao();
     }
 
+    public LiveData<Integer> CryptogramAttempts(String playerId, String cryptogramId){
+        return cryptogramAttemptDao.getAttemptsRemaining(playerId, cryptogramId);
+    }
+
     public LiveData<List<CryptogramAttempt>> getAllAttemptsForCryptogram(String cryptogramId) {
         return cryptogramAttemptDao.getAllAttemptsForCryptogram(cryptogramId);
     }

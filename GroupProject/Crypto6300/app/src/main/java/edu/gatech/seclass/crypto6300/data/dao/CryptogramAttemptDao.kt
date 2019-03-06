@@ -42,8 +42,12 @@ interface CryptogramAttemptDao {
     @Query("SELECT * FROM CryptogramAttempt WHERE user_id = :playerId AND cryptogram_id = :cryptogramId LIMIT 1")
     fun getAttemptByUserIdAndCryptogramId(playerId: String, cryptogramId: String): LiveData<CryptogramAttempt>
 
+    @Query("SELECT attempts_remaining FROM CryptogramAttempt WHERE user_id = :playerId AND cryptogram_id = :cryptogramId LIMIT 1")
+    fun getAttemptsRemaining(playerId: String, cryptogramId: String): LiveData<Int>
+
     @Query("SELECT * FROM CryptogramAttempt WHERE id = :cryptogramAttemptId LIMIT 1")
     fun getAttemptById(cryptogramAttemptId: String): LiveData<CryptogramAttempt>
+
 
     @Query(
             "SELECT "
