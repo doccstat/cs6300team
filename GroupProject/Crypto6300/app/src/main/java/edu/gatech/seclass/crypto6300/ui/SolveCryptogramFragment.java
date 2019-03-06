@@ -19,6 +19,7 @@ import edu.gatech.seclass.crypto6300.R;
 import edu.gatech.seclass.crypto6300.data.entities.User;
 import edu.gatech.seclass.crypto6300.data.repositories.CryptogramAttemptsRepository;
 import edu.gatech.seclass.crypto6300.data.viewmodels.SolveCryptogramFragmentViewModel;
+import edu.gatech.seclass.crypto6300.data.viewmodels.ChooseCryptogramFragmentViewModel;
 import edu.gatech.seclass.crypto6300.ui.adapters.GameAdapter;
 import timber.log.Timber;
 
@@ -29,9 +30,12 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
     private User userParam;
     private String attemptIdParam;
     private SolveCryptogramFragmentViewModel viewModel;
+    private ChooseCryptogramFragmentViewModel chooseViewModel;
 
     @BindView(R.id.encryptedPhrase)
     TextView encryptedPhrase;
+    @BindView(R.id.attemptsRemaining)
+    TextView attempts;
 
     @BindView(R.id.solve_cryptogram_rv)
     RecyclerView recyclerView;
@@ -76,8 +80,11 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = ViewModelProviders.of(this).get(SolveCryptogramFragmentViewModel.class);
+        chooseViewModel = ViewModelProviders.of(this).get(ChooseCryptogramFragmentViewModel.class);
+
 
         initRecyclerView();
+        attempts.setText(getString(R.string.attempts)+ );
 
         viewModel.getEncryptedPhrase(attemptIdParam).observe(this, attempt -> {
             if (attempt == null) return;
