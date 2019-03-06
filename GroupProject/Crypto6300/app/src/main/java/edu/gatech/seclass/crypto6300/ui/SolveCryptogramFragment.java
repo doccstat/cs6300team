@@ -127,11 +127,13 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
             if (isComplete) {
                 // update win-loss record since we're done
                 viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isAttemptSolved);
+                Bundle args = new Bundle();
+                args.putParcelable(ARG_PARAM1, userParam);
 
                 if (isAttemptSolved) {
-                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment);
+                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment, args);
                 } else {
-                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment);
+                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment, args);
                 }
             } else {
                 // restart attempt since we're done

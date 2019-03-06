@@ -35,6 +35,8 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
     private ChooseCryptogramFragmentViewModel viewModel;
     private ChooseCryptogramAdapter adapter;
 
+    private boolean wasItemClicked = false;
+
     public ChooseCryptogramFragment() {
         // Required empty public constructor
     }
@@ -106,6 +108,10 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
                 String.valueOf(userParam.getId()),
                 String.valueOf(cryptogram.getCryptogramId())
         ).observe(this, attempt -> {
+
+            if (wasItemClicked) return;
+            wasItemClicked = true;
+
             if (attempt == null) {
                 viewModel.generateAttemptForPlayer(
                         userParam,
