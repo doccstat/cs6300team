@@ -13,6 +13,8 @@ data class ChooseCryptogram(
         val difficulty: Int,
         @ColumnInfo(name = "is_completed")
         val isCompleted: Boolean,
+        @ColumnInfo(name = "is_solved")
+        val isSolved: Boolean,
         @ColumnInfo(name = "attempts_remaining")
         val attemptsRemaining: Int,
 

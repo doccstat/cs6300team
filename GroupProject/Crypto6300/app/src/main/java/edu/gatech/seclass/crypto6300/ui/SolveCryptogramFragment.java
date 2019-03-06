@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -63,6 +64,9 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
             userParam = getArguments().getParcelable(ARG_PARAM1);
             attemptIdParam = getArguments().getString(ARG_PARAM2);
         }
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
