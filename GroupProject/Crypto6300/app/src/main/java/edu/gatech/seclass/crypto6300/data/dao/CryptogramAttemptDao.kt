@@ -62,7 +62,7 @@ interface CryptogramAttemptDao {
             + "WHERE CryptogramAttempt.id = :attemptId AND attempts_remaining > 0")
     fun updateAttemptForTry(attemptId: String, submission: String, isSolved: Boolean)
 
-    @Query("SELECT is_completed FROM CryptogramAttempt WHERE id = :attemptId LIMIT 1")
+    @Query("SELECT CASE WHEN is_completed = 1 THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END FROM CryptogramAttempt WHERE id = :attemptId LIMIT 1")
     fun checkIfAttemptCompleted(attemptId: String) : LiveData<Boolean>
 
     @Insert(onConflict = OnConflictStrategy.FAIL)

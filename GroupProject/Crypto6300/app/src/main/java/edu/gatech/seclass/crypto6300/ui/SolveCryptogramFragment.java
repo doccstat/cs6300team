@@ -123,24 +123,24 @@ public class SolveCryptogramFragment extends BaseFragment implements CryptogramA
         viewModel.checkIfAttemptComplete(attemptIdParam).observe(this, isComplete -> {
 
             if (getView() == null) return;
+            Bundle args = new Bundle();
+            args.putParcelable(ARG_PARAM1, userParam);
 
-            if (isComplete) {
+            if (isAttemptSolved) {
                 // update win-loss record since we're done
                 viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isAttemptSolved);
-                Bundle args = new Bundle();
-                args.putParcelable(ARG_PARAM1, userParam);
-
-                if (isAttemptSolved) {
-                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment, args);
-                } else {
-                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment, args);
-                }
+                Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameWonFragment, args);
             } else {
-                // restart attempt since we're done
-                Bundle args = new Bundle();
-                args.putParcelable(ARG_PARAM1, userParam);
-                args.putString(ARG_PARAM2, attemptIdParam);
-                Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_self, args);
+                if (isComplete) {
+                    // update win-loss record since we're done
+                    viewModel.updateUserWinLossRecord(String.valueOf(userParam.getId()), isAttemptSolved);
+
+                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_to_gameOverFragment, args);
+                } else {
+                    // restart attempt since we're done
+                    args.putString(ARG_PARAM2, attemptIdParam);
+                    Navigation.findNavController(getView()).navigate(R.id.action_solveCryptogramFragment_self, args);
+                }
             }
         });
     }

@@ -47,14 +47,17 @@
     <TextView
         android:id="@+id/tvWon"
         android:layout_width="wrap_content"
-        android:layout_height="16dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/labelWon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.276"
         app:layout_constraintStart_toEndOf="@+id/labelWon"
-        app:layout_constraintTop_toTopOf="@+id/labelWon" />
+        app:layout_constraintTop_toTopOf="@+id/labelWon"
+        tools:text="4" />
 
     <TextView
         android:id="@+id/labelLost"
@@ -79,12 +82,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/labelLost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.307"
         app:layout_constraintStart_toEndOf="@+id/labelLost"
         app:layout_constraintTop_toTopOf="@+id/labelLost"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:text="2" />
 
     <Button
         android:id="@+id/returnToMenu"
