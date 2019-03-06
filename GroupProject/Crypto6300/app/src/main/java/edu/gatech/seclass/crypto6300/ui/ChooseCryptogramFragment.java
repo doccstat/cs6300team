@@ -31,9 +31,9 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
     @BindView(R.id.choose_cryptogram_rv)
     RecyclerView recyclerView;
 
-    User userParam;
-    ChooseCryptogramFragmentViewModel viewModel;
-    ChooseCryptogramAdapter adapter;
+    private User userParam;
+    private ChooseCryptogramFragmentViewModel viewModel;
+    private ChooseCryptogramAdapter adapter;
 
     public ChooseCryptogramFragment() {
         // Required empty public constructor
@@ -72,8 +72,10 @@ public class ChooseCryptogramFragment extends BaseFragment implements ChooseCryp
 
             if (filteredList.isEmpty()) {
                 tvNoCryptograms.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             } else {
                 tvNoCryptograms.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
             }
 
             adapter.setCryptogramList(filteredList);
