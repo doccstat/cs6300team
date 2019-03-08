@@ -36,6 +36,10 @@
     <string name="error_cryptogram_name">Cryptogram Name required</string>
     <string name="error_cryptogram_solution">Cryptogram Solution required</string>
     <string name="cryptogram_was_added">Cryptogram \'%s\' was added.</string>
+    <string name="cryptogram_exists">A cryptogram with that name already exists.</string>
+    <string name="warning">Warning!</string>
+    <string name="check_normal_attempts">Are you sure? Normal category has more attempts than Easy category!</string>
+    <string name="check_hard_attempts">Are you sure? Hard category doesn\'t have the lowest attempts!</string>
 
     <!-- add player -->
     <string name="add_player">Add Player</string>
@@ -85,6 +89,5 @@
     <string name="return_to_menu">Return to Menu</string>
     <string name="previous_attempt">Previous attempt:</string>
     <string name="label_encrypted_phrase">Encrypted Phrase:</string>
-    <string name="cryptogram_exists">A cryptogram with that name already exists.</string>
 
 </resources>

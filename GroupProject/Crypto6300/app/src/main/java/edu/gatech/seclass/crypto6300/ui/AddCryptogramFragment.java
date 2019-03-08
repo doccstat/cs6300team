@@ -107,10 +107,10 @@ public class AddCryptogramFragment extends BaseFragment {
             else if (normal>easy){
                 etNormalAttempts.setError(null);
                 new AlertDialog.Builder(getContext())
-                        .setTitle("Warning!")
-                        .setMessage("Are you sure? Normal category has more attempts than Easy category!")
+                        .setTitle(R.string.warning)
+                        .setMessage(R.string.check_normal_attempts)
                         .setCancelable(true)
-                        .setPositiveButton("OK", (dialog, which) -> {
+                        .setPositiveButton(R.string.ok, (dialog, which) -> {
                             dialog.dismiss();
                         }).show();
             }
@@ -125,10 +125,10 @@ public class AddCryptogramFragment extends BaseFragment {
              if (hard<=0){etHardAttempts.setError(getString(R.string.error_negative_attempts));}
              else if (hard> normal || hard>easy){
                  new AlertDialog.Builder(getContext())
-                         .setTitle("Warning!")
-                         .setMessage("Are you sure? Hard category doesn't have the lowest attempts!")
+                         .setTitle(R.string.warning)
+                         .setMessage(R.string.check_hard_attempts)
                          .setCancelable(true)
-                         .setPositiveButton("OK", (dialog, which) -> {
+                         .setPositiveButton(R.string.ok, (dialog, which) -> {
                              dialog.dismiss();
                          }).show();
              }
