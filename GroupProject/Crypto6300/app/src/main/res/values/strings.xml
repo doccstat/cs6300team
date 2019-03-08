@@ -35,6 +35,7 @@
     <string name="error_negative_attempts">Positive Number required</string>
     <string name="error_cryptogram_name">Cryptogram Name required</string>
     <string name="error_cryptogram_solution">Cryptogram Solution required</string>
+    <string name="cryptogram_was_added">Cryptogram \'%s\' was added.</string>
 
     <!-- add player -->
     <string name="add_player">Add Player</string>
@@ -84,5 +85,6 @@
     <string name="return_to_menu">Return to Menu</string>
     <string name="previous_attempt">Previous attempt:</string>
     <string name="label_encrypted_phrase">Encrypted Phrase:</string>
+    <string name="cryptogram_exists">A cryptogram with that name already exists.</string>
 
 </resources>

@@ -146,23 +146,22 @@ public class AddCryptogramFragment extends BaseFragment {
             if (isCryptogramAdded) return;
 
             if (cryptogram == null) {
-
                 if (isValidInput()) {
                     viewModel.addCryptogram(name, solution, 2, attempts);
                     isCryptogramAdded = true;
 
                     new AlertDialog.Builder(getContext())
-                            .setTitle("Success!")
-                            .setMessage("Cryptogram '" + name + "' was added.")
+                            .setTitle(R.string.success)
+                            .setMessage(String.format(getString(R.string.cryptogram_was_added), name))
                             .setCancelable(false)
-                            .setPositiveButton("OK", (dialog, which) -> Navigation.findNavController(v).popBackStack()).show();
+                            .setPositiveButton(R.string.ok, (dialog, which) -> Navigation.findNavController(v).popBackStack()).show();
                 }
             } else {
                 new AlertDialog.Builder(getContext())
-                        .setTitle("Error!")
-                        .setMessage("A cryptogram with that name already exists.")
+                        .setTitle(R.string.error)
+                        .setMessage(R.string.cryptogram_exists)
                         .setCancelable(false)
-                        .setPositiveButton("OK", (dialog, which) -> {
+                        .setPositiveButton(R.string.ok, (dialog, which) -> {
                             dialog.dismiss();
                         }).show();
             }
