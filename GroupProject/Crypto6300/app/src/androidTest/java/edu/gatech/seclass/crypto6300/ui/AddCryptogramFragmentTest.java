@@ -50,6 +50,9 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: check the correctness
+        // checks toolbar title for admin menu
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -64,6 +67,9 @@ public class AddCryptogramFragmentTest {
 
         // TODO: check the correctness
         // TODO: Should show error since attempts does't quite follow
+        // checks toolbar title for admin menu
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -78,6 +84,9 @@ public class AddCryptogramFragmentTest {
 
         // TODO: check the correctness
         // TODO: Should show error since attempts does't quite follow
+        // checks toolbar title for admin menu
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -92,6 +101,9 @@ public class AddCryptogramFragmentTest {
 
         // TODO: check the correctness
         // TODO: Should show error since attempts does't quite follow
+        // checks toolbar title for admin menu
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -106,6 +118,9 @@ public class AddCryptogramFragmentTest {
 
         // TODO: check the correctness
         // TODO: Should show error since attempts does't quite follow
+        // checks toolbar title for admin menu
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -120,6 +135,9 @@ public class AddCryptogramFragmentTest {
 
         // TODO: check the correctness
         // TODO: Should show error since attempts does't quite follow
+        // checks toolbar title for admin menu
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -133,6 +151,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: name is invalid
+        // checks toolbar title for admin menu
+        onView(withId(R.id.txtCryptogramName)).check(matches(hasErrorText(getString(R.string.error_cryptogram_name))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -146,6 +168,11 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: solution is invalid
+        // checks toolbar title for admin menu
+
+        onView(withId(R.id.txtCryptogramSolution)).check(matches(hasErrorText(getString(R.string.error_cryptogram_solution))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -168,6 +195,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: the same name
+        // checks toolbar title for admin menu
+        onView(withId(R.id.txtCryptogramName)).check(matches(hasErrorText(getString(R.string.error_cryptogram_name))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -190,6 +221,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: the same solution
+        // checks toolbar title for admin menu
+        onView(withId(R.id.txtCryptogramSolution)).check(matches(hasErrorText(getString(R.string.error_cryptogram_solution))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -203,6 +238,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: empty name
+        // checks toolbar title for admin menu
+        onView(withId(R.id.txtCryptogramName)).check(matches(hasErrorText(getString(R.string.error_cryptogram_name))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -216,6 +255,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: empty solution
+        // checks toolbar title for admin menu
+        onView(withId(R.id.txtCryptogramSolution)).check(matches(hasErrorText(getString(R.string.error_cryptogram_solution))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -229,6 +272,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: empty easy attempts
+        // checks toolbar title for admin menu
+        onView(withId(R.id.easy_attempts_txt)).check(matches(hasErrorText(getString(R.string.error_number_required))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -242,6 +289,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: empty normal attempts
+        // checks toolbar title for admin menu
+        onView(withId(R.id.normal_attempts_txt)).check(matches(hasErrorText(getString(R.string.error_number_required))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -255,6 +306,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: empty hard attempts
+        // checks toolbar title for admin menu
+        onView(withId(R.id.hard_attempts_txt)).check(matches(hasErrorText(getString(R.string.error_number_required))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
     @Test
@@ -268,6 +323,10 @@ public class AddCryptogramFragmentTest {
         onView(withId(R.id.addCryptogramButton)).perform(click());
 
         // TODO: invalid hard attempts
+        // checks toolbar title for admin menu
+        onView(withId(R.id.hard_attempts_txt)).check(matches(hasErrorText(getString(R.string.error_negative_attempts))));
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.administrator_menu)));
     }
 
 }
