@@ -26,4 +26,46 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 
 @RunWith(AndroidJUnit4.class)
 public class AdminMenuFragmentTest {
+
+
+	@Rule
+    public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
+
+    private View decorView;
+
+    @Before
+    public void setUp() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            decorView = activity.getWindow().getDecorView();
+        });
+    }
+
+    @Test
+    public void AdminMenuFragmentTestAddPlayer() {
+        onView(withId(R.id.addPlayerItem)).perform(click());
+
+        // TODO:check the correctness
+    }
+
+    @Test
+    public void AdminMenuFragmentTestAddCryptogram() {
+        onView(withId(R.id.addCryptogramItem)).perform(click());
+
+        // TODO:check the correctness
+    }
+
+    @Test
+    public void AdminMenuFragmentTestViewStatisticsItem() {
+        onView(withId(R.id.viewStatisticsItem)).perform(click());
+
+        // TODO:check the correctness
+    }
+
+    @Test
+    public void AdminMenuFragmentTestLogoutAdminItem() {
+        onView(withId(R.id.logoutAdminItem)).perform(click());
+
+        // TODO:check the correctness
+    }
+
 }

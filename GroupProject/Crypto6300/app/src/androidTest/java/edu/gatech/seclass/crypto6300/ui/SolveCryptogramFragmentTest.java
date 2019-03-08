@@ -42,7 +42,10 @@ public class SolveCryptogramFragmentTest {
     @Test
     public void addCryptogramFragmentTest1() {
 
+        onView(withId(R.id.submitSubmission)).perform(click());
+        onView(withId(R.id.submitSubmission)).perform(click());
+        onView(withId(R.id.submitSubmission)).perform(click());
 
-        // TODO:check the correctness
+        // TODO: check the correctness
     }
 }

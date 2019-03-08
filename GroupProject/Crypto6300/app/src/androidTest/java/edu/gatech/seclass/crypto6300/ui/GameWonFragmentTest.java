@@ -39,4 +39,11 @@ public class GameWonFragmentTest {
         });
     }
 
+    @Test
+    public void GameOverFragmentTest() {
+        onView(withId(R.id.returnToMenu)).perform(click());
+
+        // TODO:check the toolbar
+    }
+
 }
