@@ -121,9 +121,9 @@ class AdminTest {
         admin {
             setCryptogramName("aristotle")
             setCryptogramSolution("android")
-            setNumEasyAttempts(7)
-            setNumNormalAttempts(5)
-            setNumHardAttempts(3)
+            setNumEasyAttempts("7")
+            setNumNormalAttempts("5")
+            setNumHardAttempts("3")
             clickAddCryptogramButton()
             matchDialogText(stringFormatOnce(R.string.cryptogram_was_added, "aristotle"))
         }
@@ -137,11 +137,75 @@ class AdminTest {
         admin {
             setCryptogramName("aristotle")
             setCryptogramSolution("android")
-            setNumEasyAttempts(7)
-            setNumNormalAttempts(5)
-            setNumHardAttempts(3)
+            setNumEasyAttempts("7")
+            setNumNormalAttempts("5")
+            setNumHardAttempts("3")
             clickAddCryptogramButton()
             matchDialogText(string(R.string.cryptogram_exists))
+        }
+    }
+
+    @Test
+    fun AddCryptogram_FailWithMissingName() {
+        loginAsAdminCorrectly()
+        navToAddCryptogram()
+
+        admin {
+            setCryptogramName("")
+            setCryptogramSolution("validsolution")
+            setNumEasyAttempts("7")
+            setNumNormalAttempts("5")
+            setNumHardAttempts("3")
+            clickAddCryptogramButton()
+            matchEditTextError(R.id.txtCryptogramName, string(R.string.error_cryptogram_name))
+        }
+    }
+
+    @Test
+    fun AddCryptogram_FailWithMissingSolution() {
+        loginAsAdminCorrectly()
+        navToAddCryptogram()
+
+        admin {
+            setCryptogramName("newgram")
+            setCryptogramSolution("")
+            setNumEasyAttempts("7")
+            setNumNormalAttempts("5")
+            setNumHardAttempts("3")
+            clickAddCryptogramButton()
+            matchEditTextError(R.id.txtCryptogramSolution, string(R.string.error_cryptogram_solution))
+        }
+    }
+
+    @Test
+    fun AddCryptogram_FailWithZeroNormalAttempts() {
+        loginAsAdminCorrectly()
+        navToAddCryptogram()
+
+        admin {
+            setCryptogramName("zeroNormal")
+            setCryptogramSolution("somesolution")
+            setNumEasyAttempts("7")
+            setNumNormalAttempts("0")
+            setNumHardAttempts("0")
+            clickAddCryptogramButton()
+            matchEditTextError(R.id.normal_attempts_txt, string(R.string.error_negative_attempts))
+        }
+    }
+
+    @Test
+    fun AddCryptogram_FailWithNegativeHardAttemptts() {
+        loginAsAdminCorrectly()
+        navToAddCryptogram()
+
+        admin {
+            setCryptogramName("newgram")
+            setCryptogramSolution("somesolution")
+            setNumEasyAttempts("7")
+            setNumNormalAttempts("5")
+            setNumHardAttempts("-1")
+            clickAddCryptogramButton()
+            matchEditTextError(R.id.hard_attempts_txt, string(R.string.error_positive_number_required))
         }
     }
 

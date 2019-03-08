@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -277,7 +276,7 @@ public class AddCryptogramFragmentTest {
 
         // TODO: empty easy attempts
         // checks toolbar title for admin menu
-        onView(withId(R.id.easy_attempts_txt)).check(matches(hasErrorText(activity.getString(R.string.error_number_required))));
+        onView(withId(R.id.easy_attempts_txt)).check(matches(hasErrorText(activity.getString(R.string.error_positive_number_required))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -294,7 +293,7 @@ public class AddCryptogramFragmentTest {
 
         // TODO: empty normal attempts
         // checks toolbar title for admin menu
-        onView(withId(R.id.normal_attempts_txt)).check(matches(hasErrorText(activity.getString(R.string.error_number_required))));
+        onView(withId(R.id.normal_attempts_txt)).check(matches(hasErrorText(activity.getString(R.string.error_positive_number_required))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -311,7 +310,7 @@ public class AddCryptogramFragmentTest {
 
         // TODO: empty hard attempts
         // checks toolbar title for admin menu
-        onView(withId(R.id.hard_attempts_txt)).check(matches(hasErrorText(activity.getString(R.string.error_number_required))));
+        onView(withId(R.id.hard_attempts_txt)).check(matches(hasErrorText(activity.getString(R.string.error_positive_number_required))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
