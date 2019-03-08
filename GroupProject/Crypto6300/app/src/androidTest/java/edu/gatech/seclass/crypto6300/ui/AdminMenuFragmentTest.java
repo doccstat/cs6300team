@@ -45,6 +45,8 @@ public class AdminMenuFragmentTest {
         onView(withId(R.id.addPlayerItem)).perform(click());
 
         // TODO:check the correctness
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.add_player)));
     }
 
     @Test
@@ -52,6 +54,8 @@ public class AdminMenuFragmentTest {
         onView(withId(R.id.addCryptogramItem)).perform(click());
 
         // TODO:check the correctness
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.add_cryptogram)));
     }
 
     @Test
@@ -59,6 +63,8 @@ public class AdminMenuFragmentTest {
         onView(withId(R.id.viewStatisticsItem)).perform(click());
 
         // TODO:check the correctness
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.player_statistics)));
     }
 
     @Test
@@ -66,6 +72,8 @@ public class AdminMenuFragmentTest {
         onView(withId(R.id.logoutAdminItem)).perform(click());
 
         // TODO:check the correctness
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.login)));
     }
 
 }
