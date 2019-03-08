@@ -1,6 +1,7 @@
 package edu.gatech.seclass.crypto6300.robotTests
 
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.Espresso.onView
@@ -8,6 +9,7 @@ import androidx.test.espresso.Root
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import edu.gatech.seclass.crypto6300.R
@@ -28,6 +30,8 @@ open class BaseTestRobot {
     fun textView(resId: Int): ViewInteraction = onView(withId(resId))
 
     fun editText(resId: Int): ViewInteraction = onView(withId(resId))
+
+    fun recyclerView(resId: Int): ViewInteraction = onView(withId(resId))
 
     fun matchText(viewInteraction: ViewInteraction, text: String): ViewInteraction = viewInteraction
             .check(ViewAssertions.matches(ViewMatchers.withText(text)))
@@ -68,6 +72,17 @@ open class BaseTestRobot {
                 .check(ViewAssertions.matches(withSpinnerText(containsString(selectionText))))
     }
 
+    fun selectRvItemByPosition(resId: Int, position: Int): ViewInteraction {
+        return recyclerView(resId)
+                .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, ViewActions.click()))
+    }
+
+    fun checkRvItemText(resId: Int, text:String): ViewInteraction {
+        return recyclerView(resId)
+                .check(ViewAssertions.matches(hasDescendant(withText(text))))
+    }
+
+    fun matchDialogText(message: String) = matchText(textView(android.R.id.message), message)
 
     fun goBack() = Espresso.pressBack()
 }

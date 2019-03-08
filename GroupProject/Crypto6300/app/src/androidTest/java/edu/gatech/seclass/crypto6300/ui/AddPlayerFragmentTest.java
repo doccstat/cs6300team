@@ -1,5 +1,6 @@
 package edu.gatech.seclass.crypto6300.ui;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -31,11 +33,13 @@ public class AddPlayerFragmentTest {
     public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
 
     private View decorView;
+    private Activity activity;
 
     @Before
     public void setUp() {
         activityScenarioRule.getScenario().onActivity(activity -> {
             decorView = activity.getWindow().getDecorView();
+            this.activity = activity;
         });
     }
 
@@ -93,7 +97,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness of password
-        onView(withId(R.id.txtPlayerPassword)).check(matches(hasErrorText(getString(R.string.error_password_length))));
+        onView(withId(R.id.txtPlayerPassword)).check(matches(hasErrorText(activity.getString(R.string.error_password_length))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -109,7 +113,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerUsername)).check(matches(hasErrorText(getString(R.string.error_username_length))));
+        onView(withId(R.id.txtPlayerUsername)).check(matches(hasErrorText(activity.getString(R.string.error_username_length))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -125,7 +129,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerLastName)).check(matches(hasErrorText(getString(R.string.error_lastname_length))));
+        onView(withId(R.id.txtPlayerLastName)).check(matches(hasErrorText(activity.getString(R.string.error_lastname_length))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -141,7 +145,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerFirstName)).check(matches(hasErrorText(getString(R.string.error_firstname_length))));
+        onView(withId(R.id.txtPlayerFirstName)).check(matches(hasErrorText(activity.getString(R.string.error_firstname_length))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -158,7 +162,7 @@ public class AddPlayerFragmentTest {
 
         // TODO:check the correctness
 
-        onView(withId(R.id.txtPlayerUsername)).check(matches(hasErrorText(getString(R.string.error_username))));
+        onView(withId(R.id.txtPlayerUsername)).check(matches(hasErrorText(activity.getString(R.string.error_username))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -174,7 +178,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerFirstName)).check(matches(hasErrorText(getString(R.string.error_firstname))));
+        onView(withId(R.id.txtPlayerFirstName)).check(matches(hasErrorText(activity.getString(R.string.error_firstname))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -190,7 +194,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerLastName)).check(matches(hasErrorText(getString(R.string.error_lastname))));
+        onView(withId(R.id.txtPlayerLastName)).check(matches(hasErrorText(activity.getString(R.string.error_lastname))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -206,7 +210,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerPassword)).check(matches(hasErrorText(getString(R.string.error_password))));
+        onView(withId(R.id.txtPlayerPassword)).check(matches(hasErrorText(activity.getString(R.string.error_password))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -222,7 +226,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerFirstName)).check(matches(hasErrorText(getString(R.string.error_letters_only))));
+        onView(withId(R.id.txtPlayerFirstName)).check(matches(hasErrorText(activity.getString(R.string.error_letters_only))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -238,7 +242,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerLastName)).check(matches(hasErrorText(getString(R.string.error_letters_only))));
+        onView(withId(R.id.txtPlayerLastName)).check(matches(hasErrorText(activity.getString(R.string.error_letters_only))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -254,7 +258,7 @@ public class AddPlayerFragmentTest {
         onView(withId(R.id.addPlayerButton)).perform(click());
 
         // TODO:check the correctness
-        onView(withId(R.id.txtPlayerUsername)).check(matches(hasErrorText(getString(R.string.error_username_chars))));
+        onView(withId(R.id.txtPlayerUsername)).check(matches(hasErrorText(activity.getString(R.string.error_username_chars))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }
@@ -271,7 +275,7 @@ public class AddPlayerFragmentTest {
 
         // TODO:check the correctness
 
-        onView(withId(R.id.txtPlayerPassword)).check(matches(hasErrorText(getString(R.string.error_password_chars))));
+        onView(withId(R.id.txtPlayerPassword)).check(matches(hasErrorText(activity.getString(R.string.error_password_chars))));
         onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
                 .check(matches(withText(R.string.administrator_menu)));
     }

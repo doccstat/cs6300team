@@ -1,5 +1,6 @@
 package edu.gatech.seclass.crypto6300.robotTests
 
+import androidx.test.espresso.ViewInteraction
 import edu.gatech.seclass.crypto6300.R
 
 /*
@@ -16,4 +17,11 @@ class LoginRobot : BaseTestRobot() {
     fun clickLogin() = clickButton(R.id.btnLogin)
 
     fun matchErrorText(err: String) = matchText(editText(android.R.id.message), err)
+
+    fun loginAsAdminCorrectly(): ViewInteraction {
+        setUsername("admin")
+        setPassword("admin")
+        hideKeyboard()
+        return clickLogin()
+    }
 }

@@ -44,8 +44,4 @@ class AdminRobot : BaseTestRobot() {
     fun setNumHardAttempts(num: Int) = fillEditText(R.id.hard_attempts_txt, num.toString())
 
     fun clickAddCryptogramButton() = clickButton(R.id.addCryptogramButton)
-
-
-    // generic
-    fun matchDialogText(message: String) = matchText(textView(android.R.id.message), message)
 }
