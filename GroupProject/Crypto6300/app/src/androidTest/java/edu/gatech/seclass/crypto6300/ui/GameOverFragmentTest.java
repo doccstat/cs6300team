@@ -26,4 +26,24 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 
 @RunWith(AndroidJUnit4.class)
 public class GameOverFragmentTest {
+
+	@Rule
+    public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
+
+    private View decorView;
+
+    @Before
+    public void setUp() {
+        activityScenarioRule.getScenario().onActivity(activity -> {
+            decorView = activity.getWindow().getDecorView();
+        });
+    }
+
+    @Test
+    public void GameOverFragmentTest() {
+        onView(withId(R.id.returnToMenu)).perform(click());
+
+        // TODO:check the toolbar
+    }
+
 }
