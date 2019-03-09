@@ -44,5 +44,7 @@ public class ChooseCryptogramFragmentTest {
         onView(withId(R.id.choose_cryptogram_rv)).perform(click());
 
         // TODO:check the toolbar
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.solve_cryptogram)));
     }
 }

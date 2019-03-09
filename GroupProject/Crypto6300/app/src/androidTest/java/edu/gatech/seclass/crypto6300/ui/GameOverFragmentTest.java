@@ -44,6 +44,9 @@ public class GameOverFragmentTest {
         onView(withId(R.id.returnToMenu)).perform(click());
 
         // TODO:check the toolbar
+        
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.game_over)));
     }
 
 }
