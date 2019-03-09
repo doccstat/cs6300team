@@ -54,7 +54,7 @@ The Deployment Diagram above shows the main compiled classes as part of an overa
 
 The class diagram below represents the main classes used in the Cryptogram app.  This design is presented unmodified from the previous Deliverable submission.
 
-<img src="img/Assignment5UML.png" alt="Assignment5UMLV1" width="900">
+<img src="img/Assignment5UMLV1.png" alt="Assignment5UMLV1" width="900">
 
 ### 3.2 Other Diagrams
 
