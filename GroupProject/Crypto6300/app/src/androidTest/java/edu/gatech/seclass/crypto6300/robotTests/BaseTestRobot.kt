@@ -21,11 +21,15 @@ import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.annotation.IdRes
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.RootMatchers.isDialog
 import org.hamcrest.TypeSafeMatcher
 
 
 /*
-Borrowed from https://medium.com/android-bits/espresso-robot-pattern-in-kotlin-fc820ce250f7
+Partially borrowed from:
+ https://medium.com/android-bits/espresso-robot-pattern-in-kotlin-fc820ce250f7
  */
 open class BaseTestRobot {
     fun fillEditText(resId: Int, text: String): ViewInteraction =
@@ -89,12 +93,19 @@ open class BaseTestRobot {
                         .actionOnItemAtPosition<RecyclerView.ViewHolder>(position, ViewActions.typeText(text)))
     }
 
-    fun checkRvItemText(resId: Int, text:String): ViewInteraction {
+    fun checkRvItemText(resId: Int, text: String): ViewInteraction {
         return recyclerView(resId)
                 .check(ViewAssertions.matches(hasDescendant(withText(text))))
     }
 
     fun matchDialogText(message: String) = matchText(textView(android.R.id.message), message)
+
+    fun clickDialog(resId: Int): ViewInteraction {
+        return onView(withText(resId))
+                .inRoot(isDialog())
+                .check(matches(isDisplayed()))
+                .perform(click())
+    }
 
     fun goBack() = Espresso.pressBack()
 

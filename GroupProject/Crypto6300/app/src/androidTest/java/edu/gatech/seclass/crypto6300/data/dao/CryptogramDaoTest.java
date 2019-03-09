@@ -55,7 +55,7 @@ public class CryptogramDaoTest {
     }
 
     @Test
-    public void insertAttemptAndGetAttempt() throws Exception {
+    public void insertCryptogramAndGetCryptogram() throws Exception {
         Cryptogram cryptogram = new Cryptogram("Caesar", "android", 2, new Attempts(2, 3, 4));
 
         cryptogramDao.getAllCryptograms().observeForever(observer);

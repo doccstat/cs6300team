@@ -13,7 +13,7 @@ class AdminRobot : BaseTestRobot() {
 
     fun clickMenuAddCryptogram() = clickButton(R.id.addCryptogramItem)
 
-    fun clickMenuViewPlayerStats() = clickButton(R.id.viewPlayerStatisticsItem)
+    fun clickMenuViewStats() = clickButton(R.id.viewStatisticsItem)
 
     fun clickMenuLogout() = clickButton(R.id.logoutAdminItem)
 

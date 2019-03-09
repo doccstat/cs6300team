@@ -10,7 +10,7 @@ class PlayerRobot : BaseTestRobot() {
     // menu UI
     fun clickChooseCryptogram() = clickButton(R.id.chooseCryptogramItem)
 
-    fun clickMenuViewPlayerStats() = clickButton(R.id.viewStatisticsItem)
+    fun clickMenuViewPlayerStats() = clickButton(R.id.viewPlayerStatisticsItem)
 
     fun clickMenuLogout() = clickButton(R.id.logoutPlayerItem)
 
