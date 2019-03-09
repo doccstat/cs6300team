@@ -1,5 +1,6 @@
 package edu.gatech.seclass.crypto6300.robotTests
 
+import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso
@@ -10,12 +11,17 @@ import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import edu.gatech.seclass.crypto6300.R
 import org.hamcrest.CoreMatchers.*
+import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.core.AllOf
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.annotation.IdRes
+import org.hamcrest.TypeSafeMatcher
 
 
 /*
@@ -77,6 +83,12 @@ open class BaseTestRobot {
                 .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(position, ViewActions.click()))
     }
 
+    fun fillRvItemText(resId: Int, position: Int, text: String): ViewInteraction {
+        return recyclerView(resId)
+                .perform(RecyclerViewActions
+                        .actionOnItemAtPosition<RecyclerView.ViewHolder>(position, ViewActions.typeText(text)))
+    }
+
     fun checkRvItemText(resId: Int, text:String): ViewInteraction {
         return recyclerView(resId)
                 .check(ViewAssertions.matches(hasDescendant(withText(text))))
@@ -85,4 +97,39 @@ open class BaseTestRobot {
     fun matchDialogText(message: String) = matchText(textView(android.R.id.message), message)
 
     fun goBack() = Espresso.pressBack()
+
+    fun matchRvItemCount(resId: Int, count: Int): ViewInteraction {
+        return recyclerView(resId).check(ViewAssertions.matches(RecyclerViewMatchers.hasItemCount(count)))
+    }
+
+    fun getCountFromRecyclerView(@IdRes RecyclerViewId: Int): Int {
+        val COUNT = intArrayOf(0)
+        val matcher = object : TypeSafeMatcher<View>() {
+            override protected fun matchesSafely(item: View): Boolean {
+                COUNT[0] = (item as RecyclerView).adapter!!.itemCount
+                return true
+            }
+
+            override fun describeTo(description: Description) {}
+        }
+        onView(allOf(withId(RecyclerViewId), isDisplayed())).check(ViewAssertions.matches(matcher))
+        return COUNT[0]
+    }
+}
+
+object RecyclerViewMatchers {
+    @JvmStatic
+    fun hasItemCount(itemCount: Int): Matcher<View> {
+        return object : BoundedMatcher<View, RecyclerView>(
+                RecyclerView::class.java) {
+
+            override fun describeTo(description: Description) {
+                description.appendText("has $itemCount items")
+            }
+
+            override fun matchesSafely(view: RecyclerView): Boolean {
+                return view.adapter?.itemCount == itemCount
+            }
+        }
+    }
 }

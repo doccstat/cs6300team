@@ -34,24 +34,41 @@ class PlayerTest {
     }
 
     @Test
-    fun loginPlayer() {
+    fun loginPlayer_navToSolveCryptogram() {
+        loginAsPlayerCorrectly()
+        navToChooseCryptogram()
+
+        player {
+            selectRvItemByPosition(R.id.choose_cryptogram_rv, 0)
+            matchScreen(string(R.string.solve_cryptogram))
+            fillSolver(R.id.solve_cryptogram_rv, "hello")
+        }
+    }
+
+    private fun loginAsPlayerCorrectly() {
         login {
-            setUsername("player")
+            setUsername("aleve")
             setPassword("password")
             hideKeyboard()
             clickLogin()
             matchScreen(string(R.string.player_menu))
         }
+    }
 
+    private fun navToChooseCryptogram() {
         player {
             clickChooseCryptogram()
             matchScreen(string(R.string.choose_cryptogram))
         }
+    }
 
+    private fun navToSolveCryptogram() {
         player {
-            // TODO try choosing a cryptogram
+            selectRvItemByPosition(R.id.choose_cryptogram_rv, 0)
+            matchScreen(string(R.string.solve_cryptogram))
         }
     }
+
 
     private fun string(res: Int): String = activityTestRule.activity.getString(res)
 
