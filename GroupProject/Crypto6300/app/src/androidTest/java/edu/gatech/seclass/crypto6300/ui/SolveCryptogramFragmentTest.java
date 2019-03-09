@@ -47,5 +47,8 @@ public class SolveCryptogramFragmentTest {
         onView(withId(R.id.submitSubmission)).perform(click());
 
         // TODO: check the correctness
+
+        onView(AllOf.allOf(instanceOf(TextView.class), withParent(withId(R.id.toolbar))))
+                .check(matches(withText(R.string.game_over)));
     }
 }
