@@ -133,9 +133,11 @@ dependencies {
             "androidx.test:runner:$junitAndroidTestVersion",
             "androidx.test.ext:junit:$junitAndroidTestVersion",
             "androidx.test.espresso:espresso-core:$espressoVersion",
+            "androidx.test.espresso:espresso-contrib:$espressoVersion",
             "android.arch.persistence.room:testing:$rootProject.roomVersion",
             "androidx.arch.core:core-testing:$core_testing_version",
             "org.mockito:mockito-android:$mockito_version"
     )
+
 
 }

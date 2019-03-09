@@ -37,15 +37,11 @@ class AdminRobot : BaseTestRobot() {
 
     fun setCryptogramSolution(solution: String) = fillEditText(R.id.txtCryptogramSolution, solution)
 
-    fun setNumEasyAttempts(num: Int) = fillEditText(R.id.easy_attempts_txt, num.toString())
+    fun setNumEasyAttempts(num: String) = fillEditText(R.id.easy_attempts_txt, num)
 
-    fun setNumNormalAttempts(num: Int) = fillEditText(R.id.normal_attempts_txt, num.toString())
+    fun setNumNormalAttempts(num: String) = fillEditText(R.id.normal_attempts_txt, num)
 
-    fun setNumHardAttempts(num: Int) = fillEditText(R.id.hard_attempts_txt, num.toString())
+    fun setNumHardAttempts(num: String) = fillEditText(R.id.hard_attempts_txt, num)
 
     fun clickAddCryptogramButton() = clickButton(R.id.addCryptogramButton)
-
-
-    // generic
-    fun matchDialogText(message: String) = matchText(textView(android.R.id.message), message)
 }

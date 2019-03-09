@@ -1,12 +1,10 @@
 package edu.gatech.seclass.crypto6300.ui;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,8 +56,8 @@ public class AddCryptogramFragment extends BaseFragment {
             userParam = getArguments().getParcelable(ARG_PARAM1);
         }
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
@@ -84,27 +82,35 @@ public class AddCryptogramFragment extends BaseFragment {
 
         String name = etCryptogramName.getText().toString();
         String solution = etCryptogramSolution.getText().toString();
-        String easy_attempts= etEasyAttempts.getText().toString();
-        String normal_attempts= etNormalAttempts.getText().toString();
-        String hard_attempts= etHardAttempts.getText().toString();
-        Integer easy=0;
-        Integer normal=0;
-        Integer hard=0;
+        String easy_attempts = etEasyAttempts.getText().toString();
+        String normal_attempts = etNormalAttempts.getText().toString();
+        String hard_attempts = etHardAttempts.getText().toString();
+        Integer easy = 0;
+        Integer normal = 0;
+        Integer hard = 0;
 
-        if (isNumber(easy_attempts)){
-             easy =  Integer.parseInt(easy_attempts);
-             if (easy<=0){ etEasyAttempts.setError(getString(R.string.error_negative_attempts));}
-             else {etEasyAttempts.setError(null);}
-        }
-        else{
-            etEasyAttempts.setError(getString(R.string.error_number_required));
+        if (isNumber(easy_attempts)) {
+            easy = Integer.parseInt(easy_attempts);
+            if (easy <= 0) {
+                etEasyAttempts.setError(getString(R.string.error_negative_attempts));
+                etEasyAttempts.requestFocus();
+                return;
+            } else {
+                etEasyAttempts.setError(null);
+            }
+        } else {
+            etEasyAttempts.setError(getString(R.string.error_positive_number_required));
             etEasyAttempts.requestFocus();
+            return;
         }
 
-        if (isNumber(normal_attempts)){
-             normal =  Integer.parseInt(normal_attempts);
-            if (normal<=0){ etNormalAttempts.setError(getString(R.string.error_negative_attempts));}
-            else if (normal>easy){
+        if (isNumber(normal_attempts)) {
+            normal = Integer.parseInt(normal_attempts);
+            if (normal <= 0) {
+                etNormalAttempts.setError(getString(R.string.error_negative_attempts));
+                etNormalAttempts.requestFocus();
+                return;
+            } else if (normal > easy) {
                 etNormalAttempts.setError(null);
                 new AlertDialog.Builder(getContext())
                         .setTitle(R.string.warning)
@@ -114,28 +120,31 @@ public class AddCryptogramFragment extends BaseFragment {
                             dialog.dismiss();
                         }).show();
             }
-        }
-        else{
-            etNormalAttempts.setError(getString(R.string.error_number_required));
+        } else {
+            etNormalAttempts.setError(getString(R.string.error_positive_number_required));
             etHardAttempts.requestFocus();
+            return;
         }
 
-        if (isNumber(hard_attempts)){
-             hard =  Integer.parseInt(hard_attempts);
-             if (hard<=0){etHardAttempts.setError(getString(R.string.error_negative_attempts));}
-             else if (hard> normal || hard>easy){
-                 new AlertDialog.Builder(getContext())
-                         .setTitle(R.string.warning)
-                         .setMessage(R.string.check_hard_attempts)
-                         .setCancelable(true)
-                         .setPositiveButton(R.string.ok, (dialog, which) -> {
-                             dialog.dismiss();
-                         }).show();
-             }
-        }
-        else{
-            etHardAttempts.setError(getString(R.string.error_number_required));
+        if (isNumber(hard_attempts)) {
+            hard = Integer.parseInt(hard_attempts);
+            if (hard <= 0) {
+                etHardAttempts.setError(getString(R.string.error_negative_attempts));
+                etHardAttempts.requestFocus();
+                return;
+            } else if (hard > normal || hard > easy) {
+                new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.warning)
+                        .setMessage(R.string.check_hard_attempts)
+                        .setCancelable(true)
+                        .setPositiveButton(R.string.ok, (dialog, which) -> {
+                            dialog.dismiss();
+                        }).show();
+            }
+        } else {
+            etHardAttempts.setError(getString(R.string.error_positive_number_required));
             etHardAttempts.requestFocus();
+            return;
         }
 
 
@@ -170,8 +179,8 @@ public class AddCryptogramFragment extends BaseFragment {
 
     private boolean isValidInput() {
         // TODO
-        String name=etCryptogramName.getText().toString();
-        String solution= etCryptogramSolution.getText().toString();
+        String name = etCryptogramName.getText().toString();
+        String solution = etCryptogramSolution.getText().toString();
         if (name.isEmpty()) {
             etCryptogramName.setError(getString(R.string.error_cryptogram_name));
             etCryptogramName.requestFocus();
@@ -187,14 +196,14 @@ public class AddCryptogramFragment extends BaseFragment {
         } else {
             etCryptogramSolution.setError(null);
         }
-        return  true;
+        return true;
     }
-    private boolean isNumber(String number){
-        if(!TextUtils.isEmpty(number)){
+
+    private boolean isNumber(String number) {
+        if (!TextUtils.isEmpty(number)) {
             return TextUtils.isDigitsOnly(number);
-        }else{
+        } else {
             return false;
         }
     }
-
 }

@@ -74,6 +74,27 @@ class LoginTest {
         }
     }
 
+    @Test
+    fun loginAsPlayer_returnSuccess() {
+        login {
+            setUsername("aleve")
+            setPassword("password")
+            hideKeyboard()
+            clickLogin()
+            matchScreen(string(R.string.player_menu))
+        }
+    }
+
+    @Test
+    fun loginAsPlayer_returnFailWithIncorrectUsernameOrPassword() {
+        login {
+            setUsername("alice")
+            setPassword("fjkldsa")
+            hideKeyboard()
+            clickLogin()
+            matchToast(string(R.string.error_wrong_username_or_password), decorView = decorView)
+        }
+    }
 
     private fun string(res: Int): String = activityTestRule.activity.getString(res)
 }
